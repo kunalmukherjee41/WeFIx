@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".CreateUserActivity">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/bar_layout"/>
+
+    <RelativeLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@color/colorAccent"/>
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="22dp">
+
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create New Account"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="22sp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_below="@+id/tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:textSize="18sp"
+                    android:text="Name"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/name"
+                    android:padding="10dp"
+                    android:drawableLeft="@drawable/name_asset"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:background="@drawable/custom_edittext"
+                    android:layout_marginTop="90dp"/>
+
+
+                <TextView
+                    android:layout_below="@+id/tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="115dp"
+                    android:textSize="18sp"
+                    android:text="Email"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/email"
+                    android:padding="10dp"
+                    android:inputType="textEmailAddress"
+                    android:drawableLeft="@drawable/username_asset"
+                    android:hint="Usersname"
+                    android:background="@drawable/custom_edittext"
+                    android:layout_marginTop="170dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:layout_marginTop="225dp"
+                    android:textSize="18sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/custom_edittext"
+                    android:layout_marginTop="250dp"
+                    android:padding="10dp"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@drawable/password_asset"
+                    android:id="@+id/password"
+                    android:hint="Password" />
+
+                <TextView
+                    android:layout_below="@+id/tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="275dp"
+                    android:textSize="18sp"
+                    android:text="Phone"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/phone"
+                    android:padding="10dp"
+                    android:inputType="phone"
+                    android:drawableLeft="@drawable/phone_asset"
+                    android:hint="Phone"
+                    android:background="@drawable/custom_edittext"
+                    android:layout_marginTop="330dp"/>
+
+                <Button
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/create_user"
+                    android:background="@drawable/custom_btn"
+                    android:layout_marginTop="390dp"
+                    android:text="Create User"
+                    android:textAllCaps="false"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#c1cccccc"
+                android:padding="13dp"
+                android:layout_marginTop="490dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot Password?"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="18dp"
+                    android:id="@+id/forgot_password"
+                    android:textSize="18sp" />
+
+                <!--                <view-->
+                <!--                    android:layout_width="1dp"-->
+                <!--                    android:layout_height="30dp"-->
+                <!--                    android:layout_marginLeft="10dp"/>-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login Page"
+                    android:id="@+id/login"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</LinearLayout>
