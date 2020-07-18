@@ -1,11 +1,6 @@
 package com.example.wefix;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -13,14 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.model.CategoryResponse;
 import com.example.wefix.adapter.UserAdapter;
 import com.example.wefix.model.Category;
+import com.example.wefix.model.CategoryResponse;
+import com.example.wefix.model.Service;
+import com.example.wefix.model.ServiceResponse;
 import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private UserAdapter adapter;
     private List<Category> categoryList;
     Button login;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         login =findViewById(R.id.login);
         categoryList = new ArrayList<>();
 
         login.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    }
-                }
+                v -> startActivity(new Intent(MainActivity.this, LoginActivity.class))
         );
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -62,26 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
         getData();
 
-        recyclerView.addOnItemTouchListener(
-                new RecyclerView.OnItemTouchListener() {
-                    @Override
-                    public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                        return false;
-                    }
 
-                    @Override
-                    public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-
-                    }
-
-                    @Override
-                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                    }
-                }
-        );
+//        recyclerView.setOnClickListener(v -> click());
 
     }
+
 
     private void getData() {
 
@@ -99,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             categoryList = response.body().getCategory();
                             adapter = new UserAdapter(MainActivity.this, categoryList);
                             recyclerView.setAdapter(adapter);
-                            Toast.makeText(MainActivity.this, "Successful", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(MainActivity.this, "Successful", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MainActivity.this, "Something Went Wrong Try Again", Toast.LENGTH_LONG).show();
                         }

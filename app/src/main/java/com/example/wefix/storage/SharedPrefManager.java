@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 
 import com.example.wefix.model.User;
 
-import javax.microedition.khronos.egl.EGLDisplay;
-
 public class SharedPrefManager {
 
     private static final String SHARED_PREF_NAME = "my_shared_preff";

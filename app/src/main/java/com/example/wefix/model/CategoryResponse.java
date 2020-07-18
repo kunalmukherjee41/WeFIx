@@ -1,10 +1,9 @@
 package com.example.wefix.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class CategoryResponse {
 
@@ -13,7 +12,7 @@ public class CategoryResponse {
     private Boolean error;
     @SerializedName("category")
     @Expose
-    private List<Category> category = null;
+    private List<Category> category;
 
     public CategoryResponse(Boolean error, List<Category> category) {
         this.error = error;

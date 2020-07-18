@@ -41,9 +41,10 @@ public interface Api {
     );
 
     @FormUrlEncoded
-    @PUT("updateuser/{id}")
-    Call<ServiceResponse> updateUser(
-            @Path("id") int id
+    @PUT("getservice/{id}")
+    Call<ServiceResponse> getService(
+            @Path("id") int id,
+            @Field("app") String app
     );
 
 }

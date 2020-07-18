@@ -1,6 +1,5 @@
 package com.example.wefix.model;
 
-import com.example.wefix.model.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

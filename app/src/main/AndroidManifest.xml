@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ContactActivity"></activity>
+        <activity
+            android:name=".ServiceActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SettingActivity"
             android:parentActivityName=".DisplayActivity" />
@@ -24,16 +28,13 @@
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".MainActivity" />
-
-        <activity
-            android:name=".MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

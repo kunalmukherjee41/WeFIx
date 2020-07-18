@@ -1,18 +1,19 @@
 package com.example.wefix;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+
 import com.example.wefix.storage.SharedPrefManager;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 public class DisplayActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class DisplayActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -38,12 +39,15 @@ public class DisplayActivity extends AppCompatActivity {
         logout = findViewById(R.id.logout);
 
         logout.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SharedPrefManager.getInstance(DisplayActivity.this).clear();
-                        startActivity(new Intent(DisplayActivity.this, MainActivity.class));
-                    }
+                v -> {
+                    SharedPrefManager.getInstance(DisplayActivity.this).clear();
+                    startActivity(new Intent(DisplayActivity.this, MainActivity.class));
+                }
+        );
+
+        contact_info.setOnClickListener(
+                v -> {
+                    startActivity(new Intent(DisplayActivity.this, ContactActivity.class));
                 }
         );
 

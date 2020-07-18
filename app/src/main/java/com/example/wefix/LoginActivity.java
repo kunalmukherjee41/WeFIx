@@ -1,26 +1,22 @@
 package com.example.wefix;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.model.User;
 import com.example.wefix.model.UserResponse;
 import com.example.wefix.storage.SharedPrefManager;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private EditText email,password;
-    private Button login;
     TextView create_account, forgot_password;
 
     @Override
@@ -40,31 +35,21 @@ public class LoginActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        login = findViewById(R.id.login);
+        Button login = findViewById(R.id.login);
         create_account = findViewById(R.id.create_account);
         forgot_password = findViewById(R.id.forgot_password);
 
         create_account.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(LoginActivity.this, CreateUserActivity.class));
-                    }
-                }
+                v -> startActivity(new Intent(LoginActivity.this, CreateUserActivity.class))
         );
 
         login.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userlogin();
-                    }
-                }
+                v -> userlogin()
         );
 
     }

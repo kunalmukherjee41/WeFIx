@@ -1,22 +1,19 @@
 package com.example.wefix;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.wefix.Api.RetrofitClient;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.wefix.model.User;
 import com.example.wefix.storage.SharedPrefManager;
 
-import java.util.ArrayList;
-
-import retrofit2.Call;
+import java.util.Objects;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -29,7 +26,7 @@ public class SettingActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         id = findViewById(R.id.id);
