@@ -8,7 +8,6 @@ public class Category {
     @SerializedName("tbl_category_id")
     @Expose
     private int tbl_category_id;
-
     @SerializedName("tbl_category_name")
     @Expose
     private String tbl_category_name;

@@ -20,6 +20,7 @@ import com.example.wefix.R;
 import com.example.wefix.ServiceActivity;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
+import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
 
 import java.util.List;
@@ -87,15 +88,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private void click(int position) {
 
 
-        Call<ServiceResponse> call = RetrofitClient
+        Call<Service1Response> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .getService(position, "WeFix");
 
         call.enqueue(
-                new Callback<ServiceResponse>() {
+                new Callback<Service1Response>() {
                     @Override
-                    public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
+                    public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
                         if(response.isSuccessful()) {
                             Toast.makeText(mContext, "Successful", Toast.LENGTH_LONG).show();
                             assert response.body() != null;
@@ -111,7 +112,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                     }
 
                     @Override
-                    public void onFailure(Call<ServiceResponse> call, Throwable t) {
+                    public void onFailure(Call<Service1Response> call, Throwable t) {
                         Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }

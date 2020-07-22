@@ -1,6 +1,5 @@
 package com.example.wefix;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -35,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private UserAdapter adapter;
     private List<Category> categoryList;
-    Button login;
-    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        login =findViewById(R.id.login);
+        Button login = findViewById(R.id.login);
         categoryList = new ArrayList<>();
 
+        //goto login page
         login.setOnClickListener(
                 v -> startActivity(new Intent(MainActivity.this, LoginActivity.class))
         );
@@ -62,12 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         getData();
 
-
-//        recyclerView.setOnClickListener(v -> click());
-
     }
 
-
+    //Fetch category from database
     private void getData() {
 
         Call<CategoryResponse> call = RetrofitClient
@@ -99,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //check previously login or not
     @Override
     protected void onStart() {
         super.onStart();

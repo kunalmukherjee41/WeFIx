@@ -17,8 +17,8 @@ import java.util.Objects;
 
 public class DisplayActivity extends AppCompatActivity {
 
-    CardView account_info, billing_address_info, contact_info;
-    CardView payment_info, payment_history_info, logout;
+    private CardView account_info, billing_address_info, contact_info;
+    private CardView payment_info, payment_history_info, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class DisplayActivity extends AppCompatActivity {
         payment_info = findViewById(R.id.payment_info);
         logout = findViewById(R.id.logout);
 
+        //logout and clear the shared storage class data
         logout.setOnClickListener(
                 v -> {
                     SharedPrefManager.getInstance(DisplayActivity.this).clear();
@@ -45,6 +46,7 @@ public class DisplayActivity extends AppCompatActivity {
                 }
         );
 
+        //goto contact activity
         contact_info.setOnClickListener(
                 v -> {
                     startActivity(new Intent(DisplayActivity.this, ContactActivity.class));
@@ -59,12 +61,14 @@ public class DisplayActivity extends AppCompatActivity {
         return true;
     }
 
+    //menu option
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
     }
 
+    //on menu item selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -77,17 +81,23 @@ public class DisplayActivity extends AppCompatActivity {
                 SharedPrefManager.getInstance(this).clear();
                 startActivity(new Intent(DisplayActivity.this, MainActivity.class));
                 return true;
+            case R.id.call_logs:
+                startActivity(new Intent(DisplayActivity.this, ServiceActivity2.class));
+                return true;
             case R.id.contact:
             case R.id.billing_address:
             case R.id.payment_history:
                 return false;
             case R.id.home:
-                startActivity(new Intent(this, DisplayActivity.class));
+                Intent intent1 = new Intent(this, DisplayActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
                 return true;
         }
         return false;
     }
 
+    //check user previously login or not
     @Override
     protected void onStart() {
         super.onStart();

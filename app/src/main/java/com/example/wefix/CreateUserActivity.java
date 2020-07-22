@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,7 +15,9 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.wefix.Api.RetrofitClient;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
@@ -26,9 +27,7 @@ import retrofit2.Response;
 
 public class CreateUserActivity extends AppCompatActivity {
 
-    EditText name,email,password,phone;
-    Button create_user;
-    TextView forgot_password,login;
+    private EditText name,email,password,phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +43,24 @@ public class CreateUserActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         phone = findViewById(R.id.phone);
-        create_user = findViewById(R.id.create_user);
+        Button create_user = findViewById(R.id.create_user);
 
-        login = findViewById(R.id.login);
-        forgot_password = findViewById(R.id.forgot_password);
+        TextView login = findViewById(R.id.login);
+        TextView forgot_password = findViewById(R.id.forgot_password);
 
+        //goto login page
         login.setOnClickListener(
                 v -> startActivity(new Intent(CreateUserActivity.this, LoginActivity.class))
         );
 
+        //crate new user and save the data to database
         create_user.setOnClickListener(
                 v -> createUser()
         );
     }
 
+
+    //create user function
     private void createUser() {
 
         String txt_email = email.getText().toString();
@@ -72,41 +75,43 @@ public class CreateUserActivity extends AppCompatActivity {
         } else if(txt_password.length()<6){
             Toast.makeText(CreateUserActivity.this,"Password should be atLeast 6 character", Toast.LENGTH_LONG).show();
         } else {
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+            String dateTime = sdf1.format(new Date());
             Call<ResponseBody> call = RetrofitClient
                     .getInstance()
                     .getApi()
-                    .createUser(txt_email, txt_password, txt_name, "Client", txt_phone, Calendar.getInstance().getTime().toString(), "App");
+                    .createUser(txt_email, txt_password, txt_name, "Client", txt_phone, dateTime, "App");
 
             call.enqueue(new Callback<ResponseBody>() {
-                             @Override
-                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                 if(response.isSuccessful()) {
-                                     try {
-                                         assert response.body() != null;
-                                         String s = response.body().string();
-                                         Toast.makeText(CreateUserActivity.this, s, Toast.LENGTH_LONG).show();
-                                         if(response.code() == 201){
-                                             Intent intent = new Intent(CreateUserActivity.this, LoginActivity.class);
-                                             startActivity(intent);
-                                         }
-                                         email.setText("");
-                                         password.setText("");
-                                         name.setText("");
-                                         phone.setText("");
-                                         finish();
-                                     } catch (IOException e) {
-                                         e.printStackTrace();
-                                     }
-                                 } else {
-                                     Toast.makeText(CreateUserActivity.this, "Something Went Wrong Try Again", Toast.LENGTH_LONG).show();
-                                 }
+                 @Override
+                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                     if(response.isSuccessful()) {
+                         try {
+                             assert response.body() != null;
+                             String s = response.body().string();
+                             Toast.makeText(CreateUserActivity.this, s, Toast.LENGTH_LONG).show();
+                             if(response.code() == 201){
+                                 Intent intent = new Intent(CreateUserActivity.this, LoginActivity.class);
+                                 startActivity(intent);
                              }
-
-                             @Override
-                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                 Toast.makeText(CreateUserActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                             }
+                             email.setText("");
+                             password.setText("");
+                             name.setText("");
+                             phone.setText("");
+                             finish();
+                         } catch (IOException e) {
+                             e.printStackTrace();
                          }
+                     } else {
+                         Toast.makeText(CreateUserActivity.this, "Something Went Wrong Try Again", Toast.LENGTH_LONG).show();
+                     }
+                 }
+
+                 @Override
+                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                     Toast.makeText(CreateUserActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                 }
+             }
             );
 
         }

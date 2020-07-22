@@ -23,12 +23,13 @@
             android:padding="5dp"
             android:layout_marginTop="10dp"
             android:id="@+id/login"
+            android:textAllCaps="false"
             android:textAlignment="textStart"
             android:text="Login"
             android:shadowColor="#fff"
             android:background="#a1caccca"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:textColor="@android:color/holo_blue_dark"

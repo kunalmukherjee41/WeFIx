@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private EditText email,password;
-    TextView create_account, forgot_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +40,22 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         Button login = findViewById(R.id.login);
-        create_account = findViewById(R.id.create_account);
-        forgot_password = findViewById(R.id.forgot_password);
+        TextView create_account = findViewById(R.id.create_account);
+        TextView forgot_password = findViewById(R.id.forgot_password);
 
+        //goto create activity
         create_account.setOnClickListener(
                 v -> startActivity(new Intent(LoginActivity.this, CreateUserActivity.class))
         );
 
+        //check email password and goto home activity
         login.setOnClickListener(
                 v -> userlogin()
         );
 
     }
 
+    //on user login
     private void userlogin() {
 
         String txt_username = email.getText().toString().trim();
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //check user previously login or not
     @Override
     protected void onStart() {
         super.onStart();

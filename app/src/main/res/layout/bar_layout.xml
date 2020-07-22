@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:src="@drawable/logo"
+                android:src="@drawable/logo_text"
                 android:id="@+id/image"/>
 
         </androidx.appcompat.widget.Toolbar>

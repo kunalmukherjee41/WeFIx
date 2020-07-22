@@ -1,8 +1,11 @@
 package com.example.wefix.Api;
 
 import com.example.wefix.model.CategoryResponse;
+import com.example.wefix.model.CompanyResponse;
+import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
 import com.example.wefix.model.UserResponse;
+import com.google.gson.annotations.SerializedName;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -42,9 +45,40 @@ public interface Api {
 
     @FormUrlEncoded
     @PUT("getservice/{id}")
-    Call<ServiceResponse> getService(
+    Call<Service1Response> getService(
             @Path("id") int id,
             @Field("app") String app
     );
+
+    @GET("getallservice")
+    Call<ServiceResponse> getAllServices();
+
+    @GET("getcompany")
+    Call<CompanyResponse> getCompany();
+
+    @FormUrlEncoded
+    @POST("addcalllog")
+    Call<ResponseBody> addCallLog(
+            @Field("call_log_date") String call_log_date,  //1
+            @Field("call_log_type") String call_log_type,  //2
+            @Field("client_ref_id") int client_ref_id,    //3
+            @Field("client_name") String client_name,    //4
+            @Field("client_address") String client_address,//5
+            @Field("client_pin") String client_pin,  //6
+            @Field("client_mb") String client_mb,   //7
+            @Field("client_email") String client_email, //8
+            @Field("ref_cat_id") int ref_cat_id,       //9
+            @Field("ref_service_id") int ref_service_id, //10
+            @Field("ref_company_id") int ref_company_id,  //11
+            @Field("amount") double amount,               //12
+            @Field("problem") String problem,          //13
+            @Field("entry_tim") String entry_tim,     //14
+            @Field("call_log_status") String call_log_status,  //15
+            @Field("client_log_ip") String client_log_ip
+
+    );
+//$call_log_date, $call_log_type, $client_ref_id, $client_name, $client_address,
+//$client_pin, $client_mb, $client_email, $ref_cat_id, $ref_service_id, $ref_company_id,
+// $amount, $problem, $entry_tim, $call_log_status, $client_log_ip, $client_log_timezone
 
 }
