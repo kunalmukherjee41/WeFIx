@@ -38,6 +38,8 @@ public class DisplayActivity extends AppCompatActivity {
         payment_info = findViewById(R.id.payment_info);
         logout = findViewById(R.id.logout);
 
+//        startActivity(new Intent(this, LogActivity.class));
+
         //logout and clear the shared storage class data
         logout.setOnClickListener(
                 v -> {
@@ -85,7 +87,11 @@ public class DisplayActivity extends AppCompatActivity {
                 startActivity(new Intent(DisplayActivity.this, ServiceActivity2.class));
                 return true;
             case R.id.contact:
-            case R.id.billing_address:
+                startActivity(new Intent(this, ContactActivity.class));
+                return true;
+            case R.id.logs_history:
+                startActivity(new Intent(DisplayActivity.this, LogActivity.class));
+                return true;
             case R.id.payment_history:
                 return false;
             case R.id.home:

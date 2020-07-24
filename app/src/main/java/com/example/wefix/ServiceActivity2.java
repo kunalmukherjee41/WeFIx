@@ -1,12 +1,17 @@
 package com.example.wefix;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,6 +73,11 @@ public class ServiceActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service2);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Call Logs");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         service = findViewById(R.id.categorys);
         category = findViewById(R.id.category);
         service_charge = findViewById(R.id.service_charge);
@@ -91,6 +101,10 @@ public class ServiceActivity2 extends AppCompatActivity {
 
         add = findViewById(R.id.add);
         log_view = findViewById(R.id.view_log);
+
+        log_view.setOnClickListener(
+                v -> startActivity(new Intent(ServiceActivity2.this, LogActivity.class))
+        );
 
         //set all the spinner
         setLogType();
@@ -453,5 +467,43 @@ public class ServiceActivity2 extends AppCompatActivity {
 //            LogHelper.wtf(null, e);
             return null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.setting:
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.logout:
+                SharedPrefManager.getInstance(this).clear();
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.contact:
+                startActivity(new Intent(this, ContactActivity.class));
+                return true;
+            case R.id.logs_history:
+                startActivity(new Intent(this, LogActivity.class));
+                return true;
+            case R.id.payment_history:
+                return false;
+            case R.id.call_logs:
+                startActivity(new Intent(this, ServiceActivity2.class));
+                return true;
+            case R.id.home:
+                Intent intent1 = new Intent(this, DisplayActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
+                return true;
+        }
+        return false;
     }
 }

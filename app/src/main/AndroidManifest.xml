@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -15,10 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-
-        <activity android:name=".ServiceActivity2" />
-        <activity android:name=".ContactActivity" />
+        <activity android:name=".LogHistoryDetailsActivity"/>
+        <activity android:name=".LogActivity"
+            android:parentActivityName=".DisplayActivity"/>
+        <activity android:name=".ServiceActivity2"
+            android:parentActivityName=".DisplayActivity"/>
+        <activity android:name=".ContactActivity"
+            android:parentActivityName=".DisplayActivity"/>
         <activity
             android:name=".ServiceActivity"
             android:parentActivityName=".MainActivity" />

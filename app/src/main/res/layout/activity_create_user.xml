@@ -27,6 +27,7 @@
                 android:layout_height="10dp"
                 android:background="@color/colorAccent"/>
 
+
             <RelativeLayout
                 android:id="@+id/relativeLayout1"
                 android:layout_width="match_parent"
@@ -61,6 +62,7 @@
                     android:background="@drawable/custom_edittext"
                     android:layout_marginTop="90dp"
                     android:autofillHints="" />
+
 
                 <TextView
                     android:layout_below="@+id/tag"

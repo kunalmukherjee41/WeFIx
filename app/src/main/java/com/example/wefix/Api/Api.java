@@ -1,7 +1,9 @@
 package com.example.wefix.Api;
 
+import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.CategoryResponse;
 import com.example.wefix.model.CompanyResponse;
+import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
 import com.example.wefix.model.UserResponse;
@@ -50,6 +52,21 @@ public interface Api {
             @Field("app") String app
     );
 
+    @FormUrlEncoded
+    @PUT("getcalllog/{client_ref_id}")
+    Call<LogResponse> getCallLog(
+            @Path("client_ref_id") int client_ref_id,
+            @Field("call_log_date1") String call_log_date1,
+            @Field("call_log_date2") String call_log_date2
+    );
+
+    @FormUrlEncoded
+    @PUT("getcategorybyid/{tbl_category_id}")
+    Call<Category1Response> getCategoryByID(
+            @Path("tbl_category_id") int tbl_category_id,
+            @Field("app") String app
+    );
+
     @GET("getallservice")
     Call<ServiceResponse> getAllServices();
 
@@ -76,9 +93,9 @@ public interface Api {
             @Field("call_log_status") String call_log_status,  //15
             @Field("client_log_ip") String client_log_ip
 
+            //$call_log_date, $call_log_type, $client_ref_id, $client_name, $client_address,
+            //$client_pin, $client_mb, $client_email, $ref_cat_id, $ref_service_id, $ref_company_id,
+            // $amount, $problem, $entry_tim, $call_log_status, $client_log_ip, $client_log_timezone
     );
-//$call_log_date, $call_log_type, $client_ref_id, $client_name, $client_address,
-//$client_pin, $client_mb, $client_email, $ref_cat_id, $ref_service_id, $ref_company_id,
-// $amount, $problem, $entry_tim, $call_log_status, $client_log_ip, $client_log_timezone
 
 }

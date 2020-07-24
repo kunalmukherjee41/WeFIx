@@ -1,45 +1,26 @@
 package com.example.wefix;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.example.wefix.model.User;
+import com.example.wefix.model.Logs;
 import com.example.wefix.storage.SharedPrefManager;
 
-import java.util.Objects;
-
-public class SettingActivity extends AppCompatActivity {
-
-    TextView id,name,phone_number,email;
+public class LogHistoryDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_log_history_details);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent i = getIntent();
 
-        id = findViewById(R.id.id);
-        name = findViewById(R.id.name);
-        phone_number = findViewById(R.id.phone_number);
-        email = findViewById(R.id.email);
-
-        User user = SharedPrefManager.getInstance(this).getUser();
-
-        id.setText(String.valueOf(user.getId()));
-        name.setText(user.getName());
-        phone_number.setText(user.getPhone());
-        email.setText(user.getUsername());
+        Logs logs = (Logs) i.getSerializableExtra("logs");
 
     }
 
@@ -64,6 +45,9 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.contact:
                 startActivity(new Intent(this, ContactActivity.class));
                 return true;
+            case R.id.call_logs:
+                startActivity(new Intent(this, ServiceActivity2.class));
+                return true;
             case R.id.logs_history:
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
@@ -73,9 +57,6 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(this, DisplayActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
-                return true;
-            case R.id.call_logs:
-                startActivity(new Intent(this, ServiceActivity2.class));
                 return true;
         }
         return false;

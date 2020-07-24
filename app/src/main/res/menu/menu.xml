@@ -18,8 +18,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/billing_address"
-        android:title="Billing Address"
+        android:id="@+id/logs_history"
+        android:title="Logs History"
         app:showAsAction="never"/>
 
     <item

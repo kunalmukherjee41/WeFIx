@@ -18,19 +18,22 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
+                android:id="@+id/toolbar"
                 android:layout_height="40dp"
                 android:background="#e7e9f4">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="60dp">
 
                     <TextView
-                        android:layout_width="49dp"
+                        android:layout_width="35dp"
                         android:layout_height="40dp"
                         android:layout_alignParentEnd="true"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="7dp"
                         android:background="#4e73df" />
 
                     <androidx.appcompat.widget.SearchView
@@ -43,7 +46,7 @@
 
                 </RelativeLayout>
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </androidx.appcompat.widget.Toolbar>
 
             <RelativeLayout
                 android:layout_width="match_parent"
