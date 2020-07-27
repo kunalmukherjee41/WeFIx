@@ -82,14 +82,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
         );
 
         holder.itemView.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        click(logs);
-
-                    }
-                }
+                v -> click(logs)
         );
 
     }

@@ -1,7 +1,9 @@
 package com.example.wefix.Api;
 
+import com.example.wefix.model.AddressResponse;
 import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.CategoryResponse;
+import com.example.wefix.model.Company1Response;
 import com.example.wefix.model.CompanyResponse;
 import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Service1Response;
@@ -32,7 +34,20 @@ public interface Api {
             @Field("field") String field
 
             //$username, $password, $name, $designation, $phone, $last_login, $field
+    );
 
+    @FormUrlEncoded
+    @POST("addaddress")
+    Call<ResponseBody> addAddress(
+            @Field("billing_name") String billing_name,
+            @Field("billing_address") String billing_address,
+            @Field("billing_city") String billing_city,
+            @Field("zip_code") String zip_code,
+            @Field("mb_no") String mb_no,
+            @Field("email") String email,
+            @Field("ref_id") int ref_id
+
+//            'billing_name', 'billing_address', 'billing_city', 'zip_code', 'mb_no', 'email', 'ref_id'
     );
 
     @GET("getcategory")
@@ -43,6 +58,20 @@ public interface Api {
     Call<UserResponse> userLogin(
             @Field("username") String username,
             @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @PUT("getcompanybyid/{tbl_company_id}")
+    Call<Company1Response> getCompanyByID(
+            @Path("tbl_company_id") int tbl_company_id,
+            @Field("app") String app
+    );
+
+    @FormUrlEncoded
+    @PUT("getaddress/{ref_id}")
+    Call<AddressResponse> getAddress(
+            @Path("ref_id") int ref_id,
+            @Field("app") String app
     );
 
     @FormUrlEncoded
@@ -87,7 +116,9 @@ public interface Api {
             @Field("ref_cat_id") int ref_cat_id,       //9
             @Field("ref_service_id") int ref_service_id, //10
             @Field("ref_company_id") int ref_company_id,  //11
+            @Field("product_company") String product_company,
             @Field("amount") double amount,               //12
+            @Field("payment_type") String payment_type,
             @Field("problem") String problem,          //13
             @Field("entry_tim") String entry_tim,     //14
             @Field("call_log_status") String call_log_status,  //15

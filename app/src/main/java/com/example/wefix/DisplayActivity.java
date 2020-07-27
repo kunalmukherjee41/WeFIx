@@ -5,20 +5,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.adapter.DisplayCategoryAdapter;
+import com.example.wefix.model.Category;
+import com.example.wefix.model.Category1Response;
+import com.example.wefix.model.CategoryResponse;
 import com.example.wefix.storage.SharedPrefManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DisplayActivity extends AppCompatActivity {
 
-    private CardView account_info, billing_address_info, contact_info;
-    private CardView payment_info, payment_history_info, logout;
+    RecyclerView recyclerView;
+    List<Category> categoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,27 +46,37 @@ public class DisplayActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        account_info = findViewById(R.id.account_info);
-        billing_address_info = findViewById(R.id.billing_address_info);
-        contact_info = findViewById(R.id.contact_info);
-        payment_history_info = findViewById(R.id.payment_history_info);
-        payment_info = findViewById(R.id.payment_info);
-        logout = findViewById(R.id.logout);
 
-//        startActivity(new Intent(this, LogActivity.class));
+        recyclerView = findViewById(R.id.recyclerView1);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
 
-        //logout and clear the shared storage class data
-        logout.setOnClickListener(
-                v -> {
-                    SharedPrefManager.getInstance(DisplayActivity.this).clear();
-                    startActivity(new Intent(DisplayActivity.this, MainActivity.class));
-                }
-        );
+        Call<CategoryResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getCategory1();
 
-        //goto contact activity
-        contact_info.setOnClickListener(
-                v -> {
-                    startActivity(new Intent(DisplayActivity.this, ContactActivity.class));
+        call.enqueue(
+                new Callback<CategoryResponse>() {
+                    @Override
+                    public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+
+                        if (response.isSuccessful()){
+                            assert response.body() != null;
+                            categoryList = response.body().getCategory();
+                            DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(DisplayActivity.this, categoryList);
+                            recyclerView.setAdapter(adapter);
+
+                        } else {
+                            Toast.makeText(DisplayActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CategoryResponse> call, Throwable t) {
+                        Toast.makeText(DisplayActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
         );
 
