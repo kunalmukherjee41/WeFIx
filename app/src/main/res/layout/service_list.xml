@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="AC"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_dark" />
+
+            <TextView
+                android:id="@+id/des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="AC"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/charge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:text="charge : "
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="130dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="#fff"
+                android:background="@drawable/custom_btn2"
+                android:drawableStart="@drawable/log_asset"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:text="Add Logs"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                tools:ignore="RtlCompat" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

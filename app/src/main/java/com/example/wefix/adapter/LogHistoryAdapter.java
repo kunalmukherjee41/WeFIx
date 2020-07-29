@@ -65,7 +65,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
         holder.charge.setText(String.valueOf(logs.getAmount()));
         holder.company.setText(logs.getProductCompany());
 
-        if(!logs.getCallLogStatus().equals("OPEN")){
+        if (!logs.getCallLogStatus().equals("OPEN")) {
             holder.cancel.setVisibility(View.GONE);
         }
 
@@ -116,13 +116,13 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                             new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if(response.isSuccessful()){
-                                        Snackbar.make(holder.layout, "Successfully Cancel Log",Snackbar.LENGTH_LONG)
+                                    if (response.isSuccessful()) {
+                                        Snackbar.make(holder.layout, "Successfully Cancel Log", Snackbar.LENGTH_LONG)
                                                 .setAction("Close", v1 -> {
 
                                                 }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
                                     } else {
-                                        Snackbar.make(holder.layout, "Try Again!",Snackbar.LENGTH_LONG)
+                                        Snackbar.make(holder.layout, "Try Again!", Snackbar.LENGTH_LONG)
                                                 .setAction("Close", v1 -> {
 
                                                 }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();

@@ -11,16 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.adapter.DisplayCategoryAdapter;
-import com.example.wefix.adapter.UserAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.CategoryResponse;
-import com.example.wefix.model.Service;
-import com.example.wefix.model.ServiceResponse;
 import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.ArrayList;
@@ -78,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             categoryList = response.body().getCategory();
-//                            adapter = new UserAdapter(MainActivity.this, categoryList);
                             DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(MainActivity.this, categoryList, "Main");
                             recyclerView.setAdapter(adapter);
 //                            Toast.makeText(MainActivity.this, "Successful", Toast.LENGTH_LONG).show();

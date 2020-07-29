@@ -49,7 +49,7 @@ public class DisplayCategoryAdapter extends RecyclerView.Adapter<DisplayCategory
         holder.name1.setText(category.getTbl_category_name());
         holder.cardView.setOnClickListener(
                 v -> {
-                    if(a.equals("Display")) {
+                    if (a.equals("Display")) {
                         Intent intent = new Intent(mContext, ServiceActivity2.class);
                         intent.putExtra("category", categoryList.get(position));
                         mContext.startActivity(intent);

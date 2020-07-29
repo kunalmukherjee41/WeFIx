@@ -80,7 +80,6 @@ public class ServiceActivity2 extends AppCompatActivity {
                     public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
                         if (response.isSuccessful()) {
                             service = response.body().getService();
-//                            rs.setText(String.valueOf(service.getTbl_services_charge()));
 
                             ServiceListAdapter adapter = new ServiceListAdapter(ServiceActivity2.this, service, category, "YES");
                             recyclerView.setAdapter(adapter);
