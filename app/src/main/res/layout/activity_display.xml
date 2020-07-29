@@ -29,8 +29,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="7dp"
-                    android:textColor="#a11aa1"
                     android:text="Add a Call Log"
+                    android:textColor="#a11aa1"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

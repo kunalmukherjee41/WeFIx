@@ -38,7 +38,7 @@ public class ContactActivity extends AppCompatActivity {
                 v -> {
                     String phone1 = phone.getText().toString();
                     Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:"+phone1));
+                    intent.setData(Uri.parse("tel:" + phone1));
                     startActivity(intent);
                 }
         );
@@ -46,7 +46,7 @@ public class ContactActivity extends AppCompatActivity {
         email.setOnClickListener(
                 v -> {
                     String txt_email = email.getText().toString();
-                    Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + txt_email));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + txt_email));
                     startActivity(intent);
                 }
         );
@@ -59,7 +59,7 @@ public class ContactActivity extends AppCompatActivity {
                         i.addCategory("android.intent.category.LAUNCHER");
                         i.setData(Uri.parse(webSite.getText().toString()));
                         startActivity(i);
-                    } catch(ActivityNotFoundException e) {
+                    } catch (ActivityNotFoundException e) {
                         // Chrome is not installed
                         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(webSite.getText().toString()));
                         startActivity(i);

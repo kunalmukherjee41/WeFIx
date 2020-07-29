@@ -35,11 +35,11 @@
                 android:id="@+id/charge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:text="charge : "
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add"
@@ -47,7 +47,6 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:textColor="#fff"
                 android:background="@drawable/custom_btn2"
                 android:drawableStart="@drawable/log_asset"
                 android:paddingStart="20dp"
@@ -55,6 +54,7 @@
                 android:text="Add Logs"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
+                android:textColor="#fff"
                 tools:ignore="RtlCompat" />
 
         </LinearLayout>
