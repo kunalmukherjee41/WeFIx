@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 
-public class Service  implements Serializable {
+public class Service implements Serializable {
 
     @SerializedName("tbl_services_id")
     @Expose

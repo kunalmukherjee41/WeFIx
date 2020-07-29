@@ -62,7 +62,7 @@ public class DisplayActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
 
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             assert response.body() != null;
                             categoryList = response.body().getCategory();
                             DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(DisplayActivity.this, categoryList);
@@ -91,7 +91,7 @@ public class DisplayActivity extends AppCompatActivity {
     //menu option
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -99,7 +99,7 @@ public class DisplayActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.setting:
                 Intent intent = new Intent(DisplayActivity.this, SettingActivity.class);
                 startActivity(intent);
@@ -107,9 +107,6 @@ public class DisplayActivity extends AppCompatActivity {
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
                 startActivity(new Intent(DisplayActivity.this, MainActivity.class));
-                return true;
-            case R.id.call_logs:
-                startActivity(new Intent(DisplayActivity.this, ServiceActivity2.class));
                 return true;
             case R.id.contact:
                 startActivity(new Intent(this, ContactActivity.class));
@@ -121,7 +118,7 @@ public class DisplayActivity extends AppCompatActivity {
                 return false;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
                 return true;
         }
@@ -132,7 +129,7 @@ public class DisplayActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(!SharedPrefManager.getInstance(this).isLoggedIn()){
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
             Intent intent = new Intent(DisplayActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

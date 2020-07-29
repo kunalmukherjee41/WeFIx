@@ -30,35 +30,62 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center" />
 
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:hint="text"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/charge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:hint="RS: "
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/address"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="10dp"
-                android:textSize="18sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:hint="RS: "
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Billing Address"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/layout"
@@ -152,38 +179,80 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/company_name"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/custom_edittext"
-                android:hint="Company name"
-                android:paddingStart="10dp"
-                android:paddingEnd="5dp" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/problem_des"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Product Company Name:" />
+
+                <EditText
+                    android:id="@+id/company_name"
+                    android:layout_width="270dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_edittext"
+                    android:hint="Company name"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="5dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/custom_edittext"
-                android:hint="Comment if Any"
-                android:paddingStart="10dp"
-                android:paddingEnd="5dp" />
+                android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/pos"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Instruction if any : " />
+
+                <EditText
+                    android:id="@+id/problem_des"
+                    android:layout_width="270dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_edittext"
+                    android:hint="Problem des"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="5dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="POS(Pay on Service)" />
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Payment"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="POS(Pay on Service)" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/abc"

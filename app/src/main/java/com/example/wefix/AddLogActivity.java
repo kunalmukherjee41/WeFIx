@@ -1,11 +1,14 @@
 package com.example.wefix;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +29,7 @@ import com.example.wefix.model.CompanyResponse;
 import com.example.wefix.model.Service;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -56,7 +60,8 @@ public class AddLogActivity extends AppCompatActivity {
 
     Button next, addressChange, add;
 
-    String txt_address1,txt_name,txt_zip_code,txt_phone_number, txt_company, txt_email_id,txt_problem_des,txt_service, txt_city;
+    String txt_address1, txt_name, txt_zip_code, txt_phone_number, txt_company_name;
+    String txt_email_id, txt_problem_des, txt_service, txt_city;
     int user_id, service_id, txt_amount, category_id;
 
     @Override
@@ -66,7 +71,7 @@ public class AddLogActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Add Call Logs");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -103,7 +108,8 @@ public class AddLogActivity extends AppCompatActivity {
                 new Callback<Service1Response>() {
                     @Override
                     public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
+                            assert response.body() != null;
                             service = response.body().getService();
                             txt_amount = service.getTbl_services_charge();
                             txt_service = service.getTbl_services_name();
@@ -115,17 +121,15 @@ public class AddLogActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Service1Response> call, Throwable t) {
-                        Toast.makeText(AddLogActivity.this, t.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
         );
 
-
-        txt_company = company_name.getText().toString();
         category_id = category.getTbl_category_id();
 
         item_name.setText(category.getTbl_category_name());
-        Glide.with(this).load("http://wefix.sitdoxford.org/product/"+category.getTbl_category_image()).into(image);
+        Glide.with(this).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(image);
 
         user_id = SharedPrefManager.getInstance(AddLogActivity.this).getUser().getId();
 
@@ -138,7 +142,7 @@ public class AddLogActivity extends AppCompatActivity {
                 new Callback<AddressResponse>() {
                     @Override
                     public void onResponse(Call<AddressResponse> call, Response<AddressResponse> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             assert response.body() != null;
                             addressData = response.body().getAddress();
                             txt_address1 = addressData.getBillingAddress();
@@ -146,14 +150,14 @@ public class AddLogActivity extends AppCompatActivity {
                             txt_zip_code = addressData.getZipCode();
                             txt_name = addressData.getBillingName();
                             txt_phone_number = addressData.getMbNo();
-                            String a = txt_name +"\n" + txt_address1 + " "+ txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\n Contact no: "+ txt_phone_number;
+                            String a = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\n Contact no: " + txt_phone_number;
                             address.setText(a);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<AddressResponse> call, Throwable t) {
-                        Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG);
+                        Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -161,7 +165,11 @@ public class AddLogActivity extends AppCompatActivity {
         layout.setVisibility(View.GONE);
 
         addressChange.setOnClickListener(
-                v -> layout.setVisibility(View.VISIBLE)
+                v -> {
+                    layout.setVisibility(View.VISIBLE);
+                    email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
+                    email.setFocusable(false);
+                }
         );
 
         add.setOnClickListener(
@@ -173,7 +181,7 @@ public class AddLogActivity extends AppCompatActivity {
                     txt_email_id = email.getText().toString();
                     txt_city = city.getText().toString();
 
-                    String ab = txt_name +"\n" + txt_address1 + " "+ txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\n Contact no: "+ txt_phone_number;
+                    String ab = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\n Contact no: " + txt_phone_number;
                     address.setText(ab);
 
                     Call<ResponseBody> call2 = RetrofitClient
@@ -185,7 +193,7 @@ public class AddLogActivity extends AppCompatActivity {
                             new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if(response.isSuccessful()){
+                                    if (response.isSuccessful()) {
                                         Toast.makeText(AddLogActivity.this, "Successful added address", Toast.LENGTH_LONG).show();
                                     } else {
                                         Toast.makeText(AddLogActivity.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
@@ -206,7 +214,7 @@ public class AddLogActivity extends AppCompatActivity {
                 v -> {
 
                     txt_problem_des = problem_des.getText().toString();
-                    txt_company = company_name.getText().toString();
+                    txt_company_name = company_name.getText().toString();
 
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
                     String currentDate = sdf.format(new Date());
@@ -214,15 +222,29 @@ public class AddLogActivity extends AppCompatActivity {
                     SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
                     String currentTime = sdf1.format(new Date());
 
-                    if (TextUtils.isEmpty(txt_address1) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_zip_code) ||
-                            TextUtils.isEmpty(txt_phone_number) || TextUtils.isEmpty(txt_email_id) || TextUtils.isEmpty(txt_problem_des) ||
-                            TextUtils.isEmpty(txt_service)||TextUtils.isEmpty(txt_company)) {
-                        Toast.makeText(AddLogActivity.this, "All Field are required", Toast.LENGTH_LONG).show();
+                    txt_email_id = SharedPrefManager.getInstance(this).getUser().getUsername();
+
+                    if (TextUtils.isEmpty(txt_address1)) {
+                        Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_name)) {
+                        Toast.makeText(AddLogActivity.this, "Enter Name", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_zip_code)) {
+                        Toast.makeText(AddLogActivity.this, "Enter zip code", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_phone_number)) {
+                        Toast.makeText(AddLogActivity.this, "Enter phone number", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_email_id)) {
+                        Toast.makeText(AddLogActivity.this, "Enter email id", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_problem_des)) {
+                        Toast.makeText(AddLogActivity.this, "Enter problem des", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_service)) {
+                        Toast.makeText(AddLogActivity.this, "Enter service", Toast.LENGTH_LONG).show();
+                    } else if (TextUtils.isEmpty(txt_company_name)) {
+                        Toast.makeText(AddLogActivity.this, "Enter company name", Toast.LENGTH_LONG).show();
                     } else {
                         Call<ResponseBody> calll = RetrofitClient
                                 .getInstance()
                                 .getApi()
-                                .addCallLog(currentDate, "APP", user_id, txt_name, txt_address1, txt_zip_code, txt_phone_number, txt_email_id, category_id, service_id, 0, txt_company, txt_amount, "POS", txt_problem_des, currentTime, "OPEN", ipAddress());
+                                .addCallLog(currentDate, "APP", user_id, txt_name, txt_address1, txt_zip_code, txt_phone_number, txt_email_id, category_id, service_id, 0, txt_company_name, txt_amount, "POS", txt_problem_des, currentTime, "OPEN", ipAddress());
 
                         calll.enqueue(
                                 new Callback<ResponseBody>() {
@@ -230,6 +252,12 @@ public class AddLogActivity extends AppCompatActivity {
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if (response.isSuccessful()) {
                                             Toast.makeText(AddLogActivity.this, "Successful", Toast.LENGTH_LONG).show();
+                                            Snackbar.make(layout, "Thank You for Submit Logs!", Snackbar.LENGTH_LONG)
+                                                    .setAction("Close", v1 -> {
+                                                    })
+                                                    .setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
+                                            company_name.setText("");
+                                            problem_des.setText("");
 
                                         } else {
                                             Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();
@@ -246,7 +274,7 @@ public class AddLogActivity extends AppCompatActivity {
                 });
     }
 
-    public static String ipAddress () {
+    public static String ipAddress() {
         try {
             for (final Enumeration<NetworkInterface> enumerationNetworkInterface = NetworkInterface.getNetworkInterfaces(); enumerationNetworkInterface.hasMoreElements(); ) {
                 final NetworkInterface networkInterface = enumerationNetworkInterface.nextElement();
@@ -263,4 +291,40 @@ public class AddLogActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.setting:
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.logout:
+                SharedPrefManager.getInstance(this).clear();
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.contact:
+                startActivity(new Intent(this, ContactActivity.class));
+                return true;
+            case R.id.logs_history:
+                startActivity(new Intent(this, LogActivity.class));
+                return true;
+            case R.id.payment_history:
+                return false;
+            case R.id.home:
+                Intent intent1 = new Intent(this, DisplayActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
+                return true;
+        }
+        return false;
+    }
+
 }

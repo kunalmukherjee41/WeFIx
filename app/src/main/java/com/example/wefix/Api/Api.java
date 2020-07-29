@@ -68,6 +68,13 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @PUT("updatecalllog/{call_log_id}")
+    Call<ResponseBody> updateCallLog(
+            @Path("call_log_id") int call_log_id,
+            @Field("app") String app
+    );
+
+    @FormUrlEncoded
     @PUT("getaddress/{ref_id}")
     Call<AddressResponse> getAddress(
             @Path("ref_id") int ref_id,
@@ -85,8 +92,7 @@ public interface Api {
     @PUT("getcalllog/{client_ref_id}")
     Call<LogResponse> getCallLog(
             @Path("client_ref_id") int client_ref_id,
-            @Field("call_log_date1") String call_log_date1,
-            @Field("call_log_date2") String call_log_date2
+            @Field("app") String app
     );
 
     @FormUrlEncoded

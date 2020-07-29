@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
 
-    private EditText email,password;
+    private EditText email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,40 +60,40 @@ public class LoginActivity extends AppCompatActivity {
 
         String txt_username = email.getText().toString().trim();
         String txt_password = password.getText().toString().trim();
-        if(TextUtils.isEmpty(txt_password)||TextUtils.isEmpty(txt_username)){
+        if (TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
             Toast.makeText(LoginActivity.this, "Fill Both Requirements", Toast.LENGTH_LONG).show();
-        } else if(!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
             Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
-        }else {
+        } else {
 
             Call<UserResponse> call = RetrofitClient
                     .getInstance()
                     .getApi()
-                    .userLogin(txt_username,txt_password);
+                    .userLogin(txt_username, txt_password);
 
             call.enqueue(new Callback<UserResponse>() {
                              @Override
                              public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                                 if(response.isSuccessful()){
+                                 if (response.isSuccessful()) {
                                      assert response.body() != null;
                                      UserResponse userResponse = response.body();
 
                                      SharedPrefManager.getInstance(LoginActivity.this).saveUser(userResponse.getUser());
 
-                                     Toast.makeText(LoginActivity.this, userResponse.getMessage(),Toast.LENGTH_LONG).show();
+                                     Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
                                      Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
                                      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                      startActivity(intent);
                                      email.setText("");
                                  } else {
-                                     Toast.makeText(LoginActivity.this, "Something went wrong Try Again",Toast.LENGTH_LONG).show();
+                                     Toast.makeText(LoginActivity.this, "Something went wrong Try Again", Toast.LENGTH_LONG).show();
                                  }
                                  password.setText("");
                              }
 
                              @Override
                              public void onFailure(Call<UserResponse> call, Throwable t) {
-                                 Toast.makeText(LoginActivity.this, t.getMessage(),Toast.LENGTH_LONG).show();
+                                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                  password.setText("");
                              }
                          }
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             Intent intent = new Intent(this, DisplayActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

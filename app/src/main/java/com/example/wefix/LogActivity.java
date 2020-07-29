@@ -1,33 +1,32 @@
 package com.example.wefix;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.adapter.LogHistoryAdapter;
+import com.example.wefix.Fragments.CancelledLogFragment;
+import com.example.wefix.Fragments.ClosedLogFragment;
+import com.example.wefix.Fragments.OpenLogFragment;
 import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Logs;
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.tabs.TabLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,13 +35,9 @@ import retrofit2.Response;
 
 public class LogActivity extends AppCompatActivity {
 
-    private List<Logs> logsList;
-    private Button search_log;
-    private RecyclerView recyclerView;
+    List<Logs> logsList;
 
-    private String txt_year;
-
-    Button add;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,74 +46,85 @@ public class LogActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Logs");
+        getSupportActionBar().setTitle("All Logs");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        add = findViewById(R.id.add);
-        add.setOnClickListener(
-                v -> startActivity(new Intent(LogActivity.this, ServiceActivity2.class))
-        );
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        ViewPager viewPager = findViewById(R.id.view_pager);
 
-        ArrayList<String> years = new ArrayList<String>();
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        for (int i = thisYear; i >= 2008; i--) { years.add(String.valueOf(i)); }
+//        getLog();
+//        if(logsList != null){
+//            bundle.putSerializable("Logs" , (Serializable) logsList);
+//        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, years);
+        OpenLogFragment openLogFragment = new OpenLogFragment();
+//        openLogFragment.setArguments(bundle);
+        ClosedLogFragment closedLogFragment = new ClosedLogFragment();
+//        closedLogFragment.setArguments(bundle);
+        CancelledLogFragment cancelledLogFragment = new CancelledLogFragment();
+//        cancelledLogFragment.setArguments(bundle);
 
-        Spinner year = findViewById(R.id.year);
-        year.setAdapter(adapter);
+        viewPagerAdapter.addFragment(openLogFragment, "Open Log");
+        viewPagerAdapter.addFragment(closedLogFragment, "Closed Log");
+        viewPagerAdapter.addFragment(cancelledLogFragment, "Cancelled Log");
 
-        year.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        txt_year = parent.getItemAtPosition(position).toString();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                }
-        );
-
-        recyclerView = findViewById(R.id.logs_details);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        search_log = findViewById(R.id.search_log);
-
-        search_log.setOnClickListener(
-                v -> getLogHistory()
-        );
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
-    private void getLogHistory() {
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        private ArrayList<Fragment> fragments;
+        private ArrayList<String> titles;
+
+        ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+            this.fragments = new ArrayList<>();
+            this.titles = new ArrayList<>();
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            fragments.add(fragment);
+            titles.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles.get(position);
+        }
+
+    }
+
+    public void getLog() {
 
         int client_ref_id = SharedPrefManager.getInstance(this).getUser().getId();
-
-        String call_log_date1 = txt_year + "-01-01";
-        String call_log_date2 = txt_year + "-12-31";
 
         Call<LogResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getCallLog(client_ref_id, call_log_date1, call_log_date2);
+                .getCallLog(client_ref_id, "app");
 
         call.enqueue(
                 new Callback<LogResponse>() {
                     @Override
                     public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             assert response.body() != null;
                             logsList = response.body().getLog();
-//                            Toast.makeText(LogActivity.this, String.valueOf(logsList.get(0).getAmount()), Toast.LENGTH_LONG).show();
-                            LogHistoryAdapter logHistoryAdapter = new LogHistoryAdapter(LogActivity.this, logsList);
-                            recyclerView.setAdapter(logHistoryAdapter);
                         } else {
                             Toast.makeText(LogActivity.this, "Something went wrong try Again", Toast.LENGTH_LONG).show();
                         }
@@ -131,18 +137,19 @@ public class LogActivity extends AppCompatActivity {
                 }
         );
 
+//        return logsList;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.setting:
                 Intent intent = new Intent(this, SettingActivity.class);
                 startActivity(intent);
@@ -157,14 +164,11 @@ public class LogActivity extends AppCompatActivity {
             case R.id.logs_history:
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
-            case R.id.call_logs:
-                startActivity(new Intent(this, ServiceActivity2.class));
-                return true;
             case R.id.payment_history:
                 return false;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
                 return true;
         }

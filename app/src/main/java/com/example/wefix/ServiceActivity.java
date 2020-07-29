@@ -77,8 +77,8 @@ public class ServiceActivity extends AppCompatActivity {
 
                         String item = parent.getItemAtPosition(position).toString();
 
-                        for(Service service1 : serviceList){
-                            if(item.equals(service1.getTbl_services_name())){
+                        for (Service service1 : serviceList) {
+                            if (item.equals(service1.getTbl_services_name())) {
                                 setView(service1);
                             }
                         }
@@ -105,7 +105,7 @@ public class ServiceActivity extends AppCompatActivity {
     }
 
     //fetch services from database and set in spinner
-    private void getData(){
+    private void getData() {
 
         Call<ServiceResponse> call = RetrofitClient
                 .getInstance()
@@ -119,10 +119,10 @@ public class ServiceActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             serviceList = response.body().getService();
-                            for (Service service : serviceList){
+                            for (Service service : serviceList) {
                                 nameList.add(service.getTbl_services_name());
                             }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(ServiceActivity.this, R. layout.support_simple_spinner_dropdown_item, nameList);
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(ServiceActivity.this, R.layout.support_simple_spinner_dropdown_item, nameList);
                             services.setAdapter(adapter);
                         } else {
                             Toast.makeText(ServiceActivity.this, "Something Went Wrong Try Again", Toast.LENGTH_LONG).show();
@@ -130,7 +130,7 @@ public class ServiceActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<ServiceResponse> call, Throwable t){
+                    public void onFailure(Call<ServiceResponse> call, Throwable t) {
                         Toast.makeText(ServiceActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }

@@ -40,9 +40,15 @@ public class Logs implements Serializable {
     @SerializedName("call_company_id")
     @Expose
     private int callCompanyId;
+    @SerializedName("product_company")
+    @Expose
+    private String productCompany;
     @SerializedName("amount")
     @Expose
     private int amount;
+    @SerializedName("payment_type")
+    @Expose
+    private String paymentType;
     @SerializedName("problem")
     @Expose
     private String problem;
@@ -61,8 +67,11 @@ public class Logs implements Serializable {
     @SerializedName("client_log_timezone")
     @Expose
     private String clientLogTimezone;
+    @SerializedName("rejected_reason")
+    @Expose
+    private String rejectedReason;
 
-    public Logs(int callLogId, String callLogDate, String callLogType, String clientName, String clientAddress, String clientPin, String clientMb, String clientEmail, int refCatId, int refServiceId, int callCompanyId, int amount, String problem, String entryTim, String callLogStatus, int callLogTransferId, String clientLogIp, String clientLogTimezone) {
+    public Logs(int callLogId, String callLogDate, String callLogType, String clientName, String clientAddress, String clientPin, String clientMb, String clientEmail, int refCatId, int refServiceId, int callCompanyId, String productCompany, int amount, String paymentType, String problem, String entryTim, String callLogStatus, int callLogTransferId, String clientLogIp, String clientLogTimezone, String rejectedReason) {
         this.callLogId = callLogId;
         this.callLogDate = callLogDate;
         this.callLogType = callLogType;
@@ -74,13 +83,16 @@ public class Logs implements Serializable {
         this.refCatId = refCatId;
         this.refServiceId = refServiceId;
         this.callCompanyId = callCompanyId;
+        this.productCompany = productCompany;
         this.amount = amount;
+        this.paymentType = paymentType;
         this.problem = problem;
         this.entryTim = entryTim;
         this.callLogStatus = callLogStatus;
         this.callLogTransferId = callLogTransferId;
         this.clientLogIp = clientLogIp;
         this.clientLogTimezone = clientLogTimezone;
+        this.rejectedReason = rejectedReason;
     }
 
     public int getCallLogId() {
@@ -171,12 +183,28 @@ public class Logs implements Serializable {
         this.callCompanyId = callCompanyId;
     }
 
+    public String getProductCompany() {
+        return productCompany;
+    }
+
+    public void setProductCompany(String productCompany) {
+        this.productCompany = productCompany;
+    }
+
     public int getAmount() {
         return amount;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 
     public String getProblem() {
@@ -225,5 +253,13 @@ public class Logs implements Serializable {
 
     public void setClientLogTimezone(String clientLogTimezone) {
         this.clientLogTimezone = clientLogTimezone;
+    }
+
+    public String getRejectedReason() {
+        return rejectedReason;
+    }
+
+    public void setRejectedReason(String rejectedReason) {
+        this.rejectedReason = rejectedReason;
     }
 }

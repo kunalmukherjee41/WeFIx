@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class SettingActivity extends AppCompatActivity {
 
-    TextView id,name,phone_number,email;
+    TextView id, name, phone_number, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +45,14 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.setting:
                 Intent intent = new Intent(this, SettingActivity.class);
                 startActivity(intent);
@@ -71,11 +71,8 @@ public class SettingActivity extends AppCompatActivity {
                 return false;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
-                return true;
-            case R.id.call_logs:
-                startActivity(new Intent(this, ServiceActivity2.class));
                 return true;
         }
         return false;

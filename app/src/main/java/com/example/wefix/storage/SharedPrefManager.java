@@ -12,23 +12,23 @@ public class SharedPrefManager {
     private static SharedPrefManager mInstance;
     private Context mCtx;
 
-    private SharedPrefManager(Context mCtx){
+    private SharedPrefManager(Context mCtx) {
         this.mCtx = mCtx;
     }
 
-    public static synchronized SharedPrefManager getInstance(Context mCtx){
-        if(mInstance == null){
+    public static synchronized SharedPrefManager getInstance(Context mCtx) {
+        if (mInstance == null) {
             mInstance = new SharedPrefManager(mCtx);
         }
         return mInstance;
     }
 
-    public void saveUser(User user){
+    public void saveUser(User user) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt("id", user.getId());
-        editor.putString("username",user.getUsername());
+        editor.putString("username", user.getUsername());
         editor.putString("name", user.getName());
         editor.putString("phone", user.getPhone());
         editor.putString("field", user.getField());
@@ -38,13 +38,13 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         return sharedPreferences.getInt("id", -1) != -1;
     }
 
-    public User getUser(){
+    public User getUser() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         return new User(
@@ -55,10 +55,10 @@ public class SharedPrefManager {
                 sharedPreferences.getString("phone", null),
                 sharedPreferences.getString("lastLogin", null),
                 sharedPreferences.getString("field", null)
-                );
+        );
     }
 
-    public void clear(){
+    public void clear() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 

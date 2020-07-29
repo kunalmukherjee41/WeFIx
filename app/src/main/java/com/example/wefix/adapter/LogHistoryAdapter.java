@@ -2,26 +2,36 @@ package com.example.wefix.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.LogHistoryDetailsActivity;
 import com.example.wefix.R;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.CategoryResponse;
+import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Logs;
+import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +60,15 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
 
         Logs logs = logsList.get(position);
 
+        holder.id.setText(String.valueOf(logs.getCallLogId()));
+        holder.date.setText(logs.getCallLogDate());
+        holder.charge.setText(String.valueOf(logs.getAmount()));
+        holder.company.setText(logs.getProductCompany());
+
+        if(!logs.getCallLogStatus().equals("OPEN")){
+            holder.cancel.setVisibility(View.GONE);
+        }
+
         int tbl_category_id = logs.getRefCatId();
 
         Call<Category1Response> call = RetrofitClient
@@ -61,16 +80,12 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                 new Callback<Category1Response>() {
                     @Override
                     public void onResponse(Call<Category1Response> call, Response<Category1Response> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             assert response.body() != null;
                             Category category = response.body().getCategory();
-//                            Toast.makeText(mContext, category.getTbl_category_name(), Toast.LENGTH_LONG).show();
-                            holder.type.setText(category.getTbl_category_name());
-                            holder.id.setText(String.valueOf(logs.getCallLogId()));
-                            holder.date.setText(logs.getCallLogDate());
-                            holder.amount.setText(String.valueOf(logs.getAmount()));
-                            holder.status.setText(logs.getCallLogStatus());
-
+                            holder.name.setText(category.getTbl_category_name());
+                            holder.name1.setText(category.getTbl_category_name());
+                            Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
                         }
                     }
 
@@ -82,7 +97,46 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
         );
 
         holder.itemView.setOnClickListener(
-                v -> click(logs)
+                v -> {
+                    Intent intent = new Intent(mContext, LogHistoryDetailsActivity.class);
+                    intent.putExtra("logs", logsList.get(position));
+                    mContext.startActivity(intent);
+                }
+        );
+
+        holder.cancel.setOnClickListener(
+                v -> {
+                    int call_log_id = logsList.get(position).getCallLogId();
+                    Call<ResponseBody> call1 = RetrofitClient
+                            .getInstance()
+                            .getApi()
+                            .updateCallLog(call_log_id, "app");
+
+                    call1.enqueue(
+                            new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if(response.isSuccessful()){
+                                        Snackbar.make(holder.layout, "Successfully Cancel Log",Snackbar.LENGTH_LONG)
+                                                .setAction("Close", v1 -> {
+
+                                                }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
+                                    } else {
+                                        Snackbar.make(holder.layout, "Try Again!",Snackbar.LENGTH_LONG)
+                                                .setAction("Close", v1 -> {
+
+                                                }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                }
+                            }
+                    );
+
+                }
         );
 
     }
@@ -94,26 +148,27 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
 
     public static class LogViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id, date, type, amount, status;
+        TextView date, id, details, name;
+        ImageView image;
+        TextView name1, company, charge;
+        Button cancel;
+        private RelativeLayout layout;
 
         public LogViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.id);
             date = itemView.findViewById(R.id.date);
-            type = itemView.findViewById(R.id.type);
-            amount = itemView.findViewById(R.id.amount);
-            status = itemView.findViewById(R.id.status);
+            id = itemView.findViewById(R.id.id);
+            details = itemView.findViewById(R.id.details);
+            name = itemView.findViewById(R.id.name);
+            image = itemView.findViewById(R.id.image);
+            name1 = itemView.findViewById(R.id.name1);
+            company = itemView.findViewById(R.id.company);
+            charge = itemView.findViewById(R.id.charge);
+            cancel = itemView.findViewById(R.id.cancel_log);
+            layout = itemView.findViewById(R.id.layout);
 
         }
-    }
-
-    private void click(Logs logs) {
-
-        Intent intent = new Intent(mContext, LogHistoryDetailsActivity.class);
-        intent.putExtra("logs", (Serializable) logs);
-        mContext.startActivity(intent);
-
     }
 
 }

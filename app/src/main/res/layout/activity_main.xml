@@ -8,44 +8,44 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/bar_layout"/>
+        layout="@layout/bar_layout" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="10dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <Button
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:padding="5dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/login"
-            android:textAllCaps="false"
-            android:textAlignment="textStart"
+            android:background="@drawable/custom_btn2"
+            android:padding="5dp"
+            android:shadowColor="#000000"
             android:text="Login"
-            android:shadowColor="#fff"
-            android:background="#a1caccca"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="#000000"
             android:textSize="18sp" />
 
         <TextView
-            android:textColor="@android:color/holo_blue_dark"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:padding="5dp"
-            android:background="#a1caccca"
             android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edittext"
+            android:padding="5dp"
             android:text="Our Services"
-            android:textSize="20sp"/>
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="537dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp" />
 
     </LinearLayout>
 

@@ -53,12 +53,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         Category category = categoryList.get(position);
 
         holder.name.setText(category.getTbl_category_name());
-        Glide.with(mContext).load("http://wefix.sitdoxford.org/product/"+category.getTbl_category_image()).into(holder.image);
+        Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
         holder.id.setText(String.valueOf(category.getTbl_category_id()));
 
         holder.itemView.setOnClickListener(
                 v -> {
-                    click(category.getTbl_category_id());
+                    click(categoryList.get(position).getTbl_category_id());
                 }
         );
 
@@ -70,10 +70,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
 
-    static class UserViewHolder extends RecyclerView.ViewHolder{
+    static class UserViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image;
-        TextView name,id;
+        TextView name, id;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,7 +97,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 new Callback<Service1Response>() {
                     @Override
                     public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             Toast.makeText(mContext, "Successful", Toast.LENGTH_LONG).show();
                             assert response.body() != null;
                             Service service = response.body().getService();

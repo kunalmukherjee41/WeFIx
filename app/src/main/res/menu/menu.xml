@@ -5,37 +5,32 @@
     <item
         android:id="@+id/home"
         android:title="Home"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/payment_history"
         android:title="Payment History"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/call_logs"
-        android:title="Call Logs"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/logs_history"
         android:title="Logs History"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/contact"
         android:title="Contact"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/setting"
         android:title="Setting"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/logout"
         android:title="Logout"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 
 </menu>
