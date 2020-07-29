@@ -32,7 +32,8 @@
                     android:id="@+id/image1"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher"
+                    android:contentDescription="TODO" />
 
             </androidx.cardview.widget.CardView>
 
@@ -41,44 +42,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
                 android:padding="10dp"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/rs"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
 
         </LinearLayout>
 
     </ScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true">
-
-        <Button
-            android:id="@+id/add_log"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/custom_btn2"
-            android:drawableStart="@drawable/log_asset"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
-            android:text="Add Logs"
-            android:textAlignment="textStart"
-            android:textAllCaps="false" />
-
-    </RelativeLayout>
 
 </RelativeLayout>

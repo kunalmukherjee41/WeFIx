@@ -3,6 +3,8 @@ package com.example.wefix.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 
 public class Service1Response {
 
@@ -14,9 +16,9 @@ public class Service1Response {
     private String message;
     @SerializedName("service")
     @Expose
-    private Service service;
+    private List<Service> service;
 
-    public Service1Response(Boolean error, String message, Service service) {
+    public Service1Response(Boolean error, String message, List<Service> service) {
         this.error = error;
         this.message = message;
         this.service = service;
@@ -38,11 +40,11 @@ public class Service1Response {
         this.message = message;
     }
 
-    public Service getService() {
+    public List<Service> getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(List<Service> service) {
         this.service = service;
     }
 }

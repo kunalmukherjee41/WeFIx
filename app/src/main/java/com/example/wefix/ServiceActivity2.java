@@ -13,13 +13,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.adapter.ServiceListAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.storage.SharedPrefManager;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,15 +33,13 @@ import retrofit2.Response;
 
 public class ServiceActivity2 extends AppCompatActivity {
 
-    TextView name, rs;
-    Button addLogs;
-
+    TextView name;
     ImageView imageView;
-
-    Service service;
+    List<Service> service;
     Category category;
-
     Intent intent;
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +52,14 @@ public class ServiceActivity2 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = findViewById(R.id.name);
-        rs = findViewById(R.id.rs);
+//        rs = findViewById(R.id.rs);
 
-        addLogs = findViewById(R.id.add_log);
+//        addLogs = findViewById(R.id.add_log);
         imageView = findViewById(R.id.image1);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
 
         intent = getIntent();
         category = (Category) intent.getSerializableExtra("category");
@@ -72,7 +80,13 @@ public class ServiceActivity2 extends AppCompatActivity {
                     public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
                         if (response.isSuccessful()) {
                             service = response.body().getService();
-                            rs.setText(String.valueOf(service.getTbl_services_charge()));
+//                            rs.setText(String.valueOf(service.getTbl_services_charge()));
+
+                            ServiceListAdapter adapter = new ServiceListAdapter(ServiceActivity2.this, service, category, "YES");
+                            recyclerView.setAdapter(adapter);
+
+                        } else {
+                            Toast.makeText(ServiceActivity2.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -83,13 +97,13 @@ public class ServiceActivity2 extends AppCompatActivity {
                 }
         );
 
-        addLogs.setOnClickListener(
-                v -> {
-                    Intent intent1 = new Intent(ServiceActivity2.this, AddLogActivity.class);
-                    intent1.putExtra("category", category);
-                    startActivity(intent1);
-                }
-        );
+//        addLogs.setOnClickListener(
+//                v -> {
+//                    Intent intent1 = new Intent(ServiceActivity2.this, AddLogActivity.class);
+//                    intent1.putExtra("category", category);
+//                    startActivity(intent1);
+//                }
+//        );
 
     }
 

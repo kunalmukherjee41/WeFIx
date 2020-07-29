@@ -100,11 +100,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                         if (response.isSuccessful()) {
                             Toast.makeText(mContext, "Successful", Toast.LENGTH_LONG).show();
                             assert response.body() != null;
-                            Service service = response.body().getService();
+//                            Service service = response.body().getService();
 //                            Toast.makeText(mContext, service.getTbl_services_name(), Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(mContext, ServiceActivity.class);
-                            intent.putExtra("service", service);
+//                            intent.putExtra("service", service);
                             mContext.startActivity(intent);
                         } else {
                             Toast.makeText(mContext, "Unsuccessful", Toast.LENGTH_LONG).show();

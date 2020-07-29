@@ -98,34 +98,38 @@ public class AddLogActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Category category = (Category) intent.getSerializableExtra("category");
 
+        service = (Service) intent.getSerializableExtra("service");
+
+//        assert category != null;
+//        Call<Service1Response> call = RetrofitClient
+//                .getInstance()
+//                .getApi()
+//                .getService(category.getTbl_category_id(), "app");
+//
+//        call.enqueue(
+//                new Callback<Service1Response>() {
+//                    @Override
+//                    public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
+//                        if (response.isSuccessful()) {
+//                            assert response.body() != null;
+//                            service = response.body().getService();
+        assert service != null;
+        txt_amount = service.getTbl_services_charge();
+        txt_service = service.getTbl_services_name();
+        String txt_charge = "Charge : " + service.getTbl_services_charge();
+        charge.setText(txt_charge);
+        service_id = service.getTbl_services_id();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Service1Response> call, Throwable t) {
+//                        Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//        );
+
         assert category != null;
-        Call<Service1Response> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getService(category.getTbl_category_id(), "app");
-
-        call.enqueue(
-                new Callback<Service1Response>() {
-                    @Override
-                    public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
-                        if (response.isSuccessful()) {
-                            assert response.body() != null;
-                            service = response.body().getService();
-                            txt_amount = service.getTbl_services_charge();
-                            txt_service = service.getTbl_services_name();
-                            String txt_charge = "Charge : " + service.getTbl_services_charge();
-                            charge.setText(txt_charge);
-                            service_id = service.getTbl_services_id();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Service1Response> call, Throwable t) {
-                        Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
-
         category_id = category.getTbl_category_id();
 
         item_name.setText(category.getTbl_category_name());
@@ -254,10 +258,11 @@ public class AddLogActivity extends AppCompatActivity {
                                             Toast.makeText(AddLogActivity.this, "Successful", Toast.LENGTH_LONG).show();
                                             Snackbar.make(layout, "Thank You for Submit Logs!", Snackbar.LENGTH_LONG)
                                                     .setAction("Close", v1 -> {
-                                                    })
-                                                    .setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
+                                                    }).setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
                                             company_name.setText("");
                                             problem_des.setText("");
+
+                                            startActivity(new Intent(AddLogActivity.this, DisplayActivity.class));
 
                                         } else {
                                             Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();

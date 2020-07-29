@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.R;
+import com.example.wefix.ServiceActivity;
 import com.example.wefix.ServiceActivity2;
 import com.example.wefix.model.Category;
 
@@ -25,10 +26,12 @@ public class DisplayCategoryAdapter extends RecyclerView.Adapter<DisplayCategory
     Context mContext;
     List<Category> categoryList;
     Category category;
+    String a;
 
-    public DisplayCategoryAdapter(Context mContext, List<Category> categoryList) {
+    public DisplayCategoryAdapter(Context mContext, List<Category> categoryList, String a) {
         this.mContext = mContext;
         this.categoryList = categoryList;
+        this.a = a;
     }
 
     @NonNull
@@ -46,9 +49,15 @@ public class DisplayCategoryAdapter extends RecyclerView.Adapter<DisplayCategory
         holder.name1.setText(category.getTbl_category_name());
         holder.cardView.setOnClickListener(
                 v -> {
-                    Intent intent = new Intent(mContext, ServiceActivity2.class);
-                    intent.putExtra("category", categoryList.get(position));
-                    mContext.startActivity(intent);
+                    if(a.equals("Display")) {
+                        Intent intent = new Intent(mContext, ServiceActivity2.class);
+                        intent.putExtra("category", categoryList.get(position));
+                        mContext.startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(mContext, ServiceActivity.class);
+                        intent.putExtra("category", categoryList.get(position));
+                        mContext.startActivity(intent);
+                    }
                 }
         );
     }

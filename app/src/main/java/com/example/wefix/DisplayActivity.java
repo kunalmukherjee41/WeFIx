@@ -65,7 +65,7 @@ public class DisplayActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             categoryList = response.body().getCategory();
-                            DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(DisplayActivity.this, categoryList);
+                            DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(DisplayActivity.this, categoryList, "Display");
                             recyclerView.setAdapter(adapter);
 
                         } else {
