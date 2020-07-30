@@ -188,7 +188,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="25dp"
-                    android:text="Product Company Name:" />
+                    android:text="Product Company \nName:"
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/company_name"
@@ -213,7 +214,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="25dp"
-                    android:text="Instruction if any : " />
+                    android:text="Instruction if any : "
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/problem_des"

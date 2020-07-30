@@ -21,7 +21,7 @@
                 android:id="@+id/image"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:src="@drawable/logo_text" />
+                android:src="@drawable/logo_white_bg" />
 
         </androidx.appcompat.widget.Toolbar>
 
