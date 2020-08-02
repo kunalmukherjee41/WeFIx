@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.Fragments.DisplayFragment;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
@@ -118,6 +119,10 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()){
             case R.id.home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
+                break;
+
+            case R.id.add_address:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
                 break;
 
             case R.id.payment_history:

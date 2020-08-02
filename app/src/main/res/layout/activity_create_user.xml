@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateUserActivity">
@@ -17,7 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
             android:padding="10dp">
 
             <androidx.cardview.widget.CardView
@@ -53,6 +54,7 @@
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="35dp"
                         android:text="Name"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
@@ -74,6 +76,7 @@
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="115dp"
                         android:text="Email"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
@@ -93,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="225dp"
                         android:text="Password"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
@@ -112,14 +116,36 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="275dp"
+                        android:text="ReEnter Password"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/rPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="330dp"
+                        android:autofillHints=""
+                        android:background="@drawable/custom_edittext"
+                        android:drawableStart="@drawable/password_asset"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tag"
+                        android:layout_marginTop="355dp"
                         android:text="Phone"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/phone"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginTop="330dp"
+                        android:layout_marginTop="410dp"
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/phone_asset"
@@ -131,7 +157,7 @@
                         android:id="@+id/create_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="390dp"
+                        android:layout_marginTop="465dp"
                         android:background="@drawable/custom_btn"
                         android:text="Create User"
                         android:textAllCaps="false"
@@ -143,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="490dp"
+                    android:layout_marginTop="550dp"
                     android:background="#c1cccccc"
                     android:orientation="horizontal"
                     android:padding="13dp">
@@ -155,6 +181,7 @@
                         android:layout_marginStart="18dp"
                         android:text="Forgot Password?"
                         android:textAlignment="center"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <!--                                <view-->
@@ -169,6 +196,7 @@
                         android:layout_marginStart="20dp"
                         android:text="Login Page"
                         android:textAlignment="center"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                 </LinearLayout>

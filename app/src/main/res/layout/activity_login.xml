@@ -55,6 +55,7 @@
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="30dp"
                         android:text="Email"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
@@ -74,6 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="170dp"
                         android:text="Password"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
@@ -116,6 +118,7 @@
                         android:layout_marginStart="18dp"
                         android:text="Forgot Password?"
                         android:textAlignment="center"
+                        android:textColor="#000"
                         android:textSize="18sp" />
                     <!--                <view-->
                     <!--                    android:layout_width="1dp"-->
@@ -129,6 +132,7 @@
                         android:layout_marginStart="40dp"
                         android:text="Create Account"
                         android:textAlignment="center"
+                        android:textColor="#000"
                         android:textSize="18sp" />
 
                 </LinearLayout>

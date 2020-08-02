@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.wefix.Api.RetrofitClient;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -27,7 +31,8 @@ import retrofit2.Response;
 
 public class CreateUserActivity extends AppCompatActivity {
 
-    private EditText name, email, password, phone;
+    private EditText name, email, password, phone, rPassword;
+    ScrollView layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +47,10 @@ public class CreateUserActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        rPassword = findViewById(R.id.rPassword);
         phone = findViewById(R.id.phone);
         Button create_user = findViewById(R.id.create_user);
+        layout = findViewById(R.id.register_layout);
 
         TextView login = findViewById(R.id.login);
         TextView forgot_password = findViewById(R.id.forgot_password);
@@ -67,6 +74,7 @@ public class CreateUserActivity extends AppCompatActivity {
         String txt_phone = phone.getText().toString();
         String txt_name = name.getText().toString();
         String txt_password = password.getText().toString();
+        String txt_rPassword = rPassword.getText().toString();
 
         if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_phone)) {
             Toast.makeText(CreateUserActivity.this, "All Field are Required", Toast.LENGTH_LONG).show();
@@ -74,6 +82,14 @@ public class CreateUserActivity extends AppCompatActivity {
             Toast.makeText(CreateUserActivity.this, "Provide a Valid Email Address", Toast.LENGTH_LONG).show();
         } else if (txt_password.length() < 6) {
             Toast.makeText(CreateUserActivity.this, "Password should be atLeast 6 character", Toast.LENGTH_LONG).show();
+        } else if(!txt_password.equals(txt_rPassword)){
+//            Toast.makeText(RegisterActivity.this, "Passwords are not match", Toast.LENGTH_LONG).show();
+            Snackbar.make(layout, "Passwords are not match",Snackbar.LENGTH_LONG)
+                    .setAction("Close", v -> {
+
+                    })
+                    .setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
+
         } else {
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
             String dateTime = sdf1.format(new Date());

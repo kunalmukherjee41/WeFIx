@@ -1,5 +1,6 @@
 package com.example.wefix.Api;
 
+import com.example.wefix.model.Address1Response;
 import com.example.wefix.model.AddressResponse;
 import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.CategoryResponse;
@@ -77,6 +78,13 @@ public interface Api {
     @FormUrlEncoded
     @PUT("getaddress/{ref_id}")
     Call<AddressResponse> getAddress(
+            @Path("ref_id") int ref_id,
+            @Field("app") String app
+    );
+
+    @FormUrlEncoded
+    @PUT("getalladdress/{ref_id}")
+    Call<Address1Response> getAllAddress(
             @Path("ref_id") int ref_id,
             @Field("app") String app
     );

@@ -17,4 +17,8 @@
 
     </style>
 
+    <style name="toolbar">
+        <item name="colorControlNormal">#fff</item>
+    </style>
+
 </resources>
