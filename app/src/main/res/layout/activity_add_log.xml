@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".AddLogActivity">
 
     <LinearLayout
@@ -16,7 +16,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary_dark" />
+            android:background="@color/design_default_color_primary_dark"
+            app:titleTextColor="#fff" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,14 +76,12 @@
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginEnd="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -186,7 +185,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="25dp"
                     android:text="Product Company \nName:"
                     android:textSize="15sp" />
@@ -212,7 +211,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="25dp"
                     android:text="Instruction if any : "
                     android:textSize="15sp" />
@@ -260,6 +259,7 @@
                 android:id="@+id/abc"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:layoutAnimation="@anim/fragment_close_enter"
                 android:layout_marginTop="100dp"
                 android:background="@color/design_default_color_primary_dark">
 

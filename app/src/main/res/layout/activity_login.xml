@@ -44,6 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/aclonica"
                         android:text="Login to your account"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="22sp" />

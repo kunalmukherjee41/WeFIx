@@ -47,7 +47,8 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
         Service service = serviceList.get(position);
         holder.name.setText(service.getTbl_services_name());
         holder.des.setText(service.getTbl_services_des());
-        holder.charge.setText(String.valueOf(service.getTbl_services_charge()));
+        String a = "Charge : " +service.getTbl_services_charge();
+        holder.charge.setText(a);
 
         if (yes.equals("YES")) {
 

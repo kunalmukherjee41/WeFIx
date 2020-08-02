@@ -324,9 +324,7 @@ public class AddLogActivity extends AppCompatActivity {
             case R.id.payment_history:
                 return false;
             case R.id.home:
-                Intent intent1 = new Intent(this, DisplayActivity.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent1);
+                startActivity(new Intent(this, DisplayActivity.class));
                 return true;
         }
         return false;

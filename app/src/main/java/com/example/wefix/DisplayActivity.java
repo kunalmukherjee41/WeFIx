@@ -4,36 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.adapter.DisplayCategoryAdapter;
-import com.example.wefix.model.Category;
-import com.example.wefix.model.Category1Response;
-import com.example.wefix.model.CategoryResponse;
+import com.example.wefix.Fragments.DisplayFragment;
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class DisplayActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class DisplayActivity extends AppCompatActivity {
-
-    RecyclerView recyclerView;
-    List<Category> categoryList;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,41 +32,20 @@ public class DisplayActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        recyclerView = findViewById(R.id.recyclerView1);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        Call<CategoryResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getCategory1();
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        call.enqueue(
-                new Callback<CategoryResponse>() {
-                    @Override
-                    public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-
-                        if (response.isSuccessful()) {
-                            assert response.body() != null;
-                            categoryList = response.body().getCategory();
-                            DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(DisplayActivity.this, categoryList, "Display");
-                            recyclerView.setAdapter(adapter);
-
-                        } else {
-                            Toast.makeText(DisplayActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                        Toast.makeText(DisplayActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
+            navigationView.setCheckedItem(R.id.home);
+        }
 
     }
 
@@ -136,4 +103,33 @@ public class DisplayActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
+                break;
+
+            case R.id.payment_history:
+                break;
+
+            case R.id.logout:
+                SharedPrefManager.getInstance(this).clear();
+                startActivity(new Intent(DisplayActivity.this, MainActivity.class));
+                break;
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
