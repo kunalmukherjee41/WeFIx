@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,13 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View v = navigationView.getHeaderView(0);
+        TextView nav_name = v.findViewById(R.id.name);
+        TextView nav_email = v.findViewById(R.id.email);
+        ImageView nav_image = v.findViewById(R.id.image);
+        nav_name.setText(SharedPrefManager.getInstance(this).getUser().getName());
+        nav_email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 

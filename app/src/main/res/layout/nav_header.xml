@@ -19,14 +19,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingTop="2dp"
-        android:text="Kunal Mukherjee"
+        android:hint="Name"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
         android:id="@+id/email"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="kunalmukherjee41@gmail.com"
+        android:hint="abc@gmail.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
