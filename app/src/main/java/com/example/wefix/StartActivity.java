@@ -10,7 +10,6 @@ import android.widget.ImageView;
 public class StartActivity extends AppCompatActivity {
 
     Handler handler;
-    Runnable runnable;
     ImageView imageView;
 
     @Override

@@ -15,11 +15,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddLogActivity"
+            android:parentActivityName=".ServiceActivity2"></activity>
+        <activity android:name=".SuccessfulMessageActivity" />
+        <activity
             android:name=".CreateUserActivity"
             android:parentActivityName=".LoginActivity" />
-        <activity
-            android:name=".AddLogActivity"
-            android:parentActivityName=".ServiceActivity2" />
         <activity
             android:name=".LogHistoryDetailsActivity"
             android:parentActivityName=".LogActivity" />
@@ -44,7 +45,7 @@
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

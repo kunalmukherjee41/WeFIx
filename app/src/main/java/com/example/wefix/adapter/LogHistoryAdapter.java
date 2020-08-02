@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.LogHistoryDetailsActivity;
 import com.example.wefix.R;
+import com.example.wefix.SuccessfulMessageActivity;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.CategoryResponse;
@@ -121,6 +122,9 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                                                 .setAction("Close", v1 -> {
 
                                                 }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
+                                        Intent intent1 = new Intent(mContext, SuccessfulMessageActivity.class);
+                                        intent1.putExtra("string", "Logs Cancel Successful");
+                                        mContext.startActivity(intent1);
                                     } else {
                                         Snackbar.make(holder.layout, "Try Again!", Snackbar.LENGTH_LONG)
                                                 .setAction("Close", v1 -> {

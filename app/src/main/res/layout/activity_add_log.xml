@@ -142,6 +142,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp" />
 
+
                 <EditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
@@ -177,6 +178,7 @@
                     android:textAllCaps="false" />
 
             </LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -230,6 +232,7 @@
 
             </RelativeLayout>
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -259,7 +262,6 @@
                 android:id="@+id/abc"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layoutAnimation="@anim/fragment_close_enter"
                 android:layout_marginTop="100dp"
                 android:background="@color/design_default_color_primary_dark">
 

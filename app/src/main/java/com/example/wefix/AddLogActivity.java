@@ -213,7 +213,6 @@ public class AddLogActivity extends AppCompatActivity {
                 }
 
         );
-
         next.setOnClickListener(
                 v -> {
 
@@ -262,7 +261,9 @@ public class AddLogActivity extends AppCompatActivity {
                                             company_name.setText("");
                                             problem_des.setText("");
 
-                                            startActivity(new Intent(AddLogActivity.this, DisplayActivity.class));
+                                            Intent intent1 = new Intent(AddLogActivity.this, SuccessfulMessageActivity.class);
+                                            intent1.putExtra("string", "Thank you for submit Call Log");
+                                            startActivity(intent1);
 
                                         } else {
                                             Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();

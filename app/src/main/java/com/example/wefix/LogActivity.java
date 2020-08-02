@@ -109,36 +109,36 @@ public class LogActivity extends AppCompatActivity {
 
     }
 
-    public void getLog() {
-
-        int client_ref_id = SharedPrefManager.getInstance(this).getUser().getId();
-
-        Call<LogResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getCallLog(client_ref_id, "app");
-
-        call.enqueue(
-                new Callback<LogResponse>() {
-                    @Override
-                    public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
-                        if (response.isSuccessful()) {
-                            assert response.body() != null;
-                            logsList = response.body().getLog();
-                        } else {
-                            Toast.makeText(LogActivity.this, "Something went wrong try Again", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LogResponse> call, Throwable t) {
-
-                    }
-                }
-        );
+//    public void getLog() {
+//
+//        int client_ref_id = SharedPrefManager.getInstance(this).getUser().getId();
+//
+//        Call<LogResponse> call = RetrofitClient
+//                .getInstance()
+//                .getApi()
+//                .getCallLog(client_ref_id, "app");
+//
+//        call.enqueue(
+//                new Callback<LogResponse>() {
+//                    @Override
+//                    public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
+//                        if (response.isSuccessful()) {
+//                            assert response.body() != null;
+//                            logsList = response.body().getLog();
+//                        } else {
+//                            Toast.makeText(LogActivity.this, "Something went wrong try Again", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<LogResponse> call, Throwable t) {
+//
+//                    }
+//                }
+//        );
 
 //        return logsList;
-    }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
