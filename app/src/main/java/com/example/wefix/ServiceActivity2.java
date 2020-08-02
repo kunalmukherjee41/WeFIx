@@ -54,7 +54,6 @@ public class ServiceActivity2 extends AppCompatActivity {
         name = findViewById(R.id.name);
 //        rs = findViewById(R.id.rs);
 
-//        addLogs = findViewById(R.id.add_log);
         imageView = findViewById(R.id.image1);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -95,14 +94,6 @@ public class ServiceActivity2 extends AppCompatActivity {
                     }
                 }
         );
-
-//        addLogs.setOnClickListener(
-//                v -> {
-//                    Intent intent1 = new Intent(ServiceActivity2.this, AddLogActivity.class);
-//                    intent1.putExtra("category", category);
-//                    startActivity(intent1);
-//                }
-//        );
 
     }
 

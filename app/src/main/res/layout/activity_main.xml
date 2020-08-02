@@ -32,10 +32,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_edittext"
             android:fontFamily="@font/aclonica"
+            android:gravity="center"
             android:padding="5dp"
             android:text="Our Services"
             android:textColor="@android:color/holo_blue_dark"

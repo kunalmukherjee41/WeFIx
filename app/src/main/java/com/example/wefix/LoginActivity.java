@@ -24,7 +24,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-
     private EditText email, password;
 
     @Override
@@ -50,13 +49,13 @@ public class LoginActivity extends AppCompatActivity {
 
         //check email password and goto home activity
         login.setOnClickListener(
-                v -> userlogin()
+                v -> userLogin()
         );
 
     }
 
     //on user login
-    private void userlogin() {
+    private void userLogin() {
 
         String txt_username = email.getText().toString().trim();
         String txt_password = password.getText().toString().trim();

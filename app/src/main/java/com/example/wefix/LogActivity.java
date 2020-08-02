@@ -35,10 +35,6 @@ import retrofit2.Response;
 
 public class LogActivity extends AppCompatActivity {
 
-    List<Logs> logsList;
-
-    Bundle bundle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,21 +50,9 @@ public class LogActivity extends AppCompatActivity {
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-//        getLog();
-//        if(logsList != null){
-//            bundle.putSerializable("Logs" , (Serializable) logsList);
-//        }
-
-        OpenLogFragment openLogFragment = new OpenLogFragment();
-//        openLogFragment.setArguments(bundle);
-        ClosedLogFragment closedLogFragment = new ClosedLogFragment();
-//        closedLogFragment.setArguments(bundle);
-        CancelledLogFragment cancelledLogFragment = new CancelledLogFragment();
-//        cancelledLogFragment.setArguments(bundle);
-
-        viewPagerAdapter.addFragment(openLogFragment, "Open Log");
-        viewPagerAdapter.addFragment(closedLogFragment, "Closed Log");
-        viewPagerAdapter.addFragment(cancelledLogFragment, "Cancelled Log");
+        viewPagerAdapter.addFragment(new OpenLogFragment(), "Open Log");
+        viewPagerAdapter.addFragment(new ClosedLogFragment(), "Closed Log");
+        viewPagerAdapter.addFragment(new CancelledLogFragment(), "Cancelled Log");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

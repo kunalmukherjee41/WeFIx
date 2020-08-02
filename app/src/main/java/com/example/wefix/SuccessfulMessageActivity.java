@@ -41,7 +41,7 @@ public class SuccessfulMessageActivity extends AppCompatActivity {
 
         handler = new Handler();
         handler.postDelayed(() -> {
-            if("Thank you for submit Call Log".equals(s)) {
+            if ("Thank you for submit Call Log".equals(s)) {
                 startActivity(new Intent(this, DisplayActivity.class));
             } else {
                 startActivity(new Intent(this, LogActivity.class));

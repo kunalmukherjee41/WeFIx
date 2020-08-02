@@ -15,12 +15,12 @@
 
     <TextView
         android:id="@+id/name"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:paddingTop="2dp"
         android:hint="Name"
-        style="@style/TextAppearance.AppCompat.Body2"
+        android:paddingTop="2dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
