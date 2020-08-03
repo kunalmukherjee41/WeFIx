@@ -14,6 +14,7 @@ import com.google.gson.annotations.SerializedName;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -80,6 +81,11 @@ public interface Api {
     Call<AddressResponse> getAddress(
             @Path("ref_id") int ref_id,
             @Field("app") String app
+    );
+
+    @DELETE("deleteaddress/{billing_id}")
+    Call<ResponseBody> deleteaddress(
+            @Path("billing_id") int billing_id
     );
 
     @FormUrlEncoded

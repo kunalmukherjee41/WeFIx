@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".AddLogActivity"
-            android:parentActivityName=".ServiceActivity2"></activity>
+            android:parentActivityName=".ServiceActivity2" />
         <activity android:name=".SuccessfulMessageActivity" />
         <activity
             android:name=".CreateUserActivity"

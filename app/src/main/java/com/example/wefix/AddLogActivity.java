@@ -73,7 +73,6 @@ public class AddLogActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Add Call Logs");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         company_name = findViewById(R.id.company_name);
         problem_des = findViewById(R.id.problem_des);

@@ -2,10 +2,12 @@ package com.example.wefix.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.example.wefix.model.Address1Response;
 import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -55,6 +58,9 @@ public class AddAddressFragment extends Fragment {
         pinCode = view.findViewById(R.id.pin_code);
         address = view.findViewById(R.id.address);
         city = view.findViewById(R.id.city);
+
+        email.setText(SharedPrefManager.getInstance(getContext()).getUser().getUsername());
+        email.setFocusable(false);
 
         layout = view.findViewById(R.id.linear_layout);
 
@@ -88,30 +94,36 @@ public class AddAddressFragment extends Fragment {
                     String txt_address = address.getText().toString();
                     String txt_city = city.getText().toString();
 
-                    Call<ResponseBody> call2 = RetrofitClient
-                            .getInstance()
-                            .getApi()
-                            .addAddress(txt_name, txt_address, txt_city, txt_pinCode, txt_phoneNumber, txt_email, user_id);
+                    if (TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_phoneNumber) || TextUtils.isEmpty(txt_pinCode) || TextUtils.isEmpty(txt_address) || TextUtils.isEmpty(txt_city)) {
+                        Toast.makeText(getContext(), "All Field are required", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                    call2.enqueue(
-                            new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(getContext(), "Successful added address", Toast.LENGTH_SHORT).show();
-                                        layout.setVisibility(View.GONE);
-                                        addAddress.setVisibility(View.VISIBLE);
-                                    } else {
-                                        Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                        Call<ResponseBody> call2 = RetrofitClient
+                                .getInstance()
+                                .getApi()
+                                .addAddress(txt_name, txt_address, txt_city, txt_pinCode, txt_phoneNumber, txt_email, user_id);
+
+                        call2.enqueue(
+                                new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
+                                            Toast.makeText(getContext(), "Successful added address", Toast.LENGTH_SHORT).show();
+                                            layout.setVisibility(View.GONE);
+                                            addAddress.setVisibility(View.VISIBLE);
+                                            ((AppCompatActivity) Objects.requireNonNull(getContext())).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
+                                        } else {
+                                            Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
-
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                    );
+                        );
+                    }
                 }
         );
 
@@ -128,7 +140,7 @@ public class AddAddressFragment extends Fragment {
                 new Callback<Address1Response>() {
                     @Override
                     public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             List<Address> addressList = response.body().getAddressList();
                             AddressListAdapter addressListAdapter = new AddressListAdapter(getContext(), addressList);
                             recyclerView.setAdapter(addressListAdapter);

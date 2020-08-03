@@ -1,65 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:orientation="vertical"
     tools:context=".ServiceActivity2">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/bar_layout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/bar_layout" />
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="290dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp">
 
-            <androidx.cardview.widget.CardView
+            <ImageView
+                android:id="@+id/image1"
                 android:layout_width="match_parent"
-                android:layout_height="290dp">
+                android:layout_height="200dp"
+                android:src="@mipmap/ic_launcher" />
 
-                <ImageView
-                    android:id="@+id/image1"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:contentDescription="TODO"
-                    android:src="@mipmap/ic_launcher" />
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="220dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="220dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp" />
+                android:gravity="center"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp" />
 
-</RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>
