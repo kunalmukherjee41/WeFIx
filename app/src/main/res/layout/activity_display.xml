@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:theme="@style/name"
-    tools:context=".MainActivity"
+    tools:context=".DisplayActivity"
     tools:openDrawer="start">
 
     <LinearLayout

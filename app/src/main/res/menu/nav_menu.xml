@@ -11,7 +11,7 @@
         <item
             android:id="@+id/add_address"
             android:icon="@drawable/billing_address_asset"
-            android:title="Manage Address"/>
+            android:title="Manage Address" />
 
         <item
             android:id="@+id/payment_history"

@@ -43,26 +43,33 @@
         android:textSize="20sp"
         android:textStyle="italic|bold" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="70dp"
-        android:paddingStart="110dp"
-        android:paddingTop="7dp"
-        android:text="Made In India"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="italic|bold" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="680dp"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="240dp"
-        android:layout_marginBottom="68dp"
-        android:src="@drawable/flag" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            android:paddingStart="110dp"
+            android:paddingTop="7dp"
+            android:paddingEnd="1dp"
+            android:text="Made In India"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="italic|bold" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="68dp"
+            android:src="@drawable/flag" />
+
+    </LinearLayout>
 
 </RelativeLayout>
