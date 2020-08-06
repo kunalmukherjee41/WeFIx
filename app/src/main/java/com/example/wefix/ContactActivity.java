@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -29,6 +30,37 @@ public class ContactActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Contact us");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
+
+        bottomNavigationView.setSelectedItemId(R.id.contact);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.home:
+                            startActivity(new Intent(this, DisplayActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.log_history:
+                            startActivity(new Intent(this, LogActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.address:
+//                            startActivity(new Intent(this, LogActivity.class));
+//                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.contact:
+                            startActivity(new Intent(this, ContactActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                    }
+                    return false;
+                }
+        );
 
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phone);

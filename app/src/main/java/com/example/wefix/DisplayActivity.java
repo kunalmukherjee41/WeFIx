@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.Fragments.DisplayFragment;
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -41,6 +42,37 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
+
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.home:
+                            startActivity(new Intent(DisplayActivity.this, DisplayActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.log_history:
+                            startActivity(new Intent(DisplayActivity.this, LogActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.address:
+//                            startActivity(new Intent(DisplayActivity.this, LogActivity.class));
+//                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.contact:
+                            startActivity(new Intent(DisplayActivity.this, ContactActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                    }
+                    return false;
+                }
+        );
+
         View v = navigationView.getHeaderView(0);
         TextView nav_name = v.findViewById(R.id.name);
         TextView nav_email = v.findViewById(R.id.email);
@@ -53,7 +85,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
             navigationView.setCheckedItem(R.id.home);
         }
@@ -116,7 +148,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
                 break;
@@ -141,7 +173,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();

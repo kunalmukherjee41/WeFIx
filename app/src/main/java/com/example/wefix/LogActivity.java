@@ -23,6 +23,7 @@ import com.example.wefix.Fragments.OpenLogFragment;
 import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Logs;
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.Serializable;
@@ -44,6 +45,37 @@ public class LogActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("All Logs");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
+
+        bottomNavigationView.setSelectedItemId(R.id.log_history);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.home:
+                            startActivity(new Intent(this, DisplayActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.log_history:
+                            startActivity(new Intent(this, LogActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.address:
+//                            startActivity(new Intent(this, LogActivity.class));
+//                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.contact:
+                            startActivity(new Intent(this, ContactActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                    }
+                    return false;
+                }
+        );
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
