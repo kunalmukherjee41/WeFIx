@@ -25,6 +25,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
+    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        Button login = findViewById(R.id.login);
+        login = findViewById(R.id.login);
         TextView create_account = findViewById(R.id.create_account);
         TextView forgot_password = findViewById(R.id.forgot_password);
 
@@ -49,7 +50,10 @@ public class LoginActivity extends AppCompatActivity {
 
         //check email password and goto home activity
         login.setOnClickListener(
-                v -> userLogin()
+                v -> {
+                    login.setBackgroundColor(getResources().getColor(R.color.btn));
+                    userLogin();
+                }
         );
 
     }
@@ -61,8 +65,12 @@ public class LoginActivity extends AppCompatActivity {
         String txt_password = password.getText().toString().trim();
         if (TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
             Toast.makeText(LoginActivity.this, "Fill Both Requirements", Toast.LENGTH_LONG).show();
+            login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
             Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
+            login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
         } else {
 
             Call<UserResponse> call = RetrofitClient
@@ -73,7 +81,8 @@ public class LoginActivity extends AppCompatActivity {
             call.enqueue(new Callback<UserResponse>() {
                              @Override
                              public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                                 if (response.isSuccessful()) {
+                                 assert response.body() != null;
+                                 if (!response.body().getError()) {
                                      assert response.body() != null;
                                      UserResponse userResponse = response.body();
 
@@ -84,16 +93,22 @@ public class LoginActivity extends AppCompatActivity {
                                      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                      startActivity(intent);
                                      email.setText("");
+
                                  } else {
                                      Toast.makeText(LoginActivity.this, "Something went wrong Try Again", Toast.LENGTH_LONG).show();
                                  }
+                                 login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
                                  password.setText("");
+                                 login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                              }
 
                              @Override
                              public void onFailure(Call<UserResponse> call, Throwable t) {
                                  Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                  password.setText("");
+                                 login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                              }
                          }
             );

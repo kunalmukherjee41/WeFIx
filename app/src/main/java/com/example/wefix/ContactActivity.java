@@ -1,9 +1,5 @@
 package com.example.wefix;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -11,9 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,8 +50,8 @@ public class ContactActivity extends AppCompatActivity {
                             return true;
 
                         case R.id.address:
-//                            startActivity(new Intent(this, LogActivity.class));
-//                            overridePendingTransition(0, 0);
+                            startActivity(new Intent(this, AddAddressActivity.class));
+                            overridePendingTransition(0, 0);
                             return true;
 
                         case R.id.contact:

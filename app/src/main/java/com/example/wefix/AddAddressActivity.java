@@ -1,27 +1,21 @@
-package com.example.wefix.Fragments;
+package com.example.wefix;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.ContactActivity;
-import com.example.wefix.DisplayActivity;
-import com.example.wefix.LogActivity;
-import com.example.wefix.R;
+import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.adapter.AddressListAdapter;
 import com.example.wefix.model.Address;
 import com.example.wefix.model.Address1Response;
@@ -36,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddAddressFragment extends Fragment {
+public class AddAddressActivity extends AppCompatActivity {
 
     EditText name, email, phoneNumber, pinCode, address, city;
     Button addAddress, save;
@@ -48,29 +42,59 @@ public class AddAddressFragment extends Fragment {
     int user_id;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_address);
 
-        View view = inflater.inflate(R.layout.fragment_add_address, container, false);
+        user_id = SharedPrefManager.getInstance(this).getUser().getId();
 
-        user_id = SharedPrefManager.getInstance(getContext()).getUser().getId();
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
+        phoneNumber = findViewById(R.id.phone_number);
+        pinCode = findViewById(R.id.pin_code);
+        address = findViewById(R.id.address);
+        city = findViewById(R.id.city);
 
-        name = view.findViewById(R.id.name);
-        email = view.findViewById(R.id.email);
-        phoneNumber = view.findViewById(R.id.phone_number);
-        pinCode = view.findViewById(R.id.pin_code);
-        address = view.findViewById(R.id.address);
-        city = view.findViewById(R.id.city);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
 
-        email.setText(SharedPrefManager.getInstance(getContext()).getUser().getUsername());
+        bottomNavigationView.setSelectedItemId(R.id.address);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.home:
+                            startActivity(new Intent(this, DisplayActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.log_history:
+                            startActivity(new Intent(this, LogActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.address:
+                            startActivity(new Intent(this, AddAddressActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+
+                        case R.id.contact:
+                            startActivity(new Intent(this, ContactActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                    }
+                    return false;
+                }
+        );
+
+        email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
         email.setFocusable(false);
 
-        layout = view.findViewById(R.id.linear_layout);
+        layout = findViewById(R.id.linear_layout);
 
-        addAddress = view.findViewById(R.id.add_address);
-        save = view.findViewById(R.id.save);
-        cancel = view.findViewById(R.id.cancel);
-        recyclerView = view.findViewById(R.id.recyclerView);
+        addAddress = findViewById(R.id.add_address);
+        save = findViewById(R.id.save);
+        cancel = findViewById(R.id.cancel);
+        recyclerView = findViewById(R.id.recyclerView);
 
         layout.setVisibility(View.GONE);
 
@@ -101,7 +125,7 @@ public class AddAddressFragment extends Fragment {
                     String txt_city = city.getText().toString();
 
                     if (TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_phoneNumber) || TextUtils.isEmpty(txt_pinCode) || TextUtils.isEmpty(txt_address) || TextUtils.isEmpty(txt_city)) {
-                        Toast.makeText(getContext(), "All Field are required", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "All Field are required", Toast.LENGTH_SHORT).show();
                         save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
 
                     } else {
@@ -116,14 +140,14 @@ public class AddAddressFragment extends Fragment {
                                     @Override
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if (response.isSuccessful()) {
-                                            Toast.makeText(getContext(), "Successful added address", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AddAddressActivity.this, "Successful added address", Toast.LENGTH_SHORT).show();
                                             layout.setVisibility(View.GONE);
                                             addAddress.setVisibility(View.VISIBLE);
-                                            ((AppCompatActivity) Objects.requireNonNull(getContext())).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
+                                            ((AppCompatActivity) Objects.requireNonNull(AddAddressActivity.this)).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
                                             save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
 
                                         } else {
-                                            Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AddAddressActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
                                             save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
 
                                         }
@@ -131,7 +155,7 @@ public class AddAddressFragment extends Fragment {
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                         save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
 
                                     }
@@ -142,7 +166,7 @@ public class AddAddressFragment extends Fragment {
         );
 
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         Call<Address1Response> call = RetrofitClient
@@ -156,20 +180,19 @@ public class AddAddressFragment extends Fragment {
                     public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
                         if (response.isSuccessful()) {
                             List<Address> addressList = response.body().getAddressList();
-                            AddressListAdapter addressListAdapter = new AddressListAdapter(getContext(), addressList);
+                            AddressListAdapter addressListAdapter = new AddressListAdapter(AddAddressActivity.this, addressList);
                             recyclerView.setAdapter(addressListAdapter);
                         } else {
-                            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddAddressActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Address1Response> call, Throwable t) {
-                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
 
-        return view;
     }
 }

@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -50,22 +49,22 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                 menuItem -> {
                     switch (menuItem.getItemId()) {
                         case R.id.home:
-                            startActivity(new Intent(DisplayActivity.this, DisplayActivity.class));
+                            startActivity(new Intent(this, DisplayActivity.class));
                             overridePendingTransition(0, 0);
                             return true;
 
                         case R.id.log_history:
-                            startActivity(new Intent(DisplayActivity.this, LogActivity.class));
+                            startActivity(new Intent(this, LogActivity.class));
                             overridePendingTransition(0, 0);
                             return true;
 
                         case R.id.address:
-//                            startActivity(new Intent(DisplayActivity.this, LogActivity.class));
-//                            overridePendingTransition(0, 0);
+                            startActivity(new Intent(this, AddAddressActivity.class));
+                            overridePendingTransition(0, 0);
                             return true;
 
                         case R.id.contact:
-                            startActivity(new Intent(DisplayActivity.this, ContactActivity.class));
+                            startActivity(new Intent(this, ContactActivity.class));
                             overridePendingTransition(0, 0);
                             return true;
                     }

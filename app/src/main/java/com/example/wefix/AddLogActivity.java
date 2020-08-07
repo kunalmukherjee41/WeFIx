@@ -1,33 +1,28 @@
 package com.example.wefix;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.model.Address;
 import com.example.wefix.model.AddressResponse;
 import com.example.wefix.model.Category;
-import com.example.wefix.model.Company;
-import com.example.wefix.model.CompanyResponse;
 import com.example.wefix.model.Service;
-import com.example.wefix.model.Service1Response;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,10 +30,8 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
@@ -131,7 +124,7 @@ public class AddLogActivity extends AppCompatActivity {
                             txt_zip_code = addressData.getZipCode();
                             txt_name = addressData.getBillingName();
                             txt_phone_number = addressData.getMbNo();
-                            String a = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\n Contact no: " + txt_phone_number;
+                            String a = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\nContact no: " + txt_phone_number;
                             address.setText(a);
                         }
                     }
@@ -147,14 +140,17 @@ public class AddLogActivity extends AppCompatActivity {
 
         addressChange.setOnClickListener(
                 v -> {
+                    addressChange.setBackgroundColor(getResources().getColor(R.color.btn));
                     layout.setVisibility(View.VISIBLE);
                     email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
                     email.setFocusable(false);
+                    addressChange.setBackground(getResources().getDrawable(R.drawable.custom_btn));
                 }
         );
 
         add.setOnClickListener(
                 v -> {
+                    add.setBackgroundColor(getResources().getColor(R.color.btn));
                     txt_address1 = address1.getText().toString();
                     txt_name = name.getText().toString();
                     txt_zip_code = zip_code.getText().toString();
@@ -162,36 +158,48 @@ public class AddLogActivity extends AppCompatActivity {
                     txt_email_id = email.getText().toString();
                     txt_city = city.getText().toString();
 
-                    String ab = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\n Contact no: " + txt_phone_number;
+                    String ab = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\nContact no: " + txt_phone_number;
                     address.setText(ab);
 
-                    Call<ResponseBody> call2 = RetrofitClient
-                            .getInstance()
-                            .getApi()
-                            .addAddress(txt_name, txt_address1, txt_city, txt_zip_code, txt_phone_number, txt_email_id, user_id);
+                    if (TextUtils.isEmpty(txt_address1) || TextUtils.isEmpty(txt_zip_code) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_phone_number) || TextUtils.isEmpty(txt_email_id) || TextUtils.isEmpty(txt_city)) {
 
-                    call2.enqueue(
-                            new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(AddLogActivity.this, "Successful added address", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(AddLogActivity.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddLogActivity.this, "All Field Are Required", Toast.LENGTH_SHORT).show();
+                        add.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+
+                    } else {
+
+                        Call<ResponseBody> call2 = RetrofitClient
+                                .getInstance()
+                                .getApi()
+                                .addAddress(txt_name, txt_address1, txt_city, txt_zip_code, txt_phone_number, txt_email_id, user_id);
+
+                        call2.enqueue(
+                                new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
+                                            Toast.makeText(AddLogActivity.this, "Successful added address", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(AddLogActivity.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
+                                        }
+                                        add.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                        add.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
                                     }
                                 }
-
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            }
-                    );
+                        );
+                    }
                 }
 
         );
         next.setOnClickListener(
                 v -> {
+
+                    next.setBackgroundColor(getResources().getColor(R.color.btn));
 
                     txt_problem_des = problem_des.getText().toString();
                     txt_company_name = company_name.getText().toString();
@@ -206,20 +214,36 @@ public class AddLogActivity extends AppCompatActivity {
 
                     if (TextUtils.isEmpty(txt_address1)) {
                         Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_name)) {
                         Toast.makeText(AddLogActivity.this, "Enter Name", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_zip_code)) {
                         Toast.makeText(AddLogActivity.this, "Enter zip code", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_phone_number)) {
                         Toast.makeText(AddLogActivity.this, "Enter phone number", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_email_id)) {
                         Toast.makeText(AddLogActivity.this, "Enter email id", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_problem_des)) {
                         Toast.makeText(AddLogActivity.this, "Enter problem des", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_service)) {
                         Toast.makeText(AddLogActivity.this, "Enter service", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else if (TextUtils.isEmpty(txt_company_name)) {
                         Toast.makeText(AddLogActivity.this, "Enter company name", Toast.LENGTH_LONG).show();
+                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                     } else {
                         Call<ResponseBody> calll = RetrofitClient
                                 .getInstance()
@@ -237,6 +261,7 @@ public class AddLogActivity extends AppCompatActivity {
                                                     }).setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
                                             company_name.setText("");
                                             problem_des.setText("");
+                                            next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
 
                                             Intent intent1 = new Intent(AddLogActivity.this, SuccessfulMessageActivity.class);
                                             intent1.putExtra("string", "Thank you for submit Call Log");
@@ -244,12 +269,16 @@ public class AddLogActivity extends AppCompatActivity {
 
                                         } else {
                                             Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();
+                                            next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                                         }
                                     }
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+
                                     }
                                 }
                         );

@@ -1,7 +1,7 @@
 package com.example.wefix.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +55,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 
         holder.del.setOnClickListener(
                 v -> {
+                    holder.del.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
                     Address add = addressList.get(position);
                     Call<ResponseBody> call = RetrofitClient
                             .getInstance()
@@ -65,20 +66,25 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
                             new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if(response.isSuccessful()){
+                                    if (response.isSuccessful()) {
                                         Toast.makeText(mContext, "Delete Address", Toast.LENGTH_SHORT).show();
 //                                        notifyDataSetChanged();
 
                                         ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
+                                        holder.del.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
 
                                     } else {
                                         Toast.makeText(mContext, "Try Again After Some Time", Toast.LENGTH_SHORT).show();
+                                        holder.del.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                                     Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    holder.del.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+
                                 }
                             }
                     );

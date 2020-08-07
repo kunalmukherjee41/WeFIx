@@ -28,6 +28,7 @@ import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Logs;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -86,7 +87,9 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                             Category category = response.body().getCategory();
                             holder.name.setText(category.getTbl_category_name());
                             holder.name1.setText(category.getTbl_category_name());
-                            Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
+//                            Toast.makeText(mContext, category.getTbl_category_image(), Toast.LENGTH_LONG).show();
+//                            Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
+                            Picasso.get().load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
                         }
                     }
 
@@ -107,6 +110,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
 
         holder.cancel.setOnClickListener(
                 v -> {
+                    holder.cancel.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
                     int call_log_id = logsList.get(position).getCallLogId();
                     Call<ResponseBody> call1 = RetrofitClient
                             .getInstance()
@@ -125,16 +129,20 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                                         Intent intent1 = new Intent(mContext, SuccessfulMessageActivity.class);
                                         intent1.putExtra("string", "Logs Cancel Successful");
                                         mContext.startActivity(intent1);
+                                        holder.cancel.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
                                     } else {
                                         Snackbar.make(holder.layout, "Try Again!", Snackbar.LENGTH_LONG)
                                                 .setAction("Close", v1 -> {
 
                                                 }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
+                                        holder.cancel.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    holder.cancel.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
 
                                 }
                             }

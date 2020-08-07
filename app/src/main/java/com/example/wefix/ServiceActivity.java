@@ -2,11 +2,7 @@ package com.example.wefix;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +17,7 @@ import com.example.wefix.adapter.ServiceListAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
 import com.example.wefix.model.Service1Response;
-import com.example.wefix.model.ServiceResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

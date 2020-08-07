@@ -2,6 +2,7 @@ package com.example.wefix.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
         Service service = serviceList.get(position);
         holder.name.setText(service.getTbl_services_name());
         holder.des.setText(service.getTbl_services_des());
-        String a = "Charge : " +service.getTbl_services_charge();
+        String a = "Charge : " + service.getTbl_services_charge();
         holder.charge.setText(a);
 
         if (yes.equals("YES")) {
@@ -68,7 +69,11 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
 
         } else {
             holder.add.setOnClickListener(
-                    v -> mContext.startActivity(new Intent(mContext, LoginActivity.class))
+                    v -> {
+                        holder.add.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                        holder.add.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn3));
+                    }
             );
         }
 

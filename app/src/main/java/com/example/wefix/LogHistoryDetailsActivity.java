@@ -10,17 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Category1Response;
-import com.example.wefix.model.Company;
-import com.example.wefix.model.Company1Response;
 import com.example.wefix.model.Logs;
-import com.example.wefix.model.Service;
-import com.example.wefix.model.Service1Response;
 import com.example.wefix.storage.SharedPrefManager;
 
 import retrofit2.Call;

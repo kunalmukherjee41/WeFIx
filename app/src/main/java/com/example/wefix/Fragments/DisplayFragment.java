@@ -1,27 +1,20 @@
 package com.example.wefix.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.DisplayActivity;
-import com.example.wefix.MainActivity;
 import com.example.wefix.R;
 import com.example.wefix.adapter.DisplayCategoryAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.CategoryResponse;
-import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.List;
 

@@ -10,7 +10,6 @@ import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
 import com.example.wefix.model.UserResponse;
-import com.google.gson.annotations.SerializedName;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

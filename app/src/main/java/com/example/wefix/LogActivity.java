@@ -2,10 +2,8 @@ package com.example.wefix;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,23 +14,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.Fragments.CancelledLogFragment;
 import com.example.wefix.Fragments.ClosedLogFragment;
 import com.example.wefix.Fragments.OpenLogFragment;
-import com.example.wefix.model.LogResponse;
-import com.example.wefix.model.Logs;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LogActivity extends AppCompatActivity {
 
@@ -64,8 +53,8 @@ public class LogActivity extends AppCompatActivity {
                             return true;
 
                         case R.id.address:
-//                            startActivity(new Intent(this, LogActivity.class));
-//                            overridePendingTransition(0, 0);
+                            startActivity(new Intent(this, AddAddressActivity.class));
+                            overridePendingTransition(0, 0);
                             return true;
 
                         case R.id.contact:
