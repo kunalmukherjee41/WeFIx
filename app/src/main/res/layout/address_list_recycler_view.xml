@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
     android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,25 +31,34 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="220dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="40dp"
-            android:inputType="textMultiLine"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/delete_btn"
-            android:layout_width="100dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/custom_btn2"
-            android:text="Delete"
-            android:textColor="#fff" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:inputType="textMultiLine"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_btn2"
+                android:text="Delete"
+                android:textColor="#fff" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

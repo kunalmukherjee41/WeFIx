@@ -113,7 +113,9 @@ public class LogHistoryDetailsActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent2 = new Intent(this, MainActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
                 return true;
             case R.id.contact:
                 startActivity(new Intent(this, ContactActivity.class));

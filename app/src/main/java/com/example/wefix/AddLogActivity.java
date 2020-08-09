@@ -1,5 +1,6 @@
 package com.example.wefix;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -57,6 +58,8 @@ public class AddLogActivity extends AppCompatActivity {
     String txt_email_id, txt_problem_des, txt_service, txt_city;
     int user_id, service_id, txt_amount, category_id;
 
+    ProgressDialog progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,11 @@ public class AddLogActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Add Call Logs");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        progressBar = new ProgressDialog(this);
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
         company_name = findViewById(R.id.company_name);
         problem_des = findViewById(R.id.problem_des);
@@ -127,11 +135,13 @@ public class AddLogActivity extends AppCompatActivity {
                             String a = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\nContact no: " + txt_phone_number;
                             address.setText(a);
                         }
+                        progressBar.dismiss();
                     }
 
                     @Override
                     public void onFailure(Call<AddressResponse> call, Throwable t) {
                         Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        progressBar.dismiss();
                     }
                 }
         );
@@ -198,6 +208,10 @@ public class AddLogActivity extends AppCompatActivity {
         );
         next.setOnClickListener(
                 v -> {
+                    progressBar = new ProgressDialog(this);
+                    progressBar.show();
+                    progressBar.setContentView(R.layout.progress_dialog);
+                    Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
                     next.setBackgroundColor(getResources().getColor(R.color.btn));
 
@@ -215,34 +229,42 @@ public class AddLogActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(txt_address1)) {
                         Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_name)) {
                         Toast.makeText(AddLogActivity.this, "Enter Name", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_zip_code)) {
                         Toast.makeText(AddLogActivity.this, "Enter zip code", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_phone_number)) {
                         Toast.makeText(AddLogActivity.this, "Enter phone number", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_email_id)) {
                         Toast.makeText(AddLogActivity.this, "Enter email id", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_problem_des)) {
                         Toast.makeText(AddLogActivity.this, "Enter problem des", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_service)) {
                         Toast.makeText(AddLogActivity.this, "Enter service", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_company_name)) {
                         Toast.makeText(AddLogActivity.this, "Enter company name", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        progressBar.dismiss();
 
                     } else {
                         Call<ResponseBody> calll = RetrofitClient
@@ -255,6 +277,7 @@ public class AddLogActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if (response.isSuccessful()) {
+                                            progressBar.dismiss();
                                             Toast.makeText(AddLogActivity.this, "Successful", Toast.LENGTH_LONG).show();
                                             Snackbar.make(layout, "Thank You for Submit Logs!", Snackbar.LENGTH_LONG)
                                                     .setAction("Close", v1 -> {
@@ -268,6 +291,7 @@ public class AddLogActivity extends AppCompatActivity {
                                             startActivity(intent1);
 
                                         } else {
+                                            progressBar.dismiss();
                                             Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();
                                             next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
 
@@ -276,6 +300,7 @@ public class AddLogActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        progressBar.dismiss();
                                         Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
 
@@ -320,7 +345,9 @@ public class AddLogActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent1 = new Intent(this, MainActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
                 return true;
             case R.id.contact:
                 startActivity(new Intent(this, ContactActivity.class));
@@ -337,4 +364,9 @@ public class AddLogActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        progressBar.dismiss();
+    }
 }

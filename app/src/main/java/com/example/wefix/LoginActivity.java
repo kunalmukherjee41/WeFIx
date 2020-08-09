@@ -1,5 +1,6 @@
 package com.example.wefix;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button login;
+
+    ProgressDialog progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +64,22 @@ public class LoginActivity extends AppCompatActivity {
     //on user login
     private void userLogin() {
 
+        progressBar = new ProgressDialog(this);
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
         String txt_username = email.getText().toString().trim();
         String txt_password = password.getText().toString().trim();
         if (TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
             Toast.makeText(LoginActivity.this, "Fill Both Requirements", Toast.LENGTH_LONG).show();
             login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            progressBar.dismiss();
 
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
             Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
             login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            progressBar.dismiss();
 
         } else {
 
@@ -85,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                                  if (!response.body().getError()) {
                                      assert response.body() != null;
                                      UserResponse userResponse = response.body();
-
                                      SharedPrefManager.getInstance(LoginActivity.this).saveUser(userResponse.getUser());
 
                                      Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
@@ -95,8 +104,9 @@ public class LoginActivity extends AppCompatActivity {
                                      email.setText("");
 
                                  } else {
-                                     Toast.makeText(LoginActivity.this, "Something went wrong Try Again", Toast.LENGTH_LONG).show();
+                                     Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
                                  }
+                                 progressBar.dismiss();
                                  login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
                                  password.setText("");
                                  login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
@@ -107,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                              public void onFailure(Call<UserResponse> call, Throwable t) {
                                  Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                  password.setText("");
+                                 progressBar.dismiss();
                                  login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
 
                              }
@@ -127,4 +138,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        progressBar.dismiss();
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.wefix;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 
 public class CreateUserActivity extends AppCompatActivity {
 
+    ProgressDialog progressBar;
     private EditText name, email, password, phone, rPassword;
     ScrollView layout;
     Button create_user;
@@ -71,6 +73,11 @@ public class CreateUserActivity extends AppCompatActivity {
     //create user function
     private void createUser() {
 
+        progressBar = new ProgressDialog(this);
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
         String txt_email = email.getText().toString();
         String txt_phone = phone.getText().toString();
         String txt_name = name.getText().toString();
@@ -80,14 +87,17 @@ public class CreateUserActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_phone)) {
             Toast.makeText(CreateUserActivity.this, "All Field are Required", Toast.LENGTH_LONG).show();
             create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            progressBar.dismiss();
 
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_email).matches()) {
             Toast.makeText(CreateUserActivity.this, "Provide a Valid Email Address", Toast.LENGTH_LONG).show();
             create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            progressBar.dismiss();
 
         } else if (txt_password.length() < 6) {
             Toast.makeText(CreateUserActivity.this, "Password should be atLeast 6 character", Toast.LENGTH_LONG).show();
             create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            progressBar.dismiss();
 
         } else if (!txt_password.equals(txt_rPassword)) {
 //            Toast.makeText(RegisterActivity.this, "Passwords are not match", Toast.LENGTH_LONG).show();
@@ -97,6 +107,7 @@ public class CreateUserActivity extends AppCompatActivity {
                     })
                     .setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
             create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            progressBar.dismiss();
 
         } else {
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
@@ -110,27 +121,22 @@ public class CreateUserActivity extends AppCompatActivity {
                              @Override
                              public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                  if (response.isSuccessful()) {
-                                     try {
-                                         assert response.body() != null;
-                                         String s = response.body().string();
-                                         Toast.makeText(CreateUserActivity.this, s, Toast.LENGTH_LONG).show();
-                                         if (response.code() == 201) {
-                                             Intent intent = new Intent(CreateUserActivity.this, LoginActivity.class);
-                                             startActivity(intent);
-                                         }
-                                         email.setText("");
-                                         password.setText("");
-                                         name.setText("");
-                                         phone.setText("");
-                                         create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
-                                         finish();
-                                     } catch (IOException e) {
-                                         e.printStackTrace();
-                                         create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
-
+                                     progressBar.dismiss();
+                                     Toast.makeText(CreateUserActivity.this, "User Created!", Toast.LENGTH_LONG).show();
+                                     if (response.code() == 201) {
+                                         Intent intent = new Intent(CreateUserActivity.this, LoginActivity.class);
+                                         startActivity(intent);
                                      }
+                                     email.setText("");
+                                     password.setText("");
+                                     name.setText("");
+                                     phone.setText("");
+                                     create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                     finish();
+
                                  } else {
-                                     Toast.makeText(CreateUserActivity.this, "Something Went Wrong Try Again", Toast.LENGTH_LONG).show();
+                                     progressBar.dismiss();
+                                     Toast.makeText(CreateUserActivity.this, "User Is Already Register", Toast.LENGTH_LONG).show();
                                      create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
 
                                  }
@@ -138,6 +144,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
                              @Override
                              public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                 progressBar.dismiss();
                                  Toast.makeText(CreateUserActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                  create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
 

@@ -1,5 +1,6 @@
 package com.example.wefix.Fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +32,8 @@ public class CancelledLogFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<Logs> logsList;
+
+    ProgressDialog progressBar;
 
     @Nullable
     @Override
@@ -48,6 +52,11 @@ public class CancelledLogFragment extends Fragment {
 
     public void getLog() {
 
+        progressBar = new ProgressDialog(getContext());
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
         int client_ref_id = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
         Call<LogResponse> call = RetrofitClient
@@ -60,6 +69,7 @@ public class CancelledLogFragment extends Fragment {
                     @Override
                     public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
                         if (response.isSuccessful()) {
+                            progressBar.dismiss();
                             assert response.body() != null;
                             logsList = response.body().getLog();
                             List<Logs> logs = new ArrayList<>();
@@ -71,12 +81,15 @@ public class CancelledLogFragment extends Fragment {
                             LogHistoryAdapter adapter = new LogHistoryAdapter(getActivity(), logs);
                             recyclerView.setAdapter(adapter);
                         } else {
+                            progressBar.dismiss();
                             Toast.makeText(getActivity(), "Something went wrong try Again", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LogResponse> call, Throwable t) {
+                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        progressBar.dismiss();
 
                     }
                 }

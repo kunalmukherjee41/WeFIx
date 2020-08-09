@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -36,9 +37,8 @@ public class AddAddressActivity extends AppCompatActivity {
     Button addAddress, save;
     TextView cancel;
     RecyclerView recyclerView;
-
+    ProgressDialog progressBar;
     LinearLayout layout;
-
     int user_id;
 
     @Override
@@ -169,6 +169,12 @@ public class AddAddressActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        progressBar = new ProgressDialog(this);
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
+
         Call<Address1Response> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -178,6 +184,7 @@ public class AddAddressActivity extends AppCompatActivity {
                 new Callback<Address1Response>() {
                     @Override
                     public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
+                        progressBar.dismiss();
                         if (response.isSuccessful()) {
                             List<Address> addressList = response.body().getAddressList();
                             AddressListAdapter addressListAdapter = new AddressListAdapter(AddAddressActivity.this, addressList);
@@ -189,6 +196,7 @@ public class AddAddressActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Address1Response> call, Throwable t) {
+                        progressBar.dismiss();
                         Toast.makeText(AddAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }

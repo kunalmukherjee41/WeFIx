@@ -1,5 +1,6 @@
 package com.example.wefix;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import com.example.wefix.model.Service1Response;
 import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +38,8 @@ public class ServiceActivity2 extends AppCompatActivity {
     Category category;
     Intent intent;
 
+    ProgressDialog progressBar;
+
     RecyclerView recyclerView;
 
     @Override
@@ -47,6 +51,12 @@ public class ServiceActivity2 extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Call Logs");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        progressBar = new ProgressDialog(this);
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
 
         name = findViewById(R.id.name);
 //        rs = findViewById(R.id.rs);
@@ -75,6 +85,7 @@ public class ServiceActivity2 extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Service1Response> call, Response<Service1Response> response) {
                         if (response.isSuccessful()) {
+                            progressBar.dismiss();
                             service = response.body().getService();
 
                             ServiceListAdapter adapter = new ServiceListAdapter(ServiceActivity2.this, service, category, "YES");
@@ -82,12 +93,16 @@ public class ServiceActivity2 extends AppCompatActivity {
 
                         } else {
                             Toast.makeText(ServiceActivity2.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
+                            progressBar.dismiss();
+
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Service1Response> call, Throwable t) {
                         Toast.makeText(ServiceActivity2.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        progressBar.dismiss();
+
                     }
                 }
         );
@@ -110,7 +125,9 @@ public class ServiceActivity2 extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent2 = new Intent(this, MainActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
                 return true;
             case R.id.contact:
                 startActivity(new Intent(this, ContactActivity.class));
@@ -129,4 +146,9 @@ public class ServiceActivity2 extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        progressBar.dismiss();
+    }
 }

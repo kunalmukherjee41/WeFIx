@@ -1,5 +1,6 @@
 package com.example.wefix.Fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +32,7 @@ public class OpenLogFragment extends Fragment {
 
     List<Logs> logsList;
     RecyclerView recyclerView;
+    ProgressDialog progressBar;
 
     @Nullable
     @Override
@@ -48,6 +51,12 @@ public class OpenLogFragment extends Fragment {
 
     public void getLog() {
 
+        progressBar = new ProgressDialog(getContext());
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
+
         int client_ref_id = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
         Call<LogResponse> call = RetrofitClient
@@ -59,6 +68,7 @@ public class OpenLogFragment extends Fragment {
                 new Callback<LogResponse>() {
                     @Override
                     public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
+                        progressBar.dismiss();
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             logsList = response.body().getLog();
@@ -77,7 +87,8 @@ public class OpenLogFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<LogResponse> call, Throwable t) {
-
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.dismiss();
                     }
                 }
         );

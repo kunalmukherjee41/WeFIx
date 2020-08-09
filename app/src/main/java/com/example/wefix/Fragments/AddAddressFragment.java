@@ -1,6 +1,6 @@
 package com.example.wefix.Fragments;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,15 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.ContactActivity;
-import com.example.wefix.DisplayActivity;
-import com.example.wefix.LogActivity;
 import com.example.wefix.R;
 import com.example.wefix.adapter.AddressListAdapter;
 import com.example.wefix.model.Address;
 import com.example.wefix.model.Address1Response;
 import com.example.wefix.storage.SharedPrefManager;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 import java.util.Objects;
@@ -42,6 +38,7 @@ public class AddAddressFragment extends Fragment {
     Button addAddress, save;
     TextView cancel;
     RecyclerView recyclerView;
+    ProgressDialog progressBar;
 
     LinearLayout layout;
 
@@ -145,6 +142,11 @@ public class AddAddressFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        progressBar = new ProgressDialog(getContext());
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
         Call<Address1Response> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -155,16 +157,19 @@ public class AddAddressFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
                         if (response.isSuccessful()) {
+                            progressBar.dismiss();
                             List<Address> addressList = response.body().getAddressList();
                             AddressListAdapter addressListAdapter = new AddressListAdapter(getContext(), addressList);
                             recyclerView.setAdapter(addressListAdapter);
                         } else {
+                            progressBar.dismiss();
                             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Address1Response> call, Throwable t) {
+                        progressBar.dismiss();
                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -172,4 +177,5 @@ public class AddAddressFragment extends Fragment {
 
         return view;
     }
+
 }
