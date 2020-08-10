@@ -31,9 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimaryDark"
+            android:background="#f7e1a7"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
 
     </RelativeLayout>
@@ -45,7 +46,10 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:foregroundGravity="left"
+        android:outlineSpotShadowColor="@color/colorPrimaryDark"
         app:headerLayout="@layout/nav_header"
+        app:itemTextColor="#0640e0"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.DisplayActivity;
 import com.example.wefix.R;
 import com.example.wefix.adapter.DisplayCategoryAdapter;
 import com.example.wefix.model.Category;
@@ -29,18 +31,24 @@ public class DisplayFragment extends Fragment {
     RecyclerView recyclerView;
     List<Category> categoryList;
 
-    ProgressDialog progressBar;
+//    ProgressDialog progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_display, container, false);
+        return inflater.inflate(R.layout.fragment_display, container, false);
 
-        progressBar = new ProgressDialog(getContext());
-        progressBar.show();
-        progressBar.setContentView(R.layout.progress_dialog);
-        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+//        progressBar = new ProgressDialog(getContext());
+//        progressBar.show();
+//        progressBar.setContentView(R.layout.progress_dialog);
+//        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
         recyclerView = view.findViewById(R.id.recyclerView1);
         recyclerView.setHasFixedSize(true);
@@ -57,27 +65,28 @@ public class DisplayFragment extends Fragment {
                     @Override
                     public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                         if (response.isSuccessful()) {
-                            progressBar.dismiss();
+//                            progressBar.dismiss();
                             assert response.body() != null;
                             categoryList = response.body().getCategory();
+//                            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
                             DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(getContext(), categoryList, "Display");
                             recyclerView.setAdapter(adapter);
+                            call.cancel();
 
                         } else {
-                            progressBar.dismiss();
+//                            progressBar.dismiss();
                             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                        progressBar.dismiss();
+//                        progressBar.dismiss();
                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
         );
 
-        return view;
     }
 
 //    @Override

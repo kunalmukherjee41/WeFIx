@@ -17,6 +17,7 @@ import com.example.wefix.R;
 import com.example.wefix.ServiceActivity;
 import com.example.wefix.ServiceActivity2;
 import com.example.wefix.model.Category;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -45,7 +46,8 @@ public class DisplayCategoryAdapter extends RecyclerView.Adapter<DisplayCategory
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
 
         category = categoryList.get(position);
-        Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image1);
+        Picasso.get().load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image1);
+//        Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image1);
         holder.name1.setText(category.getTbl_category_name());
         holder.cardView.setOnClickListener(
                 v -> {

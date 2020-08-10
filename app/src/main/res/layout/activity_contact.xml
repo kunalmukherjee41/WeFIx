@@ -36,6 +36,7 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:text="Contact us"
+                android:textColor="#0640e0"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -47,7 +48,7 @@
 
                 <ImageView
                     android:layout_width="200dp"
-                    android:layout_height="80dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="10dp"
                     android:src="@drawable/logo_text1" />
 
@@ -66,6 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="WeFix"
+                        android:textColor="#0640e0"
                         android:textSize="18sp" />
 
                     <TextView
@@ -124,9 +126,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimaryDark"
+        android:background="#f7e1a7"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

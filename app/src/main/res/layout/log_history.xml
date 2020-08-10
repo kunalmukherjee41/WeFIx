@@ -17,7 +17,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:background="#CCE0EF"
                 android:orientation="horizontal">
 
@@ -111,6 +111,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/custom_btn2"
+                        android:padding="1dp"
                         android:text="Cancel Log"
                         android:textAllCaps="false"
                         android:textColor="#fff" />

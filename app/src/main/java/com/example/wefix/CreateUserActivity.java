@@ -17,7 +17,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.wefix.Api.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -69,7 +68,6 @@ public class CreateUserActivity extends AppCompatActivity {
         );
     }
 
-
     //create user function
     private void createUser() {
 
@@ -103,7 +101,6 @@ public class CreateUserActivity extends AppCompatActivity {
 //            Toast.makeText(RegisterActivity.this, "Passwords are not match", Toast.LENGTH_LONG).show();
             Snackbar.make(layout, "Passwords are not match", Snackbar.LENGTH_LONG)
                     .setAction("Close", v -> {
-
                     })
                     .setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
             create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
@@ -124,7 +121,7 @@ public class CreateUserActivity extends AppCompatActivity {
                                      progressBar.dismiss();
                                      Toast.makeText(CreateUserActivity.this, "User Created!", Toast.LENGTH_LONG).show();
                                      if (response.code() == 201) {
-                                         Intent intent = new Intent(CreateUserActivity.this, LoginActivity.class);
+                                         Intent intent = new Intent(CreateUserActivity.this, NewAddressActivity.class);
                                          startActivity(intent);
                                      }
                                      email.setText("");
@@ -138,7 +135,6 @@ public class CreateUserActivity extends AppCompatActivity {
                                      progressBar.dismiss();
                                      Toast.makeText(CreateUserActivity.this, "User Is Already Register", Toast.LENGTH_LONG).show();
                                      create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
-
                                  }
                              }
 
@@ -147,7 +143,6 @@ public class CreateUserActivity extends AppCompatActivity {
                                  progressBar.dismiss();
                                  Toast.makeText(CreateUserActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                  create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
-
                              }
                          }
             );

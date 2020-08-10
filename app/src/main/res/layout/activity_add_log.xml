@@ -182,8 +182,8 @@
                         android:layout_gravity="center"
                         android:background="@drawable/custom_btn2"
                         android:text="Add"
-                        android:textAllCaps="false"
-                        android:textColor="#fff" />
+                        android:textColor="#fff"
+                        android:textAllCaps="false" />
 
                 </LinearLayout>
 

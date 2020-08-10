@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fcf2d7"
     tools:context=".Fragments.DisplayFragment">
 
     <RelativeLayout
@@ -13,14 +14,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#0640e0"
             android:padding="5dp">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:background="@android:color/holo_blue_dark" />
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="Search for Product and More"
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.SearchView
                 android:layout_width="match_parent"
@@ -28,15 +33,24 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                app:queryHint="Locality Search" />
+                android:layoutDirection="rtl" />
 
         </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            android:text="News Letter"
+            android:textColor="#0640e0"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/aclonica"
             android:text="Add a Call Log"
             android:textColor="#a11aa1"
@@ -46,7 +60,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="125dp"
             android:orientation="horizontal"
             android:padding="10dp">
 

@@ -16,10 +16,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".AddAddressActivity"></activity>
+        <activity android:name=".NewAddressActivity"></activity>
+        <activity android:name=".AddAddressActivity" />
         <activity
             android:name=".AddLogActivity"
-            android:parentActivityName=".ServiceActivity2" />
+            android:parentActivityName=".DisplayActivity" />
         <activity android:name=".SuccessfulMessageActivity" />
         <activity
             android:name=".CreateUserActivity"

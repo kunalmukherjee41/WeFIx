@@ -50,6 +50,8 @@ public class AddAddressActivity extends AppCompatActivity {
 
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
+        email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
+        email.setFocusable(false);
         phoneNumber = findViewById(R.id.phone_number);
         pinCode = findViewById(R.id.pin_code);
         address = findViewById(R.id.address);
@@ -85,9 +87,6 @@ public class AddAddressActivity extends AppCompatActivity {
                     return false;
                 }
         );
-
-        email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
-        email.setFocusable(false);
 
         layout = findViewById(R.id.linear_layout);
 
