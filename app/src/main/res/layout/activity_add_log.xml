@@ -76,8 +76,8 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Billing Address"
-                        android:textColor="@android:color/holo_blue_dark" />
+                        android:text="Current Address"
+                        android:textColor="#0640e0" />
 
                     <TextView
                         android:id="@+id/address"
@@ -182,8 +182,8 @@
                         android:layout_gravity="center"
                         android:background="@drawable/custom_btn2"
                         android:text="Add"
-                        android:textColor="#fff"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="#fff" />
 
                 </LinearLayout>
 

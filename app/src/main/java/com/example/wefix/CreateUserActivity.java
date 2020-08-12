@@ -4,9 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -121,7 +125,7 @@ public class CreateUserActivity extends AppCompatActivity {
                                      progressBar.dismiss();
                                      Toast.makeText(CreateUserActivity.this, "User Created!", Toast.LENGTH_LONG).show();
                                      if (response.code() == 201) {
-                                         Intent intent = new Intent(CreateUserActivity.this, NewAddressActivity.class);
+                                         Intent intent = new Intent(CreateUserActivity.this, LoginActivity.class);
                                          startActivity(intent);
                                      }
                                      email.setText("");
@@ -149,6 +153,36 @@ public class CreateUserActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void ShowHidePass(View view) {
+
+        if (view.getId() == R.id.show_pass_btn) {
+            if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                ((ImageView) (view)).setImageResource(R.drawable.password_hide_asset);
+                //Show Password
+                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                ((ImageView) (view)).setImageResource(R.drawable.password_visible_asset);
+                //Hide Password
+                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        }
+    }
+
+    public void ShowHidePass1(View view) {
+
+        if (view.getId() == R.id.show_pass_btn1) {
+            if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                ((ImageView) (view)).setImageResource(R.drawable.password_hide_asset);
+                //Show Password
+                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                ((ImageView) (view)).setImageResource(R.drawable.password_visible_asset);
+                //Hide Password
+                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        }
     }
 
 }

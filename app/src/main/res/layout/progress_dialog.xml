@@ -14,7 +14,10 @@
 
         <ProgressBar
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="#0640e0"
+            android:indeterminateTintMode="src_atop" />
 
         <TextView
             android:layout_width="wrap_content"

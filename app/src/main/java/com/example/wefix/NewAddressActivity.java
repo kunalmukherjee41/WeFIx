@@ -33,7 +33,8 @@ import retrofit2.Response;
 
 public class NewAddressActivity extends AppCompatActivity {
 
-    EditText name, email, phoneNumber, pinCode, address, city;
+    EditText name, email, phoneNumber;
+    EditText pinCode, address, city;
     Button save;
     int user_id;
 
@@ -83,7 +84,6 @@ public class NewAddressActivity extends AppCompatActivity {
                                             startActivity(new Intent(NewAddressActivity.this, LoginActivity.class));
                                         } else {
                                             Toast.makeText(NewAddressActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
-
                                         }
                                         save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
                                     }
@@ -99,6 +99,5 @@ public class NewAddressActivity extends AppCompatActivity {
                     }
                 }
         );
-
     }
 }

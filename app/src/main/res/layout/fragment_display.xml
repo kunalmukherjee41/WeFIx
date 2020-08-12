@@ -23,7 +23,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/white"
-                android:gravity="center"
+                android:padding="12dp"
                 android:text="Search for Product and More"
                 android:textSize="18sp" />
 
@@ -53,7 +53,7 @@
             android:layout_marginTop="100dp"
             android:fontFamily="@font/aclonica"
             android:text="Add a Call Log"
-            android:textColor="#a11aa1"
+            android:textColor="#0640e0"
             android:textSize="18sp"
             android:textStyle="bold" />
 
