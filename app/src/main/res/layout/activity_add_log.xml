@@ -71,6 +71,7 @@
                     android:layout_marginEnd="10dp">
 
                     <TextView
+                        android:id="@+id/ab"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -79,16 +80,23 @@
                         android:text="Current Address"
                         android:textColor="#0640e0" />
 
-                    <TextView
-                        android:id="@+id/address"
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/address"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginStart="20dp"-->
+                    <!--                        android:layout_marginTop="35dp"-->
+                    <!--                        android:layout_marginEnd="20dp"-->
+                    <!--                        android:paddingStart="5dp"-->
+                    <!--                        android:paddingEnd="5dp"-->
+                    <!--                        android:textSize="18sp" />-->
+
+                    <RadioGroup
+                        android:id="@id/address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginEnd="20dp"
-                        android:paddingStart="5dp"
-                        android:paddingEnd="5dp"
-                        android:textSize="18sp" />
+                        android:layout_below="@id/ab"
+                        android:verticalScrollbarPosition="right" />
 
                 </RelativeLayout>
 

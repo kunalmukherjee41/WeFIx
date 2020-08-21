@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -43,26 +44,23 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <ImageView
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        app:auto_cycle="true"
+        app:corner_radius="10"
+        app:delay="0"
+        app:error_image="@drawable/error_image"
+        app:period="1000"
+        app:placeholder="@drawable/error_image" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="News Letter"
-            android:textColor="#0640e0"
-            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"

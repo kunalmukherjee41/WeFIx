@@ -45,6 +45,7 @@ public class SharedPrefManager {
     }
 
     public User getUser() {
+
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         return new User(

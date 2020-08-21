@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.adapter.DisplayCategoryAdapter;
 import com.example.wefix.model.Category;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Category> categoryList;
+    ImageSlider imageSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView login = findViewById(R.id.login);
         categoryList = new ArrayList<>();
+        imageSlider = findViewById(R.id.image_slider);
 
         //goto login page
         login.setOnClickListener(
@@ -71,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             categoryList = response.body().getCategory();
+                            List<SlideModel> slideModels = new ArrayList<>();
+                            for (Category category : categoryList) {
+                                slideModels.add(new SlideModel("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image(), category.getTbl_category_name()));
+                            }
+                            imageSlider.setImageList(slideModels, true);
                             DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(MainActivity.this, categoryList, "Main");
                             recyclerView.setAdapter(adapter);
 //                            Toast.makeText(MainActivity.this, "Successful", Toast.LENGTH_LONG).show();

@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.model.Address;
+import com.example.wefix.model.Address1Response;
 import com.example.wefix.model.AddressResponse;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
@@ -33,6 +36,7 @@ import java.net.NetworkInterface;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
@@ -43,11 +47,12 @@ import retrofit2.Response;
 public class AddLogActivity extends AppCompatActivity {
 
     ImageView image;
-    TextView address, item_name, charge;
+    TextView item_name, charge;
 
-    Address addressData;
+    List<Address> addressData;
     Service service;
-
+    RadioGroup radioGroup;
+    RadioGroup.LayoutParams r1;
     EditText name, address1, zip_code, phone, email, city, company_name, problem_des;
 
     LinearLayout layout;
@@ -84,10 +89,13 @@ public class AddLogActivity extends AppCompatActivity {
         address1 = findViewById(R.id.address1);
         phone = findViewById(R.id.phone);
 
+        radioGroup = findViewById(R.id.address);
+        radioGroup.setOrientation(RadioGroup.VERTICAL);
+
         item_name = findViewById(R.id.item_name);
         charge = findViewById(R.id.charge);
         image = findViewById(R.id.image);
-        address = findViewById(R.id.address);
+//        address = findViewById(R.id.address);
 
         next = findViewById(R.id.next);
         addressChange = findViewById(R.id.change_address);
@@ -115,31 +123,39 @@ public class AddLogActivity extends AppCompatActivity {
 
         user_id = SharedPrefManager.getInstance(AddLogActivity.this).getUser().getId();
 
-        Call<AddressResponse> call1 = RetrofitClient
+        Call<Address1Response> call1 = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getAddress(user_id, "app");
+                .getAllAddress(user_id, "app");
 
         call1.enqueue(
-                new Callback<AddressResponse>() {
+                new Callback<Address1Response>() {
                     @Override
-                    public void onResponse(Call<AddressResponse> call, Response<AddressResponse> response) {
+                    public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
                         if (response.isSuccessful()) {
                             assert response.body() != null;
-                            addressData = response.body().getAddress();
-                            txt_address1 = addressData.getBillingAddress();
-                            txt_city = addressData.getBillingCity();
-                            txt_zip_code = addressData.getZipCode();
-                            txt_name = addressData.getBillingName();
-                            txt_phone_number = addressData.getMbNo();
-                            String a = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\nContact no: " + txt_phone_number;
-                            address.setText(a);
+                            addressData = response.body().getAddressList();
+                            for (Address address : addressData) {
+//                                txt_address1 = address.getBillingAddress();
+//                                txt_city = address.getBillingCity();
+//                                txt_zip_code = address.getZipCode();
+//                                txt_name = address.getBillingName();
+//                                txt_phone_number = address.getMbNo();
+                                RadioButton r2 = new RadioButton(AddLogActivity.this);
+                                String a = address.getBillingName() + "\n" + address.getBillingAddress() + " " + address.getBillingCity() + " " + "West Bengal, India\n" + "Pin: " + address.getZipCode() + "\nContact no: " + address.getMbNo();
+//                            address.setText(a);
+                                r2.setText(a);
+                                r1 = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+                                r1.setMargins(0, 10, 0, 0);
+                                r2.setId(address.getBillingId());
+                                radioGroup.addView(r2, r1);
+                            }
                         }
                         progressBar.dismiss();
                     }
 
                     @Override
-                    public void onFailure(Call<AddressResponse> call, Throwable t) {
+                    public void onFailure(Call<Address1Response> call, Throwable t) {
                         Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                         progressBar.dismiss();
                     }
@@ -168,8 +184,8 @@ public class AddLogActivity extends AppCompatActivity {
                     txt_email_id = email.getText().toString();
                     txt_city = city.getText().toString();
 
-                    String ab = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\nContact no: " + txt_phone_number;
-                    address.setText(ab);
+//                    String ab = txt_name + "\n" + txt_address1 + " " + txt_city + " " + "West Bengal, India\n" + "Pin: " + txt_zip_code + "\nContact no: " + txt_phone_number;
+//                    address.setText(ab);
 
                     if (TextUtils.isEmpty(txt_address1) || TextUtils.isEmpty(txt_zip_code) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_phone_number) || TextUtils.isEmpty(txt_email_id) || TextUtils.isEmpty(txt_city)) {
 
@@ -208,6 +224,7 @@ public class AddLogActivity extends AppCompatActivity {
         );
         next.setOnClickListener(
                 v -> {
+
                     progressBar = new ProgressDialog(this);
                     progressBar.show();
                     progressBar.setContentView(R.layout.progress_dialog);
@@ -226,7 +243,23 @@ public class AddLogActivity extends AppCompatActivity {
 
                     txt_email_id = SharedPrefManager.getInstance(this).getUser().getUsername();
 
-                    if (TextUtils.isEmpty(txt_address1)) {
+                    if (TextUtils.isEmpty(txt_name)) {
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+                        Address address = null;
+                        for (Address a : addressData) {
+                            if (selectedId == a.getBillingId()) {
+                                address = a;
+                                break;
+                            }
+                        }
+                        assert address != null;
+                        txt_address1 = address.getBillingAddress();
+                        txt_city = address.getBillingCity();
+                        txt_zip_code = address.getZipCode();
+                        txt_name = address.getBillingName();
+                        txt_phone_number = address.getMbNo();
+//                        Toast.makeText(AddLogActivity.this, txt_address1 + "" + txt_city, Toast.LENGTH_SHORT).show();
+                    } else if (TextUtils.isEmpty(txt_address1)) {
                         Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
                         next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
                         progressBar.dismiss();

@@ -73,44 +73,45 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
-                        android:drawableStart="@drawable/home_asset"
-                        android:text="Durgapur," />
+                        android:text="Durgapur,"
+                        app:drawableStartCompat="@drawable/home_asset" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="23dp"
+                        android:paddingEnd="10dp"
                         android:text="West Bengal\nPIN- 713206" />
 
                     <TextView
                         android:id="@+id/phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/phone_asset"
-                        android:text="0325 2314960" />
+                        android:text="0325 2314960"
+                        app:drawableStartCompat="@drawable/phone_asset" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/phone1_asset"
                         android:text="123456789"
-                        android:textStyle="italic" />
+                        android:textStyle="italic"
+                        app:drawableStartCompat="@drawable/phone1_asset" />
 
                     <TextView
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/email_asset"
                         android:text="abc@gmail.com"
-                        android:textStyle="italic" />
+                        android:textStyle="italic"
+                        app:drawableStartCompat="@drawable/email_asset" />
 
                     <TextView
                         android:id="@+id/web_site"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/website_asset"
                         android:text="wefix.sitdoxford.org"
-                        android:textStyle="italic" />
+                        android:textStyle="italic"
+                        app:drawableStartCompat="@drawable/website_asset" />
 
                 </LinearLayout>
 

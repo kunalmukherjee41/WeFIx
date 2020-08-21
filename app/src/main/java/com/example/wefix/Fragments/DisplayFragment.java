@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.DisplayActivity;
 import com.example.wefix.R;
@@ -19,6 +21,7 @@ import com.example.wefix.adapter.DisplayCategoryAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.CategoryResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +33,7 @@ public class DisplayFragment extends Fragment {
 
     RecyclerView recyclerView;
     List<Category> categoryList;
+    ImageSlider imageSlider;
 
 //    ProgressDialog progressBar;
 
@@ -50,6 +54,7 @@ public class DisplayFragment extends Fragment {
 //        progressBar.setContentView(R.layout.progress_dialog);
 //        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
+        imageSlider = view.findViewById(R.id.image_slider);
         recyclerView = view.findViewById(R.id.recyclerView1);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
@@ -68,6 +73,11 @@ public class DisplayFragment extends Fragment {
 //                            progressBar.dismiss();
                             assert response.body() != null;
                             categoryList = response.body().getCategory();
+                            List<SlideModel> slideModels = new ArrayList<>();
+                            for (Category category : categoryList) {
+                                slideModels.add(new SlideModel("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image(), category.getTbl_category_name()));
+                            }
+                            imageSlider.setImageList(slideModels, true);
 //                            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
                             DisplayCategoryAdapter adapter = new DisplayCategoryAdapter(getContext(), categoryList, "Display");
                             recyclerView.setAdapter(adapter);
