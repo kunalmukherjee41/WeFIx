@@ -233,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="25dp"
-                        android:text="Problem if any : "
+                        android:text="Problem Description: "
                         android:textSize="15sp" />
 
                     <EditText
@@ -262,7 +262,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Payment"
+                        android:text="Payment Method"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="16sp" />
 
@@ -271,6 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:focusedByDefault="true"
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="10dp"
                         android:text="POS(Pay on Service)" />

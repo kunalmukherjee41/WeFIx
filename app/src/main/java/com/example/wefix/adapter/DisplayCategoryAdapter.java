@@ -12,14 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.wefix.R;
 import com.example.wefix.ServiceActivity;
 import com.example.wefix.ServiceActivity2;
 import com.example.wefix.model.Category;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class DisplayCategoryAdapter extends RecyclerView.Adapter<DisplayCategoryAdapter.CategoryViewHolder> {

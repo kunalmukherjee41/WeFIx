@@ -61,7 +61,6 @@ public class OpenLogFragment extends Fragment {
         progressBar.setContentView(R.layout.progress_dialog);
         Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
-
         int client_ref_id = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
         Call<LogResponse> call = RetrofitClient
@@ -74,6 +73,7 @@ public class OpenLogFragment extends Fragment {
                     @Override
                     public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
                         progressBar.dismiss();
+                        logsList.clear();
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             logsList = response.body().getLog();

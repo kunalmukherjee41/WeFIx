@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.model.UserResponse;
@@ -92,12 +93,12 @@ public class LoginActivity extends AppCompatActivity {
         String txt_password = password.getText().toString().trim();
         if (TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
             Toast.makeText(LoginActivity.this, "Fill Both Requirements", Toast.LENGTH_LONG).show();
-            login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
             Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
-            login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
         } else {
@@ -126,9 +127,9 @@ public class LoginActivity extends AppCompatActivity {
                                      Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
                                  }
                                  progressBar.dismiss();
-                                 login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                 login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                  password.setText("");
-                                 login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                 login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                              }
 
@@ -137,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                                  Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                  password.setText("");
                                  progressBar.dismiss();
-                                 login.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                 login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                              }
                          }

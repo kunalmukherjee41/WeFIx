@@ -2,8 +2,6 @@ package com.example.wefix.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.LogHistoryDetailsActivity;
 import com.example.wefix.R;
 import com.example.wefix.SuccessfulMessageActivity;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Category1Response;
-import com.example.wefix.model.CategoryResponse;
-import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Logs;
-import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -129,20 +123,20 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                                         Intent intent1 = new Intent(mContext, SuccessfulMessageActivity.class);
                                         intent1.putExtra("string", "Logs Cancel Successful");
                                         mContext.startActivity(intent1);
-                                        holder.cancel.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+                                        holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
                                     } else {
                                         Snackbar.make(holder.layout, "Try Again!", Snackbar.LENGTH_LONG)
                                                 .setAction("Close", v1 -> {
 
                                                 }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
-                                        holder.cancel.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+                                        holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
 
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    holder.cancel.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+                                    holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
 
                                 }
                             }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.wefix.Api.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
@@ -88,17 +89,17 @@ public class CreateUserActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_phone)) {
             Toast.makeText(CreateUserActivity.this, "All Field are Required", Toast.LENGTH_LONG).show();
-            create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_email).matches()) {
             Toast.makeText(CreateUserActivity.this, "Provide a Valid Email Address", Toast.LENGTH_LONG).show();
-            create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
         } else if (txt_password.length() < 6) {
             Toast.makeText(CreateUserActivity.this, "Password should be atLeast 6 character", Toast.LENGTH_LONG).show();
-            create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
         } else if (!txt_password.equals(txt_rPassword)) {
@@ -107,7 +108,7 @@ public class CreateUserActivity extends AppCompatActivity {
                     .setAction("Close", v -> {
                     })
                     .setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
-            create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+            create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
         } else {
@@ -132,13 +133,13 @@ public class CreateUserActivity extends AppCompatActivity {
                                      password.setText("");
                                      name.setText("");
                                      phone.setText("");
-                                     create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                     create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                      finish();
 
                                  } else {
                                      progressBar.dismiss();
                                      Toast.makeText(CreateUserActivity.this, "User Is Already Register", Toast.LENGTH_LONG).show();
-                                     create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                     create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                  }
                              }
 
@@ -146,7 +147,7 @@ public class CreateUserActivity extends AppCompatActivity {
                              public void onFailure(Call<ResponseBody> call, Throwable t) {
                                  progressBar.dismiss();
                                  Toast.makeText(CreateUserActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                 create_user.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                 create_user.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                              }
                          }
             );

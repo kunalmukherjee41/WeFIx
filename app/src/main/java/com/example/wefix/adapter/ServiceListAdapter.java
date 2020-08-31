@@ -2,7 +2,6 @@ package com.example.wefix.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.AddLogActivity;
@@ -72,7 +72,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
                     v -> {
                         holder.add.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
                         mContext.startActivity(new Intent(mContext, LoginActivity.class));
-                        holder.add.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn3));
+                        holder.add.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn3, null));
                     }
             );
         }

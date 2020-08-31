@@ -47,8 +47,10 @@
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginTop="5dp"
+        android:elevation="8dp"
+        android:fitsSystemWindows="true"
         app:auto_cycle="true"
         app:corner_radius="10"
         app:delay="0"
@@ -70,14 +72,14 @@
             android:fontFamily="@font/aclonica"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Our Services"
+            android:text="Electronic Services"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="537dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp" />
 

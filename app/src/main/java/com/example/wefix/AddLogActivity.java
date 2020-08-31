@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
@@ -170,7 +171,7 @@ public class AddLogActivity extends AppCompatActivity {
                     layout.setVisibility(View.VISIBLE);
                     email.setText(SharedPrefManager.getInstance(this).getUser().getUsername());
                     email.setFocusable(false);
-                    addressChange.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                    addressChange.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                 }
         );
 
@@ -190,7 +191,7 @@ public class AddLogActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(txt_address1) || TextUtils.isEmpty(txt_zip_code) || TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_phone_number) || TextUtils.isEmpty(txt_email_id) || TextUtils.isEmpty(txt_city)) {
 
                         Toast.makeText(AddLogActivity.this, "All Field Are Required", Toast.LENGTH_SHORT).show();
-                        add.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                        add.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
 
                     } else {
 
@@ -208,13 +209,13 @@ public class AddLogActivity extends AppCompatActivity {
                                         } else {
                                             Toast.makeText(AddLogActivity.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
                                         }
-                                        add.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                        add.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                                     }
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                        add.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                        add.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                                     }
                                 }
                         );
@@ -261,42 +262,42 @@ public class AddLogActivity extends AppCompatActivity {
 //                        Toast.makeText(AddLogActivity.this, txt_address1 + "" + txt_city, Toast.LENGTH_SHORT).show();
                     } else if (TextUtils.isEmpty(txt_address1)) {
                         Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_name)) {
                         Toast.makeText(AddLogActivity.this, "Enter Name", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_zip_code)) {
                         Toast.makeText(AddLogActivity.this, "Enter zip code", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_phone_number)) {
                         Toast.makeText(AddLogActivity.this, "Enter phone number", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_email_id)) {
                         Toast.makeText(AddLogActivity.this, "Enter email id", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_problem_des)) {
                         Toast.makeText(AddLogActivity.this, "Enter problem des", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_service)) {
                         Toast.makeText(AddLogActivity.this, "Enter service", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else if (TextUtils.isEmpty(txt_company_name)) {
                         Toast.makeText(AddLogActivity.this, "Enter company name", Toast.LENGTH_LONG).show();
-                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                         progressBar.dismiss();
 
                     } else {
@@ -317,7 +318,7 @@ public class AddLogActivity extends AppCompatActivity {
                                                     }).setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
                                             company_name.setText("");
                                             problem_des.setText("");
-                                            next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                            next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                                             Intent intent1 = new Intent(AddLogActivity.this, SuccessfulMessageActivity.class);
                                             intent1.putExtra("string", "Thank you for submit Call Log");
@@ -326,7 +327,7 @@ public class AddLogActivity extends AppCompatActivity {
                                         } else {
                                             progressBar.dismiss();
                                             Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();
-                                            next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                            next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                                         }
                                     }
@@ -335,7 +336,7 @@ public class AddLogActivity extends AppCompatActivity {
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         progressBar.dismiss();
                                         Toast.makeText(AddLogActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                        next.setBackground(getResources().getDrawable(R.drawable.custom_btn));
+                                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                                     }
                                 }

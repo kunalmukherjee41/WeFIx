@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
@@ -16,12 +16,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".NewAddressActivity"></activity>
-        <activity android:name=".AddAddressActivity" />
+        <activity
+            android:name=".NewAddressActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddAddressActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddLogActivity"
             android:parentActivityName=".DisplayActivity" />
-        <activity android:name=".SuccessfulMessageActivity" />
+        <activity
+            android:name=".SuccessfulMessageActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CreateUserActivity"
             android:parentActivityName=".LoginActivity" />

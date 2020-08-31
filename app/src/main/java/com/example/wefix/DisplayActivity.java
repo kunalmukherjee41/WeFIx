@@ -159,6 +159,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.payment_history:
+                startActivity(new Intent(this, LogActivity.class));
                 break;
 
             case R.id.logout:

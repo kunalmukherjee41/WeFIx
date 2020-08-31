@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,7 +85,7 @@ public class AddAddressFragment extends Fragment {
                     addAddress.setBackgroundColor(getResources().getColor(R.color.btn));
                     addAddress.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
-                    addAddress.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                    addAddress.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                 }
         );
 
@@ -107,7 +108,7 @@ public class AddAddressFragment extends Fragment {
 
                     if (TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_phoneNumber) || TextUtils.isEmpty(txt_pinCode) || TextUtils.isEmpty(txt_address) || TextUtils.isEmpty(txt_city)) {
                         Toast.makeText(getContext(), "All Field are required", Toast.LENGTH_SHORT).show();
-                        save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
 
                     } else {
 
@@ -125,11 +126,11 @@ public class AddAddressFragment extends Fragment {
                                             layout.setVisibility(View.GONE);
                                             addAddress.setVisibility(View.VISIBLE);
                                             ((AppCompatActivity) Objects.requireNonNull(getContext())).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
-                                            save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                            save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
 
                                         } else {
                                             Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                                            save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                            save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
 
                                         }
                                     }
@@ -137,7 +138,7 @@ public class AddAddressFragment extends Fragment {
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                        save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
 
                                     }
                                 }

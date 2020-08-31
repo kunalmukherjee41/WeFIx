@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.Api.RetrofitClient;
@@ -71,11 +72,11 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 //                                        notifyDataSetChanged();
 
                                         ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
-                                        holder.del.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+                                        holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
 
                                     } else {
                                         Toast.makeText(mContext, "Try Again After Some Time", Toast.LENGTH_SHORT).show();
-                                        holder.del.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+                                        holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
 
                                     }
                                 }
@@ -83,7 +84,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                                     Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    holder.del.setBackground(mContext.getResources().getDrawable(R.drawable.custom_btn2));
+                                    holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
 
                                 }
                             }

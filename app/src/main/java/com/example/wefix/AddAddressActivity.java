@@ -1,6 +1,7 @@
 package com.example.wefix;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -102,7 +103,7 @@ public class AddAddressActivity extends AppCompatActivity {
                     addAddress.setBackgroundColor(getResources().getColor(R.color.btn));
                     addAddress.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
-                    addAddress.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                    addAddress.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                 }
         );
 

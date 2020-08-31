@@ -16,7 +16,7 @@
         <item
             android:id="@+id/payment_history"
             android:icon="@drawable/payment_history_asset"
-            android:title="Payment History" />
+            android:title="Call Logs" />
 
         <item
             android:id="@+id/logout"

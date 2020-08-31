@@ -1,6 +1,7 @@
 package com.example.wefix;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -85,13 +86,13 @@ public class NewAddressActivity extends AppCompatActivity {
                                         } else {
                                             Toast.makeText(NewAddressActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
                                         }
-                                        save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                                     }
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         Toast.makeText(NewAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                        save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
 
                                     }
                                 }

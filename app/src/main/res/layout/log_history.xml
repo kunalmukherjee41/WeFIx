@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:hint="10-04-2000" />
+                    android:hint="" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:hint="1" />
+                    android:hint="" />
 
                 <TextView
                     android:id="@+id/details"
@@ -67,7 +67,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="WATER HEATER"
+                    android:hint=""
                     android:textColor="@color/colorPrimary" />
 
                 <ImageView
@@ -88,25 +88,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:hint="WATER HEARTE" />
+                        android:hint="" />
 
-                    <TextView
-                        android:id="@+id/company"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:hint="BAJAJ" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/company"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:hint="BAJAJ" />-->
 
                     <TextView
                         android:id="@+id/charge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:hint="Charge : 100" />
+                        android:hint="" />
 
                     <Button
                         android:id="@+id/cancel_log"
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
