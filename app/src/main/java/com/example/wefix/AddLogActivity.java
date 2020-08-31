@@ -225,14 +225,6 @@ public class AddLogActivity extends AppCompatActivity {
         );
         next.setOnClickListener(
                 v -> {
-
-                    progressBar = new ProgressDialog(this);
-                    progressBar.show();
-                    progressBar.setContentView(R.layout.progress_dialog);
-                    Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-
-                    next.setBackgroundColor(getResources().getColor(R.color.btn));
-
                     txt_problem_des = problem_des.getText().toString();
                     txt_company_name = company_name.getText().toString();
 
@@ -244,6 +236,13 @@ public class AddLogActivity extends AppCompatActivity {
 
                     txt_email_id = SharedPrefManager.getInstance(this).getUser().getUsername();
 
+                    progressBar = new ProgressDialog(this);
+                    progressBar.show();
+                    progressBar.setContentView(R.layout.progress_dialog);
+                    Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
+                    next.setBackgroundColor(getResources().getColor(R.color.btn));
+
                     if (TextUtils.isEmpty(txt_name)) {
                         int selectedId = radioGroup.getCheckedRadioButtonId();
                         Address address = null;
@@ -253,13 +252,17 @@ public class AddLogActivity extends AppCompatActivity {
                                 break;
                             }
                         }
-                        assert address != null;
-                        txt_address1 = address.getBillingAddress();
-                        txt_city = address.getBillingCity();
-                        txt_zip_code = address.getZipCode();
-                        txt_name = address.getBillingName();
-                        txt_phone_number = address.getMbNo();
-//                        Toast.makeText(AddLogActivity.this, txt_address1 + "" + txt_city, Toast.LENGTH_SHORT).show();
+                        if (address != null) {
+
+                            txt_address1 = address.getBillingAddress();
+                            txt_city = address.getBillingCity();
+                            txt_zip_code = address.getZipCode();
+                            txt_name = address.getBillingName();
+                            txt_phone_number = address.getMbNo();
+                        }
+                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
+                        progressBar.dismiss();
+                        Toast.makeText(AddLogActivity.this, "Select The address first", Toast.LENGTH_SHORT).show();
                     } else if (TextUtils.isEmpty(txt_address1)) {
                         Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
                         next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));

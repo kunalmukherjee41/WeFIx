@@ -59,7 +59,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
         holder.id.setText(String.valueOf(logs.getCallLogId()));
         holder.date.setText(logs.getCallLogDate());
         holder.charge.setText(String.valueOf(logs.getAmount()));
-        holder.company.setText(logs.getProductCompany());
+//        holder.company.setText(logs.getProductCompany());
 
         if (!logs.getCallLogStatus().equals("OPEN")) {
             holder.cancel.setVisibility(View.GONE);
@@ -169,7 +169,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
             name = itemView.findViewById(R.id.name);
             image = itemView.findViewById(R.id.image);
             name1 = itemView.findViewById(R.id.name1);
-            company = itemView.findViewById(R.id.company);
+//            company = itemView.findViewById(R.id.company);
             charge = itemView.findViewById(R.id.charge);
             cancel = itemView.findViewById(R.id.cancel_log);
             layout = itemView.findViewById(R.id.layout);

@@ -70,7 +70,7 @@ public class ClosedLogFragment extends Fragment {
                 new Callback<LogResponse>() {
                     @Override
                     public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
-                        logsList.clear();
+//                        logsList.clear();
                         if (response.isSuccessful()) {
                             progressBar.dismiss();
                             assert response.body() != null;

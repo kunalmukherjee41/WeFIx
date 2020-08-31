@@ -21,7 +21,12 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.model.UserResponse;
 import com.example.wefix.storage.SharedPrefManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -32,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button login;
+    String userID;
 
     ProgressDialog progressBar;
 
@@ -118,15 +124,15 @@ public class LoginActivity extends AppCompatActivity {
                                      SharedPrefManager.getInstance(LoginActivity.this).saveUser(userResponse.getUser());
 
                                      Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
-                                     Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
-                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                     startActivity(intent);
+//                                     Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
+//                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                                     startActivity(intent);
+                                     firebaseLogin(txt_username, txt_password);
                                      email.setText("");
 
                                  } else {
                                      Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
                                  }
-                                 progressBar.dismiss();
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                  password.setText("");
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
@@ -163,4 +169,44 @@ public class LoginActivity extends AppCompatActivity {
         super.onBackPressed();
         progressBar.dismiss();
     }
+
+    private void firebaseLogin(String txt_email, String txt_password) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.createUserWithEmailAndPassword(txt_email, txt_password)
+                .addOnCompleteListener(
+                        task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser firebaseUser = auth.getCurrentUser();
+                                assert firebaseUser != null;
+                                userID = firebaseUser.getUid();
+
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
+
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("email", txt_email);
+                                hashMap.put("id", userID);
+                                reference.setValue(hashMap).addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        progressBar.dismiss();
+                                    }
+                                });
+                            } else {
+                                auth.signInWithEmailAndPassword(txt_email, txt_password)
+                                        .addOnCompleteListener(
+                                                task12 -> {
+                                                    Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(intent);
+                                                    progressBar.dismiss();
+                                                }
+                                        );
+                            }
+                        }
+                );
+
+    }
+
 }

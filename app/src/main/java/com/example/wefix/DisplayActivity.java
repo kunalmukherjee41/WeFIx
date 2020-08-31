@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,13 +16,24 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.Fragments.DisplayFragment;
+import com.example.wefix.model.Token;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DisplayActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +48,39 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        UpdateToken();
+
+        String firebaseID = FirebaseAuth.getInstance().getUid();
+        String username = SharedPrefManager.getInstance(this).getUser().getUsername();
+//        Toast.makeText(DisplayActivity.this, username, Toast.LENGTH_SHORT).show();
+
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .updateFirebaseID(firebaseID, username);
+
+        call.enqueue(
+                new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            if (!SharedPrefManager.getInstance(DisplayActivity.this).isLoggedFirebase()) {
+                                SharedPrefManager.getInstance(DisplayActivity.this).saveFirebaseId(1);
+//                                Toast.makeText(DisplayActivity.this, firebaseID, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+//                            Log.d("MainActivity123", "Field");
+//                            Toast.makeText(MainActivity.this, "firebaseID", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(DisplayActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -181,4 +226,22 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
             super.onBackPressed();
         }
     }
+
+    public void UpdateToken() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String refreshToken = FirebaseInstanceId.getInstance().getToken();
+        Token token = new Token(refreshToken);
+//        HashMap<String, String> hashMap = new HashMap<>();
+//        hashMap.put("token", refreshToken);
+//        hashMap.put("email", SharedPrefManager.getInstance(this).getTechnician().getUsernmae());
+        FirebaseDatabase.getInstance().getReference("Tokens").child(firebaseUser.getUid()).setValue(token)
+                .addOnCompleteListener(
+                        task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(DisplayActivity.this, "erf", Toast.LENGTH_SHORT);
+                            }
+                        }
+                );
+    }
+
 }

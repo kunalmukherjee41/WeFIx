@@ -73,7 +73,7 @@ public class OpenLogFragment extends Fragment {
                     @Override
                     public void onResponse(Call<LogResponse> call, Response<LogResponse> response) {
                         progressBar.dismiss();
-                        logsList.clear();
+//                        logsList.clear();
                         if (response.isSuccessful()) {
                             assert response.body() != null;
                             logsList = response.body().getLog();

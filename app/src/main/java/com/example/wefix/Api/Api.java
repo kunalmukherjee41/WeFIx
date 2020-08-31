@@ -109,6 +109,13 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @PUT("updatuserfid")
+    Call<ResponseBody> updateFirebaseID(
+            @Field("firebaseID") String firebaseID,
+            @Field("username") String username
+    );
+
+    @FormUrlEncoded
     @PUT("getcategorybyid/{tbl_category_id}")
     Call<Category1Response> getCategoryByID(
             @Path("tbl_category_id") int tbl_category_id,
