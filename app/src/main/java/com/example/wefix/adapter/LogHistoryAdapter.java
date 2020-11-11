@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -82,8 +84,8 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                             holder.name.setText(category.getTbl_category_name());
                             holder.name1.setText(category.getTbl_category_name());
 //                            Toast.makeText(mContext, category.getTbl_category_image(), Toast.LENGTH_LONG).show();
-//                            Glide.with(mContext).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
-                            Picasso.get().load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(holder.image);
+//                            Glide.with(mContext).load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(holder.image);
+                            Picasso.get().load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(holder.image);
                         }
                     }
 
@@ -104,43 +106,52 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
 
         holder.cancel.setOnClickListener(
                 v -> {
-                    holder.cancel.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
-                    int call_log_id = logsList.get(position).getCallLogId();
-                    Call<ResponseBody> call1 = RetrofitClient
-                            .getInstance()
-                            .getApi()
-                            .updateCallLog(call_log_id, "app");
 
-                    call1.enqueue(
-                            new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
-                                        Snackbar.make(holder.layout, "Successfully Cancel Log", Snackbar.LENGTH_LONG)
-                                                .setAction("Close", v1 -> {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("Are you want Cancel the Call Log?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", (dialog, id) -> {
+                                holder.cancel.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
+                                int call_log_id = logsList.get(position).getCallLogId();
+                                Call<ResponseBody> call1 = RetrofitClient
+                                        .getInstance()
+                                        .getApi()
+                                        .updateCallLog(call_log_id, "app");
 
-                                                }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
-                                        Intent intent1 = new Intent(mContext, SuccessfulMessageActivity.class);
-                                        intent1.putExtra("string", "Logs Cancel Successful");
-                                        mContext.startActivity(intent1);
-                                        holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
-                                    } else {
-                                        Snackbar.make(holder.layout, "Try Again!", Snackbar.LENGTH_LONG)
-                                                .setAction("Close", v1 -> {
+                                call1.enqueue(
+                                        new Callback<ResponseBody>() {
+                                            @Override
+                                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                                if (response.isSuccessful()) {
+                                                    Snackbar.make(holder.layout, "Successfully Cancel Log", Snackbar.LENGTH_LONG)
+                                                            .setAction("Close", v1 -> {
 
-                                                }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
-                                        holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
+                                                            }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
+                                                    Intent intent1 = new Intent(mContext, SuccessfulMessageActivity.class);
+                                                    intent1.putExtra("string", "Logs Cancel Successful");
+                                                    mContext.startActivity(intent1);
+                                                } else {
+                                                    Snackbar.make(holder.layout, "Try Again!", Snackbar.LENGTH_LONG)
+                                                            .setAction("Close", v1 -> {
 
-                                    }
-                                }
+                                                            }).setActionTextColor(mContext.getResources().getColor(R.color.colorAccent)).show();
 
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
+                                                }
+                                                holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
+                                            }
 
-                                }
-                            }
-                    );
+                                            @Override
+                                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                                holder.cancel.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
+
+                                            }
+                                        }
+                                );
+
+                            })
+                            .setNegativeButton("No", (dialog, id) -> dialog.cancel());
+                    AlertDialog alert = builder.create();
+                    alert.show();
 
                 }
         );

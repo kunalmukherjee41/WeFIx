@@ -67,7 +67,7 @@ public class ServiceActivity extends AppCompatActivity {
         int id = category.getTbl_category_id();
         name.setText(category.getTbl_category_name());
 
-        Glide.with(this).load("http://wefix.sitdoxford.org/product/" + category.getTbl_category_image()).into(imageView);
+        Glide.with(this).load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(imageView);
 
         Call<Service1Response> call = RetrofitClient
                 .getInstance()

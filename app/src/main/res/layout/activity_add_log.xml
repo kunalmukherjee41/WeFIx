@@ -6,24 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".AddLogActivity">
 
-    <ScrollView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/abc">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top"
+        android:background="#3754F3"
+        android:theme="@style/toolbar"
+        app:titleTextColor="#fff" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:ignore="ContentDescription,RtlHardcoded,NestedWeights">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:theme="@style/toolbar"
-                app:titleTextColor="#fff" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,6 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ab"
+                        android:buttonTint="#000"
                         android:verticalScrollbarPosition="right" />
 
                 </RelativeLayout>
@@ -189,12 +194,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@drawable/custom_btn2"
+                        android:padding="8dp"
                         android:text="Add"
                         android:textAllCaps="false"
                         android:textColor="#fff" />
 
                 </LinearLayout>
-
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -250,11 +255,11 @@
 
                 </RelativeLayout>
 
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:elevation="8dp"
                     android:padding="10dp">
 
                     <TextView
@@ -271,9 +276,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:focusedByDefault="true"
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="10dp"
+                        android:focusedByDefault="true"
                         android:text="POS(Pay on Service)" />
 
                 </RelativeLayout>
@@ -289,7 +294,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/design_default_color_primary_dark"
+        android:background="#6479F4"
+        android:elevation="8dp"
         android:padding="10dp">
 
         <Button
@@ -302,9 +308,25 @@
             android:drawableStart="@drawable/address_asset"
             android:paddingStart="20dp"
             android:paddingEnd="10dp"
-            android:text="Change Address"
+            android:text="New Address"
             android:textAlignment="textStart"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/custom_btn"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:text="Cancel"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/next"
@@ -319,7 +341,8 @@
             android:paddingEnd="10dp"
             android:text="Final"
             android:textAlignment="textStart"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 

@@ -9,6 +9,7 @@ import com.example.wefix.model.CompanyResponse;
 import com.example.wefix.model.LogResponse;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
+import com.example.wefix.model.User;
 import com.example.wefix.model.UserResponse;
 
 import okhttp3.ResponseBody;
@@ -57,6 +58,13 @@ public interface Api {
     @FormUrlEncoded
     @POST("userlogin")
     Call<UserResponse> userLogin(
+            @Field("username") String username,
+            @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @PUT("getuserbyemail")
+    Call<UserResponse> getUserByEmail(
             @Field("username") String username,
             @Field("password") String password
     );

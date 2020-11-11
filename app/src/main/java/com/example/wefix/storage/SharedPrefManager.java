@@ -28,6 +28,7 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt("ID", firebase);
+        editor.apply();
     }
 
     public boolean isLoggedFirebase() {

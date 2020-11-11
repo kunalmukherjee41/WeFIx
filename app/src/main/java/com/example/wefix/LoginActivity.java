@@ -102,10 +102,10 @@ public class LoginActivity extends AppCompatActivity {
             login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
             progressBar.dismiss();
 
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
-            Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
-            login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
-            progressBar.dismiss();
+//        } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
+//            Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
+//            login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
+//            progressBar.dismiss();
 
         } else {
 
@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                  password.setText("");
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
+                                 progressBar.dismiss();
 
                              }
 

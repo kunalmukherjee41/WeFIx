@@ -83,7 +83,7 @@ public class LogHistoryDetailsActivity extends AppCompatActivity {
                             address.setText(logs.getClientAddress());
                             amount.setText(String.valueOf(logs.getAmount()));
                             status.setText(logs.getCallLogStatus());
-                            Glide.with(LogHistoryDetailsActivity.this).load("http://wefix.sitdoxford.org/product/" + cat.getTbl_category_image()).into(image1);
+                            Glide.with(LogHistoryDetailsActivity.this).load("https://wefixservice.in/product/" + cat.getTbl_category_image()).into(image1);
                             company.setText(logs.getProductCompany());
                         }
                     }

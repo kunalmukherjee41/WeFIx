@@ -2,6 +2,7 @@ package com.example.wefix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,8 @@ import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.Fragments.DisplayFragment;
 import com.example.wefix.model.Token;
+import com.example.wefix.model.User;
+import com.example.wefix.model.UserResponse;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -43,6 +46,8 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+
+        userExist();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -174,7 +179,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                 return false;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent1);
                 return true;
         }
@@ -234,6 +239,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
 //        HashMap<String, String> hashMap = new HashMap<>();
 //        hashMap.put("token", refreshToken);
 //        hashMap.put("email", SharedPrefManager.getInstance(this).getTechnician().getUsernmae());
+        assert firebaseUser != null;
         FirebaseDatabase.getInstance().getReference("Tokens").child(firebaseUser.getUid()).setValue(token)
                 .addOnCompleteListener(
                         task -> {
@@ -242,6 +248,42 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                             }
                         }
                 );
+    }
+
+    private void userExist() {
+        String email = SharedPrefManager.getInstance(this).getUser().getUsername();
+
+        Call<UserResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getUserByEmail(email, "abc");
+
+        call.enqueue(
+                new Callback<UserResponse>() {
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        if (response.isSuccessful()) {
+                            assert response.body() != null;
+                            User u = response.body().getUser();
+
+                            assert u != null;
+                            if (TextUtils.isEmpty(u.getUsername())) {
+                                Toast.makeText(DisplayActivity.this, "Logout\tUser Not Exist.", Toast.LENGTH_SHORT).show();
+                                SharedPrefManager.getInstance(DisplayActivity.this).clear();
+
+                                Intent intent = new Intent(DisplayActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        Toast.makeText(DisplayActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
 }
