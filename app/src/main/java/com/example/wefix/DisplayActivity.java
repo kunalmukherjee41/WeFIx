@@ -3,6 +3,7 @@ package com.example.wefix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -165,7 +166,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                Intent intent2 = new Intent(this, MainActivity.class);
+                Intent intent2 = new Intent(this, LoginActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent2);
                 return true;
@@ -176,6 +177,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                 startActivity(new Intent(DisplayActivity.this, LogActivity.class));
                 return true;
             case R.id.payment_history:
+                startActivity(new Intent(DisplayActivity.this, PaymentActivity.class));
                 return false;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
@@ -214,7 +216,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
 
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                startActivity(new Intent(DisplayActivity.this, MainActivity.class));
+                startActivity(new Intent(DisplayActivity.this, LoginActivity.class));
                 break;
         }
 

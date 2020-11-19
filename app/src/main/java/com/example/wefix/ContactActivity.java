@@ -118,7 +118,7 @@ public class ContactActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
@@ -129,6 +129,7 @@ public class ContactActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
             case R.id.payment_history:
+                startActivity(new Intent(this, PaymentActivity.class));
                 return false;
             case R.id.home:
                 intent = new Intent(this, DisplayActivity.class);

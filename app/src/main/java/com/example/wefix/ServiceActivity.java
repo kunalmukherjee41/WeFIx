@@ -72,7 +72,7 @@ public class ServiceActivity extends AppCompatActivity {
         Call<Service1Response> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getService(id, "app");
+                .getService(id);
 
         call.enqueue(
                 new Callback<Service1Response>() {

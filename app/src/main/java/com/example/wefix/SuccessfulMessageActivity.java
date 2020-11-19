@@ -67,7 +67,7 @@ public class SuccessfulMessageActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                Intent intent2 = new Intent(this, MainActivity.class);
+                Intent intent2 = new Intent(this, LoginActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent2);
                 return true;

@@ -66,7 +66,7 @@ public class CancelledLogFragment extends Fragment {
         Call<LogResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getCallLog(client_ref_id, "app");
+                .getCallLog(client_ref_id);
 
         call.enqueue(
                 new Callback<LogResponse>() {

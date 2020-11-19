@@ -2,6 +2,7 @@ package com.example.wefix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -59,7 +60,7 @@ public class SettingActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                Intent intent2 = new Intent(this, MainActivity.class);
+                Intent intent2 = new Intent(this, LoginActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent2);
                 return true;
@@ -70,6 +71,7 @@ public class SettingActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
             case R.id.payment_history:
+                startActivity(new Intent(this, PaymentActivity.class));
                 return false;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);

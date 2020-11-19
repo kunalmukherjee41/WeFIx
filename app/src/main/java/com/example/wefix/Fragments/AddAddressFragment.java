@@ -159,7 +159,7 @@ public class AddAddressFragment extends Fragment {
         Call<Address1Response> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getAllAddress(user_id, "app");
+                .getAllAddress(user_id);
 
         call.enqueue(
                 new Callback<Address1Response>() {

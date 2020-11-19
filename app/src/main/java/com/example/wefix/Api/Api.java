@@ -69,52 +69,28 @@ public interface Api {
             @Field("password") String password
     );
 
-    @FormUrlEncoded
     @PUT("getcompanybyid/{tbl_company_id}")
-    Call<Company1Response> getCompanyByID(
-            @Path("tbl_company_id") int tbl_company_id,
-            @Field("app") String app
-    );
+    Call<Company1Response> getCompanyByID(@Path("tbl_company_id") int tbl_company_id);
 
-    @FormUrlEncoded
     @PUT("updatecalllog/{call_log_id}")
-    Call<ResponseBody> updateCallLog(
-            @Path("call_log_id") int call_log_id,
-            @Field("app") String app
-    );
+    Call<ResponseBody> updateCallLog(@Path("call_log_id") int call_log_id);
 
-    @FormUrlEncoded
     @PUT("getaddress/{ref_id}")
-    Call<AddressResponse> getAddress(
-            @Path("ref_id") int ref_id,
-            @Field("app") String app
-    );
+    Call<AddressResponse> getAddress(@Path("ref_id") int ref_id);
 
     @DELETE("deleteaddress/{billing_id}")
     Call<ResponseBody> deleteaddress(
             @Path("billing_id") int billing_id
     );
 
-    @FormUrlEncoded
     @PUT("getalladdress/{ref_id}")
-    Call<Address1Response> getAllAddress(
-            @Path("ref_id") int ref_id,
-            @Field("app") String app
-    );
+    Call<Address1Response> getAllAddress(@Path("ref_id") int ref_id);
 
-    @FormUrlEncoded
     @PUT("getservice/{id}")
-    Call<Service1Response> getService(
-            @Path("id") int id,
-            @Field("app") String app
-    );
+    Call<Service1Response> getService(@Path("id") int id);
 
-    @FormUrlEncoded
     @PUT("getcalllog/{client_ref_id}")
-    Call<LogResponse> getCallLog(
-            @Path("client_ref_id") int client_ref_id,
-            @Field("app") String app
-    );
+    Call<LogResponse> getCallLog(@Path("client_ref_id") int client_ref_id);
 
     @FormUrlEncoded
     @PUT("updatuserfid")
@@ -123,12 +99,8 @@ public interface Api {
             @Field("username") String username
     );
 
-    @FormUrlEncoded
     @PUT("getcategorybyid/{tbl_category_id}")
-    Call<Category1Response> getCategoryByID(
-            @Path("tbl_category_id") int tbl_category_id,
-            @Field("app") String app
-    );
+    Call<Category1Response> getCategoryByID(@Path("tbl_category_id") int tbl_category_id);
 
     @GET("getallservice")
     Call<ServiceResponse> getAllServices();

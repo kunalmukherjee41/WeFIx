@@ -360,7 +360,7 @@ public class AddLogActivity extends AppCompatActivity {
         Call<Address1Response> call1 = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getAllAddress(user_id, "app");
+                .getAllAddress(user_id);
 
         call1.enqueue(
                 new Callback<Address1Response>() {
@@ -445,7 +445,7 @@ public class AddLogActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
-                Intent intent1 = new Intent(this, MainActivity.class);
+                Intent intent1 = new Intent(this, LoginActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
                 return true;
@@ -456,6 +456,7 @@ public class AddLogActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
             case R.id.payment_history:
+                startActivity(new Intent(this, PaymentActivity.class));
                 return false;
             case R.id.home:
                 startActivity(new Intent(this, DisplayActivity.class));

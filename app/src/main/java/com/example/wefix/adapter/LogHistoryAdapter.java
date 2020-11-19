@@ -72,7 +72,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
         Call<Category1Response> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getCategoryByID(tbl_category_id, "app");
+                .getCategoryByID(tbl_category_id);
 
         call.enqueue(
                 new Callback<Category1Response>() {
@@ -116,7 +116,7 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                                 Call<ResponseBody> call1 = RetrofitClient
                                         .getInstance()
                                         .getApi()
-                                        .updateCallLog(call_log_id, "app");
+                                        .updateCallLog(call_log_id);
 
                                 call1.enqueue(
                                         new Callback<ResponseBody>() {
