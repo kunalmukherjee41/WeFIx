@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.example.wefix.model.UserResponse;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,9 +36,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button login;
-    String userID;
-
-    ProgressDialog progressBar;
+    private String userID;
+    private ProgressDialog progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                                  password.setText("");
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                  progressBar.dismiss();
-
+                                 login.setBackgroundColor(getResources().getColor(R.color.loginColor));
                              }
 
                              @Override
@@ -146,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                                  password.setText("");
                                  progressBar.dismiss();
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
-
+                                 login.setBackgroundColor(getResources().getColor(R.color.loginColor));
                              }
                          }
             );

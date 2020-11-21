@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SuccessfulMessageActivity">
+    tools:context=".ui.SuccessfulMessageActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -18,10 +17,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/aclonica"
-        android:hint="Hii"
+        android:hint="@string/hello"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/secondColor"
         android:textSize="25sp"
         android:textStyle="bold" />
 

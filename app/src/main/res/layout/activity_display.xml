@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:theme="@style/name"
-    tools:context=".DisplayActivity"
+    tools:context=".ui.DisplayActivity"
     tools:openDrawer="start">
 
     <RelativeLayout
@@ -46,9 +46,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:foregroundGravity="left"
-        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+        android:outlineSpotShadowColor="@color/secondColor"
         app:headerLayout="@layout/nav_header"
-        app:itemTextColor="#0640e0"
+        app:itemTextColor="@color/mainColor"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/nav_menu" />
 

@@ -6,22 +6,27 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/home_asset"
-            android:title="Home" />
+            android:title="@string/home" />
 
         <item
             android:id="@+id/add_address"
             android:icon="@drawable/billing_address_asset"
-            android:title="Manage Address" />
+            android:title="@string/manage_addresses" />
+
+        <item
+            android:id="@+id/call_log"
+            android:icon="@drawable/log_asset"
+            android:title="@string/call_logs" />
 
         <item
             android:id="@+id/payment_history"
             android:icon="@drawable/payment_history_asset"
-            android:title="Call Logs" />
+            android:title="@string/payment_history" />
 
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout_asset"
-            android:title="Logout" />
+            android:title="@string/log_history" />
 
     </group>
 

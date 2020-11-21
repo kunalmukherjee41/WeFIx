@@ -30,9 +30,9 @@ import retrofit2.Response;
 
 public class ClosedLogFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    List<Logs> logsList;
-    ProgressDialog progressBar;
+    private RecyclerView recyclerView;
+    private List<Logs> logsList;
+    private ProgressDialog progressBar;
 
     @Nullable
     @Override
@@ -77,7 +77,7 @@ public class ClosedLogFragment extends Fragment {
                             logsList = response.body().getLog();
                             List<Logs> logs = new ArrayList<>();
                             for (Logs logs1 : logsList) {
-                                if (logs1.getCallLogStatus().equals("TRANSFER")) {
+                                if (logs1.getCallLogStatus().toUpperCase().equals("COMPLETE")) {
                                     logs.add(logs1);
                                 }
                             }

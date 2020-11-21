@@ -6,13 +6,11 @@
     android:background="#F6F6FD"
     tools:context=".Fragments.DisplayFragment">
 
-    <!--    android:background="#fcf2d7"-->
-
     <RelativeLayout
         android:id="@+id/a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0640e0"
+        android:background="@color/secondColor"
         android:padding="5dp">
 
         <TextView
@@ -23,7 +21,7 @@
             android:background="@android:color/white"
             android:gravity="center"
             android:padding="12dp"
-            android:text="Search for Product and More"
+            android:text="@string/search_for_product_and_more"
             android:textSize="18sp" />
 
         <androidx.appcompat.widget.SearchView
@@ -50,20 +48,6 @@
     <!--            app:period="1000"-->
     <!--            app:placeholder="@drawable/error_image" />-->
 
-    <!--        <TextView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_below="@id/image_slider"-->
-    <!--            android:layout_marginStart="20dp"-->
-    <!--            android:layout_marginTop="10dp"-->
-    <!--            android:layout_marginEnd="20dp"-->
-    <!--            android:fontFamily="@font/aclonica"-->
-    <!--            android:gravity="center"-->
-    <!--            android:text="Add a Call Log"-->
-    <!--            android:textColor="#0640e0"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:textStyle="bold" />-->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -75,8 +59,8 @@
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Add a Call Log"
-        android:textColor="@android:color/holo_blue_bright"
+        android:text="@string/add_a_call_log"
+        android:textColor="@color/mainColor"
         android:textSize="20sp" />
 
     <LinearLayout

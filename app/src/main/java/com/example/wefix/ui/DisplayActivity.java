@@ -1,9 +1,8 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wefix.Api.RetrofitClient;
 import com.example.wefix.Fragments.AddAddressFragment;
 import com.example.wefix.Fragments.DisplayFragment;
+import com.example.wefix.R;
 import com.example.wefix.model.Token;
 import com.example.wefix.model.User;
 import com.example.wefix.model.UserResponse;
@@ -41,7 +41,7 @@ import retrofit2.Response;
 
 public class DisplayActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,8 +210,12 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
                 break;
 
-            case R.id.payment_history:
+            case R.id.call_log:
                 startActivity(new Intent(this, LogActivity.class));
+                break;
+
+            case R.id.payment_history:
+                startActivity(new Intent(this, PaymentActivity.class));
                 break;
 
             case R.id.logout:
@@ -238,9 +242,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String refreshToken = FirebaseInstanceId.getInstance().getToken();
         Token token = new Token(refreshToken);
-//        HashMap<String, String> hashMap = new HashMap<>();
-//        hashMap.put("token", refreshToken);
-//        hashMap.put("email", SharedPrefManager.getInstance(this).getTechnician().getUsernmae());
+
         assert firebaseUser != null;
         FirebaseDatabase.getInstance().getReference("Tokens").child(firebaseUser.getUid()).setValue(token)
                 .addOnCompleteListener(

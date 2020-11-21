@@ -1,31 +1,18 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.Fragments.AddAddressFragment;
-import com.example.wefix.adapter.AddressListAdapter;
-import com.example.wefix.model.Address;
-import com.example.wefix.model.Address1Response;
+import com.example.wefix.R;
 import com.example.wefix.storage.SharedPrefManager;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
-import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -34,10 +21,10 @@ import retrofit2.Response;
 
 public class NewAddressActivity extends AppCompatActivity {
 
-    EditText name, email, phoneNumber;
-    EditText pinCode, address, city;
-    Button save;
-    int user_id;
+    private EditText name, email, phoneNumber;
+    private EditText pinCode, address, city;
+    private Button save;
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

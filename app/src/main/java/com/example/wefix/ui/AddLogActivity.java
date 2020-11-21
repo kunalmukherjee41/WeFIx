@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,15 +26,14 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.example.wefix.model.Address;
 import com.example.wefix.model.Address1Response;
-import com.example.wefix.model.AddressResponse;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.net.CookieHandler;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -51,23 +50,19 @@ import retrofit2.Response;
 
 public class AddLogActivity extends AppCompatActivity {
 
-    ImageView image;
-    TextView item_name, charge;
+    private List<Address> addressData;
+    private RadioGroup radioGroup;
+    private EditText name, address1, zip_code, phone, email, city, company_name, problem_des;
 
-    List<Address> addressData;
-    Service service;
-    RadioGroup radioGroup;
-    EditText name, address1, zip_code, phone, email, city, company_name, problem_des;
+    private LinearLayout layout;
 
-    LinearLayout layout;
+    private Button next, addressChange, add, cancel;
 
-    Button next, addressChange, add, cancel;
+    private String txt_address1, txt_name, txt_zip_code, txt_phone_number, txt_company_name;
+    private String txt_email_id, txt_problem_des, txt_service, txt_city;
+    private int user_id, service_id, txt_amount, category_id;
 
-    String txt_address1, txt_name, txt_zip_code, txt_phone_number, txt_company_name;
-    String txt_email_id, txt_problem_des, txt_service, txt_city;
-    int user_id, service_id, txt_amount, category_id;
-
-    ProgressDialog progressBar;
+    private ProgressDialog progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +91,9 @@ public class AddLogActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.address);
         radioGroup.setOrientation(RadioGroup.VERTICAL);
 
-        item_name = findViewById(R.id.item_name);
-        charge = findViewById(R.id.charge);
-        image = findViewById(R.id.image);
+        TextView item_name = findViewById(R.id.item_name);
+        TextView charge = findViewById(R.id.charge);
+        ImageView image = findViewById(R.id.image);
 //        address = findViewById(R.id.address);
 
         next = findViewById(R.id.next);
@@ -111,7 +106,7 @@ public class AddLogActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Category category = (Category) intent.getSerializableExtra("category");
 
-        service = (Service) intent.getSerializableExtra("service");
+        Service service = (Service) intent.getSerializableExtra("service");
 
         assert service != null;
         txt_amount = service.getTbl_services_charge();
@@ -183,7 +178,7 @@ public class AddLogActivity extends AppCompatActivity {
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if (response.isSuccessful()) {
                                             Toast.makeText(AddLogActivity.this, "Successful added address", Toast.LENGTH_LONG).show();
-//                                            onRestart();
+
                                             getData();
                                             addressChange.setVisibility(View.VISIBLE);
                                             cancel.setVisibility(View.GONE);

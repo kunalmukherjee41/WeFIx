@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -16,48 +19,63 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".PaymentActivity"></activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
-            android:name=".NewAddressActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.PaymentDetailsActivity"
+            android:parentActivityName=".ui.PaymentActivity" />
         <activity
-            android:name=".AddAddressActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.PaymentActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name=".AddLogActivity"
-            android:parentActivityName=".DisplayActivity" />
+            android:name=".ui.NewAddressActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".SuccessfulMessageActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.AddAddressActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".CreateUserActivity"
-            android:parentActivityName=".LoginActivity" />
+            android:name=".ui.AddLogActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name=".LogHistoryDetailsActivity"
-            android:parentActivityName=".LogActivity" />
+            android:name=".ui.SuccessfulMessageActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".LogActivity"
-            android:parentActivityName=".DisplayActivity" />
+            android:name=".ui.CreateUserActivity"
+            android:parentActivityName=".ui.LoginActivity" />
         <activity
-            android:name=".ServiceActivity2"
-            android:parentActivityName=".DisplayActivity" />
+            android:name=".ui.LogHistoryDetailsActivity"
+            android:parentActivityName=".ui.LogActivity" />
         <activity
-            android:name=".ContactActivity"
-            android:parentActivityName=".DisplayActivity" />
+            android:name=".ui.LogActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name=".ServiceActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.ServiceActivity2"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name=".SettingActivity"
-            android:parentActivityName=".DisplayActivity" />
+            android:name=".ui.ContactActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name=".DisplayActivity"
-            android:parentActivityName=".DisplayActivity" />
+            android:name=".ui.ServiceActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".StartActivity">
+            android:name=".ui.SettingActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
+        <activity
+            android:name=".ui.DisplayActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

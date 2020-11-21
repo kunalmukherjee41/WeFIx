@@ -69,16 +69,13 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                     if (response.isSuccessful()) {
                                         Toast.makeText(mContext, "Delete Address", Toast.LENGTH_SHORT).show();
-//                                        notifyDataSetChanged();
-
-                                        ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
-                                        holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
-
+                                        addressList.remove(position);
+                                        notifyDataSetChanged();
+//                                        ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
                                     } else {
                                         Toast.makeText(mContext, "Try Again After Some Time", Toast.LENGTH_SHORT).show();
-                                        holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
-
                                     }
+                                    holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
                                 }
 
                                 @Override

@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.Logs;
@@ -28,10 +27,10 @@ import retrofit2.Response;
 
 public class LogHistoryDetailsActivity extends AppCompatActivity {
 
-    TextView date, name, email, phone, problemDesc;
-    TextView address, category, workType;
-    TextView company, amount, status, pinCode;
-    Logs logs;
+    private TextView date, name, email, phone, problemDesc;
+    private TextView address, category, workType;
+    private TextView company, amount, status, pinCode;
+    private Logs logs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

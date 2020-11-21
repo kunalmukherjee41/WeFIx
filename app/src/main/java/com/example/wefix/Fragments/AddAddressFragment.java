@@ -37,15 +37,12 @@ import retrofit2.Response;
 
 public class AddAddressFragment extends Fragment {
 
-    EditText name, email, phoneNumber, pinCode, address, city;
-    Button addAddress, save;
-    TextView cancel;
-    RecyclerView recyclerView;
-    ProgressDialog progressBar;
-
-    LinearLayout layout;
-
-    int user_id;
+    private EditText name, email, phoneNumber, pinCode, address, city;
+    private Button addAddress, save;
+    private RecyclerView recyclerView;
+    private ProgressDialog progressBar;
+    private LinearLayout layout;
+    private int user_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +72,7 @@ public class AddAddressFragment extends Fragment {
 
         addAddress = view.findViewById(R.id.add_address);
         save = view.findViewById(R.id.save);
-        cancel = view.findViewById(R.id.cancel);
+        TextView cancel = view.findViewById(R.id.cancel);
         recyclerView = view.findViewById(R.id.recyclerView);
 
         layout.setVisibility(View.GONE);
@@ -126,20 +123,23 @@ public class AddAddressFragment extends Fragment {
                                             layout.setVisibility(View.GONE);
                                             addAddress.setVisibility(View.VISIBLE);
                                             ((AppCompatActivity) Objects.requireNonNull(getContext())).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
-                                            save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
+
+                                            name.setText("");
+                                            phoneNumber.setText("");
+                                            pinCode.setText("");
+                                            address.setText("");
+                                            city.setText("");
 
                                         } else {
                                             Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                                            save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
-
                                         }
+                                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                                     }
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                                         save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
-
                                     }
                                 }
                         );
@@ -167,6 +167,7 @@ public class AddAddressFragment extends Fragment {
                     public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
                         if (response.isSuccessful()) {
                             progressBar.dismiss();
+                            assert response.body() != null;
                             List<Address> addressList = response.body().getAddressList();
                             AddressListAdapter addressListAdapter = new AddressListAdapter(getContext(), addressList);
                             recyclerView.setAdapter(addressListAdapter);

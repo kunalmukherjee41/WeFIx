@@ -13,8 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.R;
-import com.example.wefix.ServiceActivity;
-import com.example.wefix.ServiceActivity2;
+import com.example.wefix.ui.ServiceActivity;
+import com.example.wefix.ui.ServiceActivity2;
 import com.example.wefix.model.Category;
 import com.squareup.picasso.Picasso;
 

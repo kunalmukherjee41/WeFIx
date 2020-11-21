@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactActivity">
+    tools:context=".ui.ContactActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="120dp"
                 android:layout_marginEnd="10dp"
-                android:background="@color/colorAccent" />
+                android:background="@color/secondColor" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_marginEnd="10dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="Contact us"
+                android:text="@string/contact_us"
                 android:textColor="#0640e0"
                 android:textSize="18sp" />
 
@@ -49,20 +49,20 @@
                 <ImageView
                     android:layout_width="170dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/logo_blue"
-                    android:contentDescription="@string/logo" />
+                    android:contentDescription="@string/logo"
+                    android:src="@drawable/logo_blue" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp">
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
-                        android:background="@color/colorAccent" />
+                        android:background="@color/secondColor" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
-                        android:text="Durgapur,"
+                        android:text="@string/durgapur"
                         app:drawableStartCompat="@drawable/home_asset" />
 
                     <TextView
@@ -82,19 +82,19 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="23dp"
                         android:paddingEnd="10dp"
-                        android:text="West Bengal\nPIN- 713206" />
+                        android:text="@string/west_bengal_npin_713206" />
 
                     <TextView
                         android:id="@+id/phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0325 2314960"
+                        android:text="@string/_0325_2314960"
                         app:drawableStartCompat="@drawable/phone_asset" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="123456789"
+                        android:text="@string/_123456789"
                         android:textStyle="italic"
                         app:drawableStartCompat="@drawable/phone1_asset" />
 
@@ -102,7 +102,7 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="abc@gmail.com"
+                        android:text="@string/wefix_aahan_gmail_com"
                         android:textStyle="italic"
                         app:drawableStartCompat="@drawable/email_asset" />
 
@@ -110,7 +110,7 @@
                         android:id="@+id/web_site"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="wefix.sitdoxford.org"
+                        android:text="@string/wefix_sitdoxford_org"
                         android:textStyle="italic"
                         app:drawableStartCompat="@drawable/website_asset" />
 

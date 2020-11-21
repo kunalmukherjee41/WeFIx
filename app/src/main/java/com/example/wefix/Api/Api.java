@@ -7,6 +7,7 @@ import com.example.wefix.model.CategoryResponse;
 import com.example.wefix.model.Company1Response;
 import com.example.wefix.model.CompanyResponse;
 import com.example.wefix.model.LogResponse;
+import com.example.wefix.model.PartsResponse;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
 import com.example.wefix.model.User;
@@ -107,6 +108,9 @@ public interface Api {
 
     @GET("getcompany")
     Call<CompanyResponse> getCompany();
+
+    @PUT("getparts/{ref_log_id}")
+    Call<PartsResponse> getParts(@Path("ref_log_id") int ref_log_id);
 
     @FormUrlEncoded
     @POST("addcalllog")

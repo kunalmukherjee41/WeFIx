@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -12,15 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.wefix.Fragments.AddAddressFragment;
+import com.example.wefix.R;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 public class ContactActivity extends AppCompatActivity {
 
-    TextView email, phone, webSite;
+    private TextView email, phone, webSite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +30,11 @@ public class ContactActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Contact us");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Contact us");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
         bottomNavigationView.setSelectedItemId(R.id.contact);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 menuItem -> {
                     switch (menuItem.getItemId()) {

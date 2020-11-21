@@ -1,6 +1,8 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.Fragments.AddAddressFragment;
+import com.example.wefix.R;
 import com.example.wefix.adapter.AddressListAdapter;
 import com.example.wefix.model.Address;
 import com.example.wefix.model.Address1Response;
@@ -34,18 +38,25 @@ import retrofit2.Response;
 
 public class AddAddressActivity extends AppCompatActivity {
 
-    EditText name, email, phoneNumber, pinCode, address, city;
-    Button addAddress, save;
-    TextView cancel;
-    RecyclerView recyclerView;
-    ProgressDialog progressBar;
-    LinearLayout layout;
-    int user_id;
+    private EditText name, email, phoneNumber, pinCode, address, city;
+    private Button addAddress, save;
+    private RecyclerView recyclerView;
+    private ProgressDialog progressBar;
+    private List<Address> addressList;
+    private LinearLayout layout;
+    private AddressListAdapter addressListAdapter;
+    private Address add;
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_address);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Address");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         user_id = SharedPrefManager.getInstance(this).getUser().getId();
 
@@ -93,7 +104,7 @@ public class AddAddressActivity extends AppCompatActivity {
 
         addAddress = findViewById(R.id.add_address);
         save = findViewById(R.id.save);
-        cancel = findViewById(R.id.cancel);
+        TextView cancel = findViewById(R.id.cancel);
         recyclerView = findViewById(R.id.recyclerView);
 
         layout.setVisibility(View.GONE);
@@ -124,9 +135,14 @@ public class AddAddressActivity extends AppCompatActivity {
                     String txt_address = address.getText().toString();
                     String txt_city = city.getText().toString();
 
+                    add = new Address(1, txt_name, txt_address, txt_city, txt_pinCode, "West Bengal", "India", txt_phoneNumber, txt_email);
+                    addressList.add(add);
+                    addressListAdapter.notifyDataSetChanged();
+
                     if (TextUtils.isEmpty(txt_name) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_phoneNumber) || TextUtils.isEmpty(txt_pinCode) || TextUtils.isEmpty(txt_address) || TextUtils.isEmpty(txt_city)) {
                         Toast.makeText(this, "All Field are required", Toast.LENGTH_SHORT).show();
-                        save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
+
 
                     } else {
 
@@ -143,21 +159,23 @@ public class AddAddressActivity extends AppCompatActivity {
                                             Toast.makeText(AddAddressActivity.this, "Successful added address", Toast.LENGTH_SHORT).show();
                                             layout.setVisibility(View.GONE);
                                             addAddress.setVisibility(View.VISIBLE);
-                                            ((AppCompatActivity) Objects.requireNonNull(AddAddressActivity.this)).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
-                                            save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
+                                            name.setText("");
+                                            phoneNumber.setText("");
+                                            pinCode.setText("");
+                                            address.setText("");
+                                            city.setText("");
 
                                         } else {
                                             Toast.makeText(AddAddressActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                                            save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
-
                                         }
+                                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
+
                                     }
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                                         Toast.makeText(AddAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                        save.setBackground(getResources().getDrawable(R.drawable.custom_btn2));
-
+                                        save.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn2, null));
                                     }
                                 }
                         );
@@ -186,8 +204,9 @@ public class AddAddressActivity extends AppCompatActivity {
                     public void onResponse(Call<Address1Response> call, Response<Address1Response> response) {
                         progressBar.dismiss();
                         if (response.isSuccessful()) {
-                            List<Address> addressList = response.body().getAddressList();
-                            AddressListAdapter addressListAdapter = new AddressListAdapter(AddAddressActivity.this, addressList);
+                            assert response.body() != null;
+                            addressList = response.body().getAddressList();
+                            addressListAdapter = new AddressListAdapter(AddAddressActivity.this, addressList);
                             recyclerView.setAdapter(addressListAdapter);
                         } else {
                             Toast.makeText(AddAddressActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -201,6 +220,52 @@ public class AddAddressActivity extends AppCompatActivity {
                     }
                 }
         );
-
     }
+
+    //menu option
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    //on menu item selected
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.setting:
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.logout:
+                SharedPrefManager.getInstance(this).clear();
+                Intent intent2 = new Intent(this, LoginActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
+                return true;
+
+            case R.id.contact:
+                startActivity(new Intent(this, ContactActivity.class));
+                return true;
+
+            case R.id.logs_history:
+                startActivity(new Intent(this, LogActivity.class));
+                return true;
+
+            case R.id.payment_history:
+                startActivity(new Intent(this, PaymentActivity.class));
+                return false;
+
+            case R.id.home:
+                Intent intent1 = new Intent(this, DisplayActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
+                return true;
+        }
+        return false;
+    }
+
 }

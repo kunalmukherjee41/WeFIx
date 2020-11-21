@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="#fff"
     android:orientation="vertical"
-    tools:context=".ServiceActivity2">
+    tools:context=".ui.ServiceActivity2">
 
     <LinearLayout
         android:layout_width="match_parent"

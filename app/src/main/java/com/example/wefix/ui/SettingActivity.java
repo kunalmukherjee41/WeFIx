@@ -1,8 +1,7 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -11,14 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.wefix.R;
 import com.example.wefix.model.User;
 import com.example.wefix.storage.SharedPrefManager;
 
 import java.util.Objects;
 
 public class SettingActivity extends AppCompatActivity {
-
-    TextView id, name, phone_number, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +28,10 @@ public class SettingActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        id = findViewById(R.id.id);
-        name = findViewById(R.id.name);
-        phone_number = findViewById(R.id.phone_number);
-        email = findViewById(R.id.email);
+        TextView id = findViewById(R.id.id);
+        TextView name = findViewById(R.id.name);
+        TextView phone_number = findViewById(R.id.phone_number);
+        TextView email = findViewById(R.id.email);
 
         User user = SharedPrefManager.getInstance(this).getUser();
 

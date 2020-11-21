@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wefix.AddLogActivity;
-import com.example.wefix.LoginActivity;
+import com.example.wefix.ui.AddLogActivity;
+import com.example.wefix.ui.LoginActivity;
 import com.example.wefix.R;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;

@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -33,10 +34,10 @@ import retrofit2.Response;
 
 public class CreateUserActivity extends AppCompatActivity {
 
-    ProgressDialog progressBar;
+    private ProgressDialog progressBar;
     private EditText name, email, password, phone, rPassword;
-    ScrollView layout;
-    Button create_user;
+    private ScrollView layout;
+    private Button create_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,14 +175,14 @@ public class CreateUserActivity extends AppCompatActivity {
     public void ShowHidePass1(View view) {
 
         if (view.getId() == R.id.show_pass_btn1) {
-            if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+            if (rPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
                 ((ImageView) (view)).setImageResource(R.drawable.password_hide_asset);
                 //Show Password
-                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                rPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             } else {
                 ((ImageView) (view)).setImageResource(R.drawable.password_visible_asset);
                 //Hide Password
-                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                rPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
             }
         }
     }

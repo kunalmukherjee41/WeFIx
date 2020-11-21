@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity">
+    tools:context=".ui.StartActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -12,7 +11,7 @@
         android:layout_height="130dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:contentDescription="image"
+        android:contentDescription="@string/image"
         android:src="@drawable/logo" />
 
     <LinearLayout
@@ -28,7 +27,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/aclonica"
             android:gravity="center"
-            android:text="From"
+            android:text="@string/from"
             android:textAlignment="center"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="20sp"
@@ -40,7 +39,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:gravity="center"
-            android:text="Aahan Commercial and co."
+            android:text="@string/aahan_commercial_and_co"
             android:textAlignment="center"
             android:textColor="#43BEEF"
             android:textSize="20sp"
@@ -59,7 +58,7 @@
                 android:paddingStart="110dp"
                 android:paddingTop="7dp"
                 android:paddingEnd="6dp"
-                android:text="Made In India"
+                android:text="@string/made_in_india"
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="italic|bold" />
@@ -67,14 +66,8 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:contentDescription="image"
+                android:contentDescription="@string/image"
                 android:src="@drawable/india" />
-
-            <!--            <androidx.appcompat.widget.AppCompatImageView-->
-            <!--                android:layout_width="100dp"-->
-            <!--                android:layout_height="40dp"-->
-            <!--                android:adjustViewBounds="true"-->
-            <!--                android:src="@drawable/flag" />-->
 
         </LinearLayout>
 

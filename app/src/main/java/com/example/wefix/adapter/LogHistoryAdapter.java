@@ -17,9 +17,9 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.Api.RetrofitClient;
-import com.example.wefix.LogHistoryDetailsActivity;
+import com.example.wefix.ui.LogHistoryDetailsActivity;
 import com.example.wefix.R;
-import com.example.wefix.SuccessfulMessageActivity;
+import com.example.wefix.ui.SuccessfulMessageActivity;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.Logs;
@@ -27,7 +27,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

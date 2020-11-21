@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +11,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.wefix.R;
 import com.example.wefix.storage.SharedPrefManager;
+import com.example.wefix.ui.ContactActivity;
+import com.example.wefix.ui.DisplayActivity;
+import com.example.wefix.ui.LogActivity;
+import com.example.wefix.ui.LoginActivity;
+import com.example.wefix.ui.SettingActivity;
 
 import java.util.Objects;
 
 public class SuccessfulMessageActivity extends AppCompatActivity {
 
-    TextView name;
-    Handler handler;
-    String s;
-    Intent intent;
+    private String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +35,14 @@ public class SuccessfulMessageActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Message");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        name = findViewById(R.id.log_submission);
-        intent = getIntent();
+        TextView name = findViewById(R.id.log_submission);
+        Intent intent = getIntent();
 
         s = intent.getStringExtra("string");
 
         name.setText(s);
 
-        handler = new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(() -> {
             if ("Thank you for submit Call Log".equals(s)) {
                 startActivity(new Intent(this, DisplayActivity.class));

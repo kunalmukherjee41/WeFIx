@@ -30,9 +30,9 @@ import retrofit2.Response;
 
 public class OpenLogFragment extends Fragment {
 
-    List<Logs> logsList;
-    RecyclerView recyclerView;
-    ProgressDialog progressBar;
+    private List<Logs> logsList;
+    private RecyclerView recyclerView;
+    private ProgressDialog progressBar;
 
     @Nullable
     @Override

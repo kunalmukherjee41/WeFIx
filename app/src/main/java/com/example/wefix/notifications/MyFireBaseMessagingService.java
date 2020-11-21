@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.example.wefix.DisplayActivity;
+import com.example.wefix.ui.DisplayActivity;
 import com.example.wefix.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -23,15 +23,13 @@ import static android.app.NotificationManager.IMPORTANCE_HIGH;
 
 public class MyFireBaseMessagingService extends FirebaseMessagingService {
 
-    String title, message;
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        title = remoteMessage.getData().get("Title");
-        message = remoteMessage.getData().get("Message");
+        String title = remoteMessage.getData().get("Title");
+        String message = remoteMessage.getData().get("Message");
         showNotification(title, message);
 //        NotificationCompat.Builder builder =
 //                new NotificationCompat.Builder(getApplicationContext(), "MyChannel")

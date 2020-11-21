@@ -33,7 +33,7 @@ public class CancelledLogFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<Logs> logsList;
 
-    ProgressDialog progressBar;
+    private ProgressDialog progressBar;
 
     @Nullable
     @Override

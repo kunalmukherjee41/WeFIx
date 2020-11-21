@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.example.wefix.adapter.DisplayCategoryAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.CategoryResponse;

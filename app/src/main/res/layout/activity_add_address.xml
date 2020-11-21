@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddAddressActivity">
+    tools:context=".ui.AddAddressActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Manage Addresses"
+                    android:text="@string/manage_addresses"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="20sp"
@@ -53,7 +53,7 @@
                             android:drawableStart="@drawable/add_asset"
                             android:paddingStart="20dp"
                             android:paddingEnd="5dp"
-                            android:text="Add A New Address"
+                            android:text="@string/add_a_new_address"
                             android:textAlignment="textStart"
                             android:textColor="#fff" />
 
@@ -61,12 +61,13 @@
                             android:id="@+id/linear_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingBottom="40dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Add A New Address"
+                                android:text="@string/add_a_new_address"
                                 android:textColor="#4e73df"
                                 android:textSize="18sp" />
 
@@ -74,7 +75,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="Name"
+                                android:text="@string/name"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
 
@@ -83,8 +84,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
+                                android:autofillHints="@string/name"
                                 android:background="@drawable/custom_edittext"
-                                android:hint="Name"
+                                android:hint="@string/name"
                                 android:inputType="text"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="5dp" />
@@ -93,7 +95,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="Email"
+                                android:text="@string/email"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
 
@@ -102,8 +104,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
+                                android:autofillHints="@string/abc_gmail_com"
                                 android:background="@drawable/custom_edittext"
-                                android:hint="abc@gmail.com"
+                                android:hint="@string/abc_gmail_com"
                                 android:inputType="textEmailAddress"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="5dp" />
@@ -112,7 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="Phone Number"
+                                android:text="@string/phone_number"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
 
@@ -121,8 +124,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
+                                android:autofillHints="@string/_10_digit_phone_number"
                                 android:background="@drawable/custom_edittext"
-                                android:hint="10-digit Phone Number"
+                                android:hint="@string/_10_digit_phone_number"
                                 android:inputType="phone"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="5dp" />
@@ -131,7 +135,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="Pin Code"
+                                android:text="@string/pin_code"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
 
@@ -140,8 +144,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
+                                android:autofillHints="@string/_1234567"
                                 android:background="@drawable/custom_edittext"
-                                android:hint="723148"
+                                android:hint="@string/_1234567"
                                 android:inputType="number"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="5dp" />
@@ -150,7 +155,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="Address"
+                                android:text="@string/address"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
 
@@ -159,8 +164,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:layout_marginTop="10dp"
+                                android:autofillHints="@string/address_area_and_street"
                                 android:background="@drawable/custom_edittext"
-                                android:hint="Address(Area and Street)"
+                                android:hint="@string/address_area_and_street"
                                 android:inputType="textMultiLine"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="5dp"
@@ -170,7 +176,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="City"
+                                android:text="@string/city"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
 
@@ -179,8 +185,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
+                                android:autofillHints="@string/city"
                                 android:background="@drawable/custom_edittext"
-                                android:hint="City"
+                                android:hint="@string/city"
                                 android:inputType="text"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="5dp" />
@@ -197,7 +204,7 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_marginBottom="20dp"
                                     android:background="@drawable/custom_btn2"
-                                    android:text="Save"
+                                    android:text="@string/save"
                                     android:textColor="#fff" />
 
                                 <TextView
@@ -207,8 +214,9 @@
                                     android:layout_marginStart="60dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_marginBottom="20dp"
-                                    android:text="Cancel"
-                                    android:textColor="#4e73df"
+                                    android:padding="10dp"
+                                    android:text="@string/cancel"
+                                    android:textColor="@color/mainColor"
                                     android:textSize="18sp" />
 
                             </LinearLayout>
@@ -218,7 +226,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/address_list_recycler_view" />
 
                     </LinearLayout>
 
@@ -242,6 +251,6 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
-<!--    f7e1a7-->
+    <!--    f7e1a7-->
 
 </RelativeLayout>

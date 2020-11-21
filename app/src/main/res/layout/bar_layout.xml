@@ -4,9 +4,9 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#4960E0"
+    android:background="@color/mainColor"
     android:theme="@style/AppTheme"
-    app:titleTextColor="#0640e0">
+    app:titleTextColor="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,8 +18,9 @@
             android:id="@+id/image"
             android:layout_width="160dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
+            android:contentDescription="@string/image"
             android:elevation="8dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/logo_whitw_bg" />
 
     </RelativeLayout>

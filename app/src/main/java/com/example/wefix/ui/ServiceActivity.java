@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,13 +9,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.example.wefix.adapter.ServiceListAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
@@ -30,13 +29,9 @@ import retrofit2.Response;
 
 public class ServiceActivity extends AppCompatActivity {
 
-    TextView name;
-    ImageView imageView;
-    List<Service> service;
-
-    ProgressDialog progressBar;
-
-    RecyclerView recyclerView;
+    private List<Service> service;
+    private ProgressDialog progressBar;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +48,8 @@ public class ServiceActivity extends AppCompatActivity {
         progressBar.setContentView(R.layout.progress_dialog);
         Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
-        name = findViewById(R.id.name);
-        imageView = findViewById(R.id.image1);
+        TextView name = findViewById(R.id.name);
+        ImageView imageView = findViewById(R.id.image1);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

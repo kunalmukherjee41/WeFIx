@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.wefix.Fragments.CancelledLogFragment;
 import com.example.wefix.Fragments.ClosedLogFragment;
 import com.example.wefix.Fragments.OpenLogFragment;
+import com.example.wefix.R;
 import com.example.wefix.storage.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -36,9 +37,7 @@ public class LogActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
         bottomNavigationView.setSelectedItemId(R.id.log_history);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 menuItem -> {
                     switch (menuItem.getItemId()) {
@@ -160,20 +159,26 @@ public class LogActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, SettingActivity.class);
                 startActivity(intent);
                 return true;
+
             case R.id.logout:
                 SharedPrefManager.getInstance(this).clear();
                 Intent intent2 = new Intent(this, MainActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent2);
                 return true;
+
             case R.id.contact:
                 startActivity(new Intent(this, ContactActivity.class));
                 return true;
+
             case R.id.logs_history:
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
+
             case R.id.payment_history:
+                startActivity(new Intent(this, PaymentActivity.class));
                 return false;
+
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

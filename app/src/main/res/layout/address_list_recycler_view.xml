@@ -43,7 +43,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
-                android:inputType="textMultiLine"
                 android:textSize="14sp" />
 
             <Button
@@ -55,7 +54,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_btn2"
-                android:text="Delete"
+                android:text="@string/delete"
                 android:textColor="#fff" />
 
         </LinearLayout>

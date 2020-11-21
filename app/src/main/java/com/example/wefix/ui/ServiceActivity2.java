@@ -1,4 +1,4 @@
-package com.example.wefix;
+package com.example.wefix.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,12 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.wefix.Api.RetrofitClient;
+import com.example.wefix.R;
 import com.example.wefix.adapter.ServiceListAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.Service;
@@ -33,15 +33,10 @@ import retrofit2.Response;
 
 public class ServiceActivity2 extends AppCompatActivity {
 
-    TextView name;
-    ImageView imageView;
-    List<Service> service;
-    Category category;
-    Intent intent;
-
-    ProgressDialog progressBar;
-
-    RecyclerView recyclerView;
+    private List<Service> service;
+    private Category category;
+    private ProgressDialog progressBar;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +53,16 @@ public class ServiceActivity2 extends AppCompatActivity {
         progressBar.setContentView(R.layout.progress_dialog);
         Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
-        name = findViewById(R.id.name);
+        TextView name = findViewById(R.id.name);
 //        rs = findViewById(R.id.rs);
 
-        imageView = findViewById(R.id.image1);
+        ImageView imageView = findViewById(R.id.image1);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        intent = getIntent();
+        Intent intent = getIntent();
         category = (Category) intent.getSerializableExtra("category");
         assert category != null;
         int id = category.getTbl_category_id();

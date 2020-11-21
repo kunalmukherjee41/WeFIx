@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    tools:context=".ServiceActivity2">
+    tools:context=".ui.ServiceActivity2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
                 android:id="@+id/image1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:contentDescription="@string/image"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
@@ -46,9 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="300dp"
-                tools:listitem="@layout/service_list"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                tools:listitem="@layout/service_list" />
 
         </androidx.cardview.widget.CardView>
 

@@ -5,7 +5,7 @@
     android:id="@+id/register_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateUserActivity">
+    tools:context=".ui.CreateUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
-                    android:background="@color/colorAccent" />
+                    android:background="@color/secondColor" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout1"
@@ -45,8 +45,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/aclonica"
-                        android:text="Create New Account"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:text="@string/create_new_account"
+                        android:textColor="@color/mainColor"
                         android:textSize="22sp" />
 
                     <TextView
@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="35dp"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -66,7 +66,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/name_asset"
-                        android:hint="Name"
+                        android:hint="@string/name"
                         android:inputType="text"
                         android:padding="10dp" />
 
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="115dp"
-                        android:text="Email"
+                        android:text="@string/email"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -87,7 +87,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/username_asset"
-                        android:hint="Usersname"
+                        android:hint="@string/username"
                         android:inputType="textEmailAddress"
                         android:padding="10dp" />
 
@@ -95,7 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="225dp"
-                        android:text="Password"
+                        android:text="@string/password"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -107,7 +107,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/password_asset"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="10dp" />
 
@@ -119,6 +119,7 @@
                         android:layout_marginTop="250dp"
                         android:layout_marginEnd="8dp"
                         android:alpha=".5"
+                        android:contentDescription="@string/image"
                         android:onClick="ShowHidePass"
                         android:padding="5dp"
                         android:src="@drawable/password_visible_asset"
@@ -130,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="275dp"
-                        android:text="ReEnter Password"
+                        android:text="@string/reenter_password"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -142,7 +143,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/password_asset"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="10dp" />
 
@@ -154,6 +155,7 @@
                         android:layout_marginTop="330dp"
                         android:layout_marginEnd="8dp"
                         android:alpha=".5"
+                        android:contentDescription="@string/image"
                         android:onClick="ShowHidePass1"
                         android:padding="5dp"
                         android:src="@drawable/password_visible_asset"
@@ -165,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="355dp"
-                        android:text="Phone"
+                        android:text="@string/phone_number"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -177,7 +179,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/phone_asset"
-                        android:hint="Phone"
+                        android:hint="@string/phone_number"
                         android:inputType="phone"
                         android:padding="10dp" />
 
@@ -187,8 +189,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="465dp"
                         android:background="@drawable/custom_btn"
-                        android:text="Create User"
+                        android:text="@string/create_new_account"
                         android:textAllCaps="false"
+                        android:textColor="#fff"
                         android:textSize="18sp" />
 
                 </RelativeLayout>
@@ -207,7 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:text="Forgot Password?"
+                        android:text="@string/forgot_password"
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="18sp" />
@@ -222,7 +225,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="Login Page"
+                        android:text="@string/login_page"
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="18sp" />
