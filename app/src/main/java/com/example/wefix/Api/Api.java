@@ -6,11 +6,12 @@ import com.example.wefix.model.Category1Response;
 import com.example.wefix.model.CategoryResponse;
 import com.example.wefix.model.Company1Response;
 import com.example.wefix.model.CompanyResponse;
+import com.example.wefix.model.ForgotResponse;
 import com.example.wefix.model.LogResponse;
+import com.example.wefix.model.My1Response;
 import com.example.wefix.model.PartsResponse;
 import com.example.wefix.model.Service1Response;
 import com.example.wefix.model.ServiceResponse;
-import com.example.wefix.model.User;
 import com.example.wefix.model.UserResponse;
 
 import okhttp3.ResponseBody;
@@ -70,8 +71,22 @@ public interface Api {
             @Field("password") String password
     );
 
+    @FormUrlEncoded
+    @PUT("updatepassword")
+    Call<My1Response> updatePassword(
+            @Field("currentpassword") String currentpassword,
+            @Field("newpassword") String newpassword,
+            @Field("username") String username
+    );
+
     @PUT("getcompanybyid/{tbl_company_id}")
     Call<Company1Response> getCompanyByID(@Path("tbl_company_id") int tbl_company_id);
+
+    @FormUrlEncoded
+    @PUT("forgotpassword")
+    Call<ForgotResponse> forgotPassword(
+            @Field("email") String email
+    );
 
     @PUT("updatecalllog/{call_log_id}")
     Call<ResponseBody> updateCallLog(@Path("call_log_id") int call_log_id);

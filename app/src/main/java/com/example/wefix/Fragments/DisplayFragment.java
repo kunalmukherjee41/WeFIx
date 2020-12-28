@@ -1,5 +1,6 @@
 package com.example.wefix.Fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +17,10 @@ import com.example.wefix.R;
 import com.example.wefix.adapter.DisplayCategoryAdapter;
 import com.example.wefix.model.Category;
 import com.example.wefix.model.CategoryResponse;
+import com.example.wefix.ui.PaymentActivity;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,11 +30,17 @@ public class DisplayFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<Category> categoryList;
-//    private ImageSlider imageSlider;
+    //    private ImageSlider imageSlider;
+    private ProgressDialog progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        progressBar = new ProgressDialog(getActivity());
+        progressBar.show();
+        progressBar.setContentView(R.layout.progress_dialog);
+        Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
         return inflater.inflate(R.layout.fragment_display, container, false);
 
@@ -71,10 +80,12 @@ public class DisplayFragment extends Fragment {
                         } else {
                             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                         }
+                        progressBar.dismiss();
                     }
 
                     @Override
                     public void onFailure(Call<CategoryResponse> call, Throwable t) {
+                        progressBar.dismiss();
                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }

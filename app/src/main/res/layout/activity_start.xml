@@ -67,7 +67,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:contentDescription="@string/image"
-                android:src="@drawable/india" />
+                android:src="@drawable/indianflag" />
 
         </LinearLayout>
 

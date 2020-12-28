@@ -70,7 +70,10 @@ public class SettingActivity extends AppCompatActivity {
                 return true;
             case R.id.payment_history:
                 startActivity(new Intent(this, PaymentActivity.class));
-                return false;
+                return true;
+            case R.id.change_password:
+                startActivity(new Intent(this, ChangePasswordActivity.class));
+                return true;
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

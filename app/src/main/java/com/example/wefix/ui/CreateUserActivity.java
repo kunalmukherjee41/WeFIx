@@ -38,6 +38,7 @@ public class CreateUserActivity extends AppCompatActivity {
     private EditText name, email, password, phone, rPassword;
     private ScrollView layout;
     private Button create_user;
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,9 @@ public class CreateUserActivity extends AppCompatActivity {
         create_user = findViewById(R.id.create_user);
         layout = findViewById(R.id.register_layout);
 
+        forgotPassword = findViewById(R.id.forgot_password);
+
         TextView login = findViewById(R.id.login);
-        TextView forgot_password = findViewById(R.id.forgot_password);
 
         //goto login page
         login.setOnClickListener(
@@ -72,6 +74,11 @@ public class CreateUserActivity extends AppCompatActivity {
                     createUser();
                 }
         );
+
+        forgotPassword.setOnClickListener(
+                v -> startActivity(new Intent(CreateUserActivity.this, ForgotActivity.class))
+        );
+
     }
 
     //create user function

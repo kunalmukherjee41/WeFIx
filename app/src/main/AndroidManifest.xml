@@ -19,6 +19,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".ui.ChangePasswordActivity"
+            android:parentActivityName=".ui.DisplayActivity"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -29,6 +32,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <activity
+            android:name=".ui.ForgotActivity"
+            android:parentActivityName=".ui.LoginActivity" />
         <activity
             android:name=".ui.PaymentDetailsActivity"
             android:parentActivityName=".ui.PaymentActivity" />

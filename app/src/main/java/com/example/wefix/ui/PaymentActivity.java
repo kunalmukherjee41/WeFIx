@@ -57,9 +57,7 @@ public class PaymentActivity extends AppCompatActivity implements SwipeRefreshLa
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
         bottomNavigationView.setSelectedItemId(R.id.log_history);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 menuItem -> {
                     switch (menuItem.getItemId()) {
@@ -174,7 +172,11 @@ public class PaymentActivity extends AppCompatActivity implements SwipeRefreshLa
 
             case R.id.payment_history:
                 startActivity(new Intent(this, PaymentActivity.class));
-                return false;
+                return true;
+
+            case R.id.change_password:
+                startActivity(new Intent(this, ChangePasswordActivity.class));
+                return true;
 
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);

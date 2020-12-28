@@ -105,7 +105,7 @@
     <string name="cancel_log">Cancel Log</string>
     <string name="log_placed">Log Placed</string>
     <string name="go">GO</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="add_logs">Add Logs</string>
     <string name="home">Home</string>
     <string name="log_history">Log History</string>

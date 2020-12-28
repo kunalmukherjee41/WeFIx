@@ -68,6 +68,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
+        forgot_password.setOnClickListener(
+                v -> startActivity(new Intent(LoginActivity.this, ForgotActivity.class))
+        );
+
     }
 
     public void ShowHidePass(View view) {
@@ -205,7 +209,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                 );
-
     }
 
 }

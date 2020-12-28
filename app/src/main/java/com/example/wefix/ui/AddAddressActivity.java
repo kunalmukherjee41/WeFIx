@@ -255,9 +255,13 @@ public class AddAddressActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LogActivity.class));
                 return true;
 
+            case R.id.change_password:
+                startActivity(new Intent(this, ChangePasswordActivity.class));
+                return  true;
+
             case R.id.payment_history:
                 startActivity(new Intent(this, PaymentActivity.class));
-                return false;
+                return true;
 
             case R.id.home:
                 Intent intent1 = new Intent(this, DisplayActivity.class);

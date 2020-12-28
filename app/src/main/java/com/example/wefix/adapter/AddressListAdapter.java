@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,36 +57,46 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 
         holder.del.setOnClickListener(
                 v -> {
-                    holder.del.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
-                    Address add = addressList.get(position);
-                    Call<ResponseBody> call = RetrofitClient
-                            .getInstance()
-                            .getApi()
-                            .deleteaddress(add.getBillingId());
 
-                    call.enqueue(
-                            new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(mContext, "Delete Address", Toast.LENGTH_SHORT).show();
-                                        addressList.remove(position);
-                                        notifyDataSetChanged();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("Are you want Cancel the Call Log?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", (dialog, id) -> {
+
+                                holder.del.setBackgroundColor(mContext.getResources().getColor(R.color.btn));
+                                Address add = addressList.get(position);
+                                Call<ResponseBody> call = RetrofitClient
+                                        .getInstance()
+                                        .getApi()
+                                        .deleteaddress(add.getBillingId());
+
+                                call.enqueue(
+                                        new Callback<ResponseBody>() {
+                                            @Override
+                                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                                if (response.isSuccessful()) {
+                                                    Toast.makeText(mContext, "Delete Address", Toast.LENGTH_SHORT).show();
+                                                    addressList.remove(position);
+                                                    notifyDataSetChanged();
 //                                        ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new AddAddressFragment()).commit();
-                                    } else {
-                                        Toast.makeText(mContext, "Try Again After Some Time", Toast.LENGTH_SHORT).show();
-                                    }
-                                    holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
-                                }
+                                                } else {
+                                                    Toast.makeText(mContext, "Try Again After Some Time", Toast.LENGTH_SHORT).show();
+                                                }
+                                                holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
+                                            }
 
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
+                                            @Override
+                                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                holder.del.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_btn2, null));
 
-                                }
-                            }
-                    );
+                                            }
+                                        }
+                                );
+                            })
+                            .setNegativeButton("No", (dialog, id) -> dialog.cancel());
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
         );
     }

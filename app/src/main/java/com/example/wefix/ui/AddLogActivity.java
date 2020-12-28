@@ -52,10 +52,10 @@ public class AddLogActivity extends AppCompatActivity {
 
     private List<Address> addressData;
     private RadioGroup radioGroup;
+    private RadioButton pos;
     private EditText name, address1, zip_code, phone, email, city, company_name, problem_des;
 
     private LinearLayout layout;
-
     private Button next, addressChange, add, cancel;
 
     private String txt_address1, txt_name, txt_zip_code, txt_phone_number, txt_company_name;
@@ -87,6 +87,7 @@ public class AddLogActivity extends AppCompatActivity {
         zip_code = findViewById(R.id.zip_code);
         address1 = findViewById(R.id.address1);
         phone = findViewById(R.id.phone);
+        pos = findViewById(R.id.pos);
 
         radioGroup = findViewById(R.id.address);
         radioGroup.setOrientation(RadioGroup.VERTICAL);
@@ -183,6 +184,11 @@ public class AddLogActivity extends AppCompatActivity {
                                             addressChange.setVisibility(View.VISIBLE);
                                             cancel.setVisibility(View.GONE);
                                             layout.setVisibility(View.GONE);
+                                            zip_code.setText("");
+                                            address1.setText("");
+                                            phone.setText("");
+                                            city.setText("");
+                                            name.setText("");
                                         } else {
                                             Toast.makeText(AddLogActivity.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
                                         }
@@ -250,6 +256,7 @@ public class AddLogActivity extends AppCompatActivity {
                                 }
                                 if (TextUtils.isEmpty(txt_name)) {
                                     Toast.makeText(AddLogActivity.this, "Select or Put The address first", Toast.LENGTH_SHORT).show();
+                                    next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                                 } else if (TextUtils.isEmpty(txt_address1)) {
                                     Toast.makeText(AddLogActivity.this, "Enter the address", Toast.LENGTH_LONG).show();
@@ -291,6 +298,11 @@ public class AddLogActivity extends AppCompatActivity {
                                     next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
                                     progressBar.dismiss();
 
+                                } else if (!pos.isChecked()) {
+                                    Toast.makeText(this, "Please Check the Payment Option", Toast.LENGTH_SHORT).show();
+                                    next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
+                                    progressBar.dismiss();
+
                                 } else {
                                     Call<ResponseBody> calll = RetrofitClient
                                             .getInstance()
@@ -309,7 +321,6 @@ public class AddLogActivity extends AppCompatActivity {
                                                                 }).setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
                                                         company_name.setText("");
                                                         problem_des.setText("");
-                                                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                                                         Intent intent1 = new Intent(AddLogActivity.this, SuccessfulMessageActivity.class);
                                                         intent1.putExtra("string", "Thank you for submit Call Log");
@@ -318,9 +329,10 @@ public class AddLogActivity extends AppCompatActivity {
                                                     } else {
                                                         progressBar.dismiss();
                                                         Toast.makeText(AddLogActivity.this, "Something went wrong Try again!", Toast.LENGTH_LONG).show();
-                                                        next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
 
                                                     }
+                                                    next.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
+
                                                 }
 
                                                 @Override
@@ -452,7 +464,10 @@ public class AddLogActivity extends AppCompatActivity {
                 return true;
             case R.id.payment_history:
                 startActivity(new Intent(this, PaymentActivity.class));
-                return false;
+                return true;
+            case R.id.change_password:
+                startActivity(new Intent(this, ChangePasswordActivity.class));
+                return  true;
             case R.id.home:
                 startActivity(new Intent(this, DisplayActivity.class));
                 return true;
