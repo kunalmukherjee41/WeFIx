@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,44 +10,22 @@
     <RelativeLayout
         android:id="@+id/a"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/secondColor"
-        android:padding="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:padding="12dp"
-            android:text="@string/search_for_product_and_more"
-            android:textSize="18sp" />
+        android:layout_height="50dp"
+        android:background="#4960E0">
 
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layoutDirection="rtl" />
+            android:layout_marginEnd="10dp"
+            android:background="#fff"
+            app:queryHint="Search By ID or Client Name"
+            app:searchIcon="@drawable/search_asset" />
 
     </RelativeLayout>
-
-    <!--        <com.denzcoskun.imageslider.ImageSlider-->
-    <!--            android:id="@+id/image_slider"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="150dp"-->
-    <!--            android:layout_below="@id/a"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:fitsSystemWindows="true"-->
-    <!--            app:auto_cycle="true"-->
-    <!--            app:corner_radius="10"-->
-    <!--            app:delay="0"-->
-    <!--            app:error_image="@drawable/error_image"-->
-    <!--            app:period="1000"-->
-    <!--            app:placeholder="@drawable/error_image" />-->
 
     <TextView
         android:layout_width="match_parent"

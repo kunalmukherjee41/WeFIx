@@ -22,34 +22,58 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp">
 
-            <ImageView
-                android:id="@+id/image1"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:contentDescription="@string/image"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="220dp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:padding="10dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="300dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                tools:listitem="@layout/service_list" />
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/image"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/image1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:text="@string/important_notes_after_technician_visit_if_you_don_t_agree_to_take_service_then_must_be_paid_rs_268_visit_charge_mandatory"
+                    android:textColor="#F60404"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/note"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    tools:listitem="@layout/service_list" />
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
