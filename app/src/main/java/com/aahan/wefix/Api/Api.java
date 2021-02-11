@@ -85,7 +85,8 @@ public interface Api {
     @FormUrlEncoded
     @PUT("forgotpassword")
     Call<ForgotResponse> forgotPassword(
-            @Field("email") String email
+            @Field("email") String email,
+            @Field("password") String password
     );
 
     @PUT("updatecalllog/{call_log_id}")

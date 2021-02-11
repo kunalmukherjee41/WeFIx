@@ -46,7 +46,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
-                android:text="Username"
+                android:text="@string/username"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
@@ -78,7 +78,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_bg"
-                android:text="SUBMIT"
+                android:text="@string/submit"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"

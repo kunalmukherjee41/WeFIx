@@ -14,6 +14,12 @@ import android.widget.Toast;
 import com.aahan.wefix.Api.RetrofitClient;
 import com.aahan.wefix.R;
 import com.aahan.wefix.model.ForgotResponse;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +49,7 @@ public class ForgotActivity extends AppCompatActivity {
                     Call<ForgotResponse> call = RetrofitClient
                             .getInstance()
                             .getApi()
-                            .forgotPassword(txt_email);
+                            .forgotPassword(txt_email, randomPassword());
 
                     call.enqueue(
                             new Callback<ForgotResponse>() {
@@ -68,5 +74,27 @@ public class ForgotActivity extends AppCompatActivity {
                 }
         );
 
+    }
+
+    private String randomPassword() {
+        Random random = new Random();
+        String string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder pass = new StringBuilder();
+        for (int i = 0; i < 8; i++)
+            pass.append(string.charAt(random.nextInt(string.length())));
+        return pass.toString();
+    }
+
+    private void updateFirebasePassword(String username, String txt_password, String txt_new_password) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        AuthCredential credential = EmailAuthProvider.getCredential(username, txt_password);
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        user.updatePassword(txt_new_password).addOnCompleteListener(task1 -> Toast.makeText(this, "Password Change", Toast.LENGTH_SHORT));
+                    }
+                });
     }
 }

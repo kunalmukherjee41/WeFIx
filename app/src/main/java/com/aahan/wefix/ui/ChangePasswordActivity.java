@@ -19,6 +19,10 @@ import com.aahan.wefix.Api.RetrofitClient;
 import com.aahan.wefix.R;
 import com.aahan.wefix.model.My1Response;
 import com.aahan.wefix.storage.SharedPrefManager;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -103,6 +107,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             assert response.body() != null;
                             String message = response.body().getMessage();
                             Toast.makeText(ChangePasswordActivity.this, message, Toast.LENGTH_SHORT).show();
+                            updateFirebasePassword(username, txt_currentPass, txt_newPassword);
                         }
                         rePassword.setText("");
                         currentPass.setText("");
@@ -119,6 +124,19 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void updateFirebasePassword(String username, String txt_password, String txt_new_password) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        AuthCredential credential = EmailAuthProvider.getCredential(username, txt_password);
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        user.updatePassword(txt_new_password).addOnCompleteListener(task1 -> Toast.makeText(ChangePasswordActivity.this, "Password Change", Toast.LENGTH_SHORT));
+                    }
+                });
     }
 
     public void ShowHidePass(View view) {

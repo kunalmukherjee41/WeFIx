@@ -115,5 +115,6 @@
     <string name="note_parts_rates_show_only_on_invoice">Note:- Parts rates show only on invoice</string>
     <string name="parts_rates_show_only_on_invoice_please_press_go_button">Parts Rates show only on Invoice Please Press Go Button</string>
     <string name="important_notes_after_technician_visit_if_you_don_t_agree_to_take_service_then_must_be_paid_rs_268_visit_charge_mandatory">Important notes:After technician visit if you don’t agree to take Service then must be paid Rs 268/- visit charge (Mandatory).</string>
+    <string name="submit">SUBMIT</string>
 
 </resources>

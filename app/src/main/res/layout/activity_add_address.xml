@@ -251,6 +251,4 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!--    f7e1a7-->
-
 </RelativeLayout>

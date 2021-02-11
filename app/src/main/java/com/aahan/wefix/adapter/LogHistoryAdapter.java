@@ -23,8 +23,8 @@ import com.aahan.wefix.ui.SuccessfulMessageActivity;
 import com.aahan.wefix.model.Category;
 import com.aahan.wefix.model.Category1Response;
 import com.aahan.wefix.model.Logs;
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -86,8 +86,8 @@ public class LogHistoryAdapter extends RecyclerView.Adapter<LogHistoryAdapter.Lo
                             holder.name.setText(category.getTbl_category_name());
                             holder.name1.setText(category.getTbl_category_name());
 //                            Toast.makeText(mContext, category.getTbl_category_image(), Toast.LENGTH_LONG).show();
-//                            Glide.with(mContext).load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(holder.image);
-                            Picasso.get().load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(holder.image);
+                            Glide.with(mContext).load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(holder.image);
+//                            Picasso.get().load("https://wefixservice.in/product/" + category.getTbl_category_image()).into(holder.image);
                         }
                     }
 
