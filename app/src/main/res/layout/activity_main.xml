@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/mainColor"
+            android:background="@drawable/toolbar_gradient_drawable"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <ImageView
@@ -24,7 +24,7 @@
                 android:layout_height="75dp"
                 android:contentDescription="@string/image"
                 android:scaleType="centerCrop"
-                android:src="@drawable/logo_whitw_bg" />
+                android:src="@drawable/logo_white_bg" />
 
             <TextView
                 android:id="@+id/login"

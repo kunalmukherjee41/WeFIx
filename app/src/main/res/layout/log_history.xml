@@ -27,6 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/log_placed" />
 
                 <TextView
@@ -34,12 +35,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
+                    android:fontFamily="@font/googlesansregular"
                     android:hint="" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/log_id" />
 
                 <TextView
@@ -47,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:fontFamily="@font/googlesansregular"
                     android:hint="" />
 
                 <TextView
@@ -54,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/details"
                     android:textColor="@color/mainColor" />
 
@@ -69,6 +74,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/googlesansmedium"
                     android:hint=""
                     android:textColor="@color/secondColor" />
 
@@ -91,6 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="" />
 
                     <TextView
@@ -98,6 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="" />
 
                     <Button
@@ -107,6 +115,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/custom_btn2"
+                        android:fontFamily="@font/googlesansmedium"
                         android:padding="1dp"
                         android:text="@string/cancel_log"
                         android:textAllCaps="false"
@@ -121,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/googlesansregular"
                 android:gravity="center"
                 android:text="@string/note_parts_rates_show_only_on_invoice"
                 android:textColor="#EF0606"

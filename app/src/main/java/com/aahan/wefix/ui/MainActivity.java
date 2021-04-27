@@ -62,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
     //Fetch category from database
     private void getData() {
 
+        int master_id = SharedPrefManager.getInstance(this).getMasterID();
+
         Call<CategoryResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getCategory1();
+                .getCategory1(master_id);
 
         call.enqueue(
                 new Callback<CategoryResponse>() {

@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.aahan.wefix.Api.RetrofitClient;
 import com.aahan.wefix.Fragments.AddAddressFragment;
 import com.aahan.wefix.Fragments.DisplayFragment;
+import com.aahan.wefix.Fragments.MasterCategoryFragment;
 import com.aahan.wefix.R;
 import com.aahan.wefix.model.Token;
 import com.aahan.wefix.model.User;
@@ -136,7 +137,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new MasterCategoryFragment()).commit();
             navigationView.setCheckedItem(R.id.home);
         }
 
@@ -206,7 +207,7 @@ public class DisplayActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new DisplayFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new MasterCategoryFragment()).commit();
                 break;
 
             case R.id.add_address:

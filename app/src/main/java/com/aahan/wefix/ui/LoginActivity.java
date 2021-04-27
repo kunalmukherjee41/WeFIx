@@ -122,14 +122,11 @@ public class LoginActivity extends AppCompatActivity {
                                  assert response.body() != null;
                                  if (!response.body().getError()) {
                                      assert response.body() != null;
-                                     UserResponse userResponse = response.body();
-                                     SharedPrefManager.getInstance(LoginActivity.this).saveUser(userResponse.getUser());
 
-                                     Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
 //                                     Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
 //                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                                     startActivity(intent);
-                                     firebaseLogin(txt_username, txt_password);
+                                     firebaseLogin(txt_username, txt_password, response.body());
                                      email.setText("");
 
                                  } else {
@@ -170,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.dismiss();
     }
 
-    private void firebaseLogin(String txt_email, String txt_password) {
+    private void firebaseLogin(String txt_email, String txt_password, UserResponse body) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.createUserWithEmailAndPassword(txt_email, txt_password)
                 .addOnCompleteListener(
@@ -187,6 +184,9 @@ public class LoginActivity extends AppCompatActivity {
                                 hashMap.put("id", userID);
                                 reference.setValue(hashMap).addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
+                                        SharedPrefManager.getInstance(LoginActivity.this).saveUser(body.getUser());
+                                        Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_LONG).show();
+                                        progressBar.dismiss();
                                         Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
@@ -196,15 +196,21 @@ public class LoginActivity extends AppCompatActivity {
                                 auth.signInWithEmailAndPassword(txt_email, txt_password)
                                         .addOnCompleteListener(
                                                 task12 -> {
-                                                    Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
-                                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                    startActivity(intent);
+                                                    if (task12.isSuccessful()) {
+                                                        Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_LONG).show();
+                                                        progressBar.dismiss();
+                                                        SharedPrefManager.getInstance(LoginActivity.this).saveUser(body.getUser());
+                                                        Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
+                                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                        startActivity(intent);
+                                                    } else {
+                                                        Toast.makeText(LoginActivity.this, "Password Invalid Retry", Toast.LENGTH_LONG).show();
+                                                    }
                                                 }
                                         );
                             }
                         }
                 );
-        progressBar.dismiss();
     }
 
 }

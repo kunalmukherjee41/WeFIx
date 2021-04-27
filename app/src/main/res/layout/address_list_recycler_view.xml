@@ -18,6 +18,7 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/googlesansmedium"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -26,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
+                android:fontFamily="@font/googlesansregular"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -43,6 +45,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
+                android:fontFamily="@font/googlesansregular"
                 android:textSize="14sp" />
 
             <Button
@@ -54,6 +57,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_btn2"
+                android:fontFamily="@font/googlesansmedium"
                 android:text="@string/delete"
                 android:textColor="#fff" />
 

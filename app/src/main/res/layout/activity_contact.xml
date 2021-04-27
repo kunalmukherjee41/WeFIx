@@ -33,6 +33,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/googlesansmedium"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:text="@string/contact_us"
@@ -67,6 +68,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/app_name"
                         android:textColor="#0640e0"
                         android:textSize="18sp" />
@@ -74,12 +76,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
+                        android:fontFamily="@font/googlesansregular"
                         android:text="@string/durgapur"
                         app:drawableStartCompat="@drawable/home_asset" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/googlesansregular"
                         android:paddingStart="23dp"
                         android:paddingEnd="10dp"
                         android:text="@string/west_bengal_npin_713206" />
@@ -88,12 +92,14 @@
                         android:id="@+id/phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/googlesansregular"
                         android:text="@string/_0325_2314960"
                         app:drawableStartCompat="@drawable/phone_asset" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/googlesansregular"
                         android:text="@string/_123456789"
                         android:textStyle="italic"
                         app:drawableStartCompat="@drawable/phone1_asset" />
@@ -102,6 +108,7 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/googlesansregular"
                         android:text="@string/wefix_aahan_gmail_com"
                         android:textStyle="italic"
                         app:drawableStartCompat="@drawable/email_asset" />
@@ -110,6 +117,7 @@
                         android:id="@+id/web_site"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/googlesansregular"
                         android:text="@string/wefix_sitdoxford_org"
                         android:textStyle="italic"
                         app:drawableStartCompat="@drawable/website_asset" />

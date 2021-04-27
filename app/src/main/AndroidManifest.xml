@@ -19,58 +19,61 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name="com.aahan.wefix.ui.ChangePasswordActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.BasicCategoryActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.ForgotActivity"
-            android:parentActivityName="com.aahan.wefix.ui.LoginActivity" />
+            android:name=".ui.ChangePasswordActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.PaymentDetailsActivity"
-            android:parentActivityName="com.aahan.wefix.ui.PaymentActivity" />
+            android:name=".ui.ForgotActivity"
+            android:parentActivityName=".ui.LoginActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.PaymentActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.PaymentDetailsActivity"
+            android:parentActivityName=".ui.PaymentActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.NewAddressActivity"
-            android:parentActivityName="com.aahan.wefix.ui.MainActivity" />
+            android:name=".ui.PaymentActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.AddAddressActivity"
-            android:parentActivityName="com.aahan.wefix.ui.MainActivity" />
+            android:name=".ui.NewAddressActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.AddLogActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.AddAddressActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.SuccessfulMessageActivity"
-            android:parentActivityName="com.aahan.wefix.ui.MainActivity" />
+            android:name=".ui.AddLogActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.CreateUserActivity"
-            android:parentActivityName="com.aahan.wefix.ui.LoginActivity" />
+            android:name=".ui.SuccessfulMessageActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.LogHistoryDetailsActivity"
-            android:parentActivityName="com.aahan.wefix.ui.LogActivity" />
+            android:name=".ui.CreateUserActivity"
+            android:parentActivityName=".ui.LoginActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.LogActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.LogHistoryDetailsActivity"
+            android:parentActivityName=".ui.LogActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.ServiceActivity2"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.LogActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.ContactActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.ServiceActivity2"
+            android:parentActivityName=".ui.BasicCategoryActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.ServiceActivity"
-            android:parentActivityName="com.aahan.wefix.ui.MainActivity" />
+            android:name=".ui.ContactActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.SettingActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.ServiceActivity"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.DisplayActivity"
-            android:parentActivityName="com.aahan.wefix.ui.DisplayActivity" />
+            android:name=".ui.SettingActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
         <activity
-            android:name="com.aahan.wefix.ui.LoginActivity"
-            android:parentActivityName="com.aahan.wefix.ui.MainActivity" />
-        <activity android:name="com.aahan.wefix.ui.MainActivity" />
-        <activity android:name="com.aahan.wefix.ui.StartActivity">
+            android:name=".ui.DisplayActivity"
+            android:parentActivityName=".ui.DisplayActivity" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,7 +92,7 @@
         </provider>
 
         <service
-            android:name="com.aahan.wefix.notifications.MyFireBaseMessagingService"
+            android:name=".notifications.MyFireBaseMessagingService"
             android:enabled="true"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">

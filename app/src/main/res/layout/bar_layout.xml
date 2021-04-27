@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/mainColor"
+    android:background="#ffffff"
     android:theme="@style/AppTheme"
     app:titleTextColor="#ffffff">
 
@@ -21,7 +21,7 @@
             android:contentDescription="@string/image"
             android:elevation="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo_whitw_bg" />
+            android:src="@drawable/logo_blue" />
 
     </RelativeLayout>
 

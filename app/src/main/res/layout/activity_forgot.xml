@@ -10,7 +10,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0F5BDD"
+        android:background="@drawable/toolbar_gradient_drawable"
+        android:fontFamily="@font/googlesansmedium"
         app:title="Forgot Password"
         app:titleTextColor="#fff" />
 
@@ -30,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#fff"
-            android:visibility="gone"
-            android:elevation="10dp" />
+            android:elevation="10dp"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:fontFamily="@font/googlesansmedium"
                 android:text="@string/username"
                 android:textColor="#000"
                 android:textSize="18sp" />
@@ -62,6 +64,7 @@
                 android:drawableStart="@drawable/email_asset"
                 android:drawablePadding="16dp"
                 android:ems="10"
+                android:fontFamily="@font/googlesansregular"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
@@ -78,6 +81,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_bg"
+                android:fontFamily="@font/googlesansmedium"
                 android:text="@string/submit"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"

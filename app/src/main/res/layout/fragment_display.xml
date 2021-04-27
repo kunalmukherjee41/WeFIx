@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F6FD"
+    android:background="#E2E6F8"
     tools:context=".Fragments.DisplayFragment">
 
     <RelativeLayout
@@ -22,8 +22,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="#fff"
-            app:queryHint="Search By ID or Client Name"
-            app:searchIcon="@drawable/search_asset" />
+            app:queryHint="Search By ID or Client Name" />
 
     </RelativeLayout>
 
@@ -34,7 +33,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/custom_edittext"
+        android:background="#ffffff"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:padding="5dp"

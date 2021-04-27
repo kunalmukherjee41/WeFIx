@@ -19,6 +19,7 @@ import com.aahan.wefix.R;
 import com.aahan.wefix.adapter.DisplayCategoryAdapter;
 import com.aahan.wefix.model.Category;
 import com.aahan.wefix.model.CategoryResponse;
+import com.aahan.wefix.storage.SharedPrefManager;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,7 @@ public class DisplayFragment extends Fragment {
     //    private ImageSlider imageSlider;
     private ProgressDialog progressBar;
     private DisplayCategoryAdapter adapter;
+    private int master_ID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +45,8 @@ public class DisplayFragment extends Fragment {
         progressBar.show();
         progressBar.setContentView(R.layout.progress_dialog);
         Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+
+        master_ID = SharedPrefManager.getInstance(getActivity()).getMasterID();
 
         return inflater.inflate(R.layout.fragment_display, container, false);
 
@@ -78,43 +82,6 @@ public class DisplayFragment extends Fragment {
     }
 
     void getLog() {
-        Call<CategoryResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getCategory1();
 
-        call.enqueue(
-                new Callback<CategoryResponse>() {
-                    @Override
-                    public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                        if (response.isSuccessful()) {
-                            assert response.body() != null;
-                            categoryList = response.body().getCategory();
-//                            List<SlideModel> slideModels = new ArrayList<>();
-//                            for (Category category : categoryList) {
-//                                slideModels.add(new SlideModel("https://wefixservice.in/product/" + category.getTbl_category_image(), category.getTbl_category_name()));
-//                            }
-//                            imageSlider.setImageList(slideModels, true);
-//                            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
-                            recyclerView.setItemViewCacheSize(categoryList.size());
-                            adapter = new DisplayCategoryAdapter(getContext(), categoryList, "Display");
-                            adapter.setHasStableIds(true);
-                            adapter.notifyDataSetChanged();
-                            recyclerView.setAdapter(adapter);
-                            call.cancel();
-
-                        } else {
-                            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
-                        }
-                        progressBar.dismiss();
-                    }
-
-                    @Override
-                    public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                        progressBar.dismiss();
-                    }
-                }
-        );
     }
 }

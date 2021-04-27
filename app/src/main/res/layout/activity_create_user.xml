@@ -54,6 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="35dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/name"
                         android:textColor="#000"
                         android:textSize="18sp" />
@@ -66,6 +67,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/name_asset"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="@string/name"
                         android:inputType="text"
                         android:padding="10dp" />
@@ -75,6 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="115dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/email"
                         android:textColor="#000"
                         android:textSize="18sp" />
@@ -87,6 +90,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/username_asset"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="@string/username"
                         android:inputType="textEmailAddress"
                         android:padding="10dp" />
@@ -95,6 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="225dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/password"
                         android:textColor="#000"
                         android:textSize="18sp" />
@@ -107,6 +112,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/password_asset"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="10dp" />
@@ -131,6 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="275dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/reenter_password"
                         android:textColor="#000"
                         android:textSize="18sp" />
@@ -143,6 +150,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/password_asset"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="10dp" />
@@ -167,6 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tag"
                         android:layout_marginTop="355dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/phone_number"
                         android:textColor="#000"
                         android:textSize="18sp" />
@@ -179,6 +188,7 @@
                         android:autofillHints=""
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/phone_asset"
+                        android:fontFamily="@font/googlesansregular"
                         android:hint="@string/phone_number"
                         android:inputType="phone"
                         android:padding="10dp" />
@@ -189,6 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="465dp"
                         android:background="@drawable/custom_btn"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/create_new_account"
                         android:textAllCaps="false"
                         android:textColor="#fff"
@@ -210,6 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/forgot_password"
                         android:textAlignment="center"
                         android:textColor="#000"
@@ -225,6 +237,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:fontFamily="@font/googlesansmedium"
                         android:text="@string/login_page"
                         android:textAlignment="center"
                         android:textColor="#000"

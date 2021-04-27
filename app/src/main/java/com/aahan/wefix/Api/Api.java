@@ -8,6 +8,8 @@ import com.aahan.wefix.model.Company1Response;
 import com.aahan.wefix.model.CompanyResponse;
 import com.aahan.wefix.model.ForgotResponse;
 import com.aahan.wefix.model.LogResponse;
+import com.aahan.wefix.model.Master;
+import com.aahan.wefix.model.MasterResponse;
 import com.aahan.wefix.model.My1Response;
 import com.aahan.wefix.model.PartsResponse;
 import com.aahan.wefix.model.Service1Response;
@@ -54,8 +56,10 @@ public interface Api {
 //            'billing_name', 'billing_address', 'billing_city', 'zip_code', 'mb_no', 'email', 'ref_id'
     );
 
-    @GET("getcategory")
-    Call<CategoryResponse> getCategory1();
+    @GET("getcategory/{master_id}")
+    Call<CategoryResponse> getCategory1(
+            @Path("master_id") int master_id
+    );
 
     @FormUrlEncoded
     @POST("userlogin")
@@ -118,6 +122,9 @@ public interface Api {
 
     @PUT("getcategorybyid/{tbl_category_id}")
     Call<Category1Response> getCategoryByID(@Path("tbl_category_id") int tbl_category_id);
+
+    @GET("getallmastercategory")
+    Call<MasterResponse> getAllMasterCategory();
 
     @GET("getallservice")
     Call<ServiceResponse> getAllServices();

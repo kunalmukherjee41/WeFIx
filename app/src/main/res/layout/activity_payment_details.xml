@@ -15,7 +15,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/mainColor"
+            android:background="@drawable/toolbar_gradient_drawable"
+            android:fontFamily="@font/googlesansmedium"
             app:title="Tax Invoice"
             app:titleTextColor="#fff" />
 
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/googlesansmedium"
             android:gravity="center"
             android:text="@string/tax_invoice"
             android:textColor="@color/mainColor"
@@ -63,6 +65,7 @@
                     android:id="@+id/f"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/app_name"
                     android:textColor="#000"
@@ -75,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/f"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/aahan_commrcial_and_co"
                     android:textSize="15sp"
@@ -86,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/a"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/gstin_uin_19abmfa5193k1zu"
                     android:textSize="15sp" />
@@ -96,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/b"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/contact_8509200714"
                     android:textSize="15sp" />
@@ -106,6 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/e"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/email_wefix_aahan_gmail_com"
                     android:textSize="15sp" />
@@ -116,6 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/c"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/web_site_www_wefixservice_in"
                     android:textSize="15sp" />
@@ -126,6 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/g"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:gravity="center_horizontal"
                     android:text="@string/west_bengal_19"
                     android:textSize="15sp" />
@@ -154,6 +163,7 @@
                     android:id="@+id/customer_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/customer_name"
                     android:textSize="15sp" />
 
@@ -163,6 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/customer_name_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end|center_vertical" />
 
                 <TextView
@@ -171,6 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/customer_name_text"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/address"
                     android:textSize="15sp" />
 
@@ -182,6 +194,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/customer_address_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end|center_vertical" />
 
                 <TextView
@@ -190,6 +203,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/customer_address_text"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/phone_number"
                     android:textSize="15sp" />
 
@@ -201,6 +215,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/customer_phone_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end|center_vertical" />
 
                 <TextView
@@ -209,6 +224,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/customer_phone_text"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/email"
                     android:textSize="15sp" />
 
@@ -220,6 +236,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/customer_email_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end|center_vertical" />
 
             </RelativeLayout>
@@ -246,6 +263,7 @@
                     android:id="@+id/call_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/call_log_id_no"
                     android:textSize="15sp" />
 
@@ -255,6 +273,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/tax"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -263,6 +282,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/call_text"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/invoice_no"
                     android:textSize="15sp" />
 
@@ -274,6 +294,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/tax"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -282,6 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tax"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/date"
                     android:textSize="15sp" />
 
@@ -293,6 +315,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/date_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -301,6 +324,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/date_text"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/work_type"
                     android:textSize="15sp" />
 
@@ -312,6 +336,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/service_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -320,6 +345,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/service_text"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/payment_type"
                     android:textSize="15sp" />
 
@@ -358,6 +384,7 @@
                     android:id="@+id/desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/description_of_nitem_parts"
                     android:textSize="15sp" />
 
@@ -367,6 +394,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/desc"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end|center_vertical" />
 
                 <TextView
@@ -375,6 +403,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/desc"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/quantity"
                     android:textSize="15sp" />
 
@@ -386,6 +415,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/quantity_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -395,6 +425,7 @@
                     android:layout_below="@id/quantity_text"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/rate"
                     android:textSize="15sp" />
 
@@ -406,6 +437,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/rate_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -415,6 +447,7 @@
                     android:layout_below="@id/rate_text"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/cgst_9"
                     android:textSize="15sp" />
 
@@ -426,6 +459,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/cgst_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -435,6 +469,7 @@
                     android:layout_below="@id/cgst_text"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/sgst_9"
                     android:textSize="15sp" />
 
@@ -446,6 +481,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/sgst_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -455,6 +491,7 @@
                     android:layout_below="@id/sgst_text"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/parts_amount"
                     android:textSize="15sp" />
 
@@ -466,6 +503,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/txt_parts_amount"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
                 <TextView
@@ -474,6 +512,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/parts_amount"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/total_amount"
                     android:textSize="15sp" />
 
@@ -485,6 +524,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/total_text"
+                    android:fontFamily="@font/googlesansregular"
                     android:gravity="end" />
 
             </RelativeLayout>
@@ -498,6 +538,7 @@
             android:layout_below="@id/card_view3"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:fontFamily="@font/googlesansmedium"
             android:gravity="end"
             android:text="@string/company_s_pan_abmfa5193k"
             android:textSize="15sp"
@@ -510,25 +551,26 @@
             android:layout_below="@id/pan"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:fontFamily="@font/googlesansmedium"
             android:gravity="end"
             android:text="@string/aahan_commercial_and_co"
             android:textSize="15sp"
             android:textStyle="bold" />
 
-<!--        <Button-->
-<!--            android:id="@+id/download_pdf"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/aahan"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginBottom="20dp"-->
-<!--            android:background="@drawable/custom_btn3"-->
-<!--            android:padding="10dp"-->
-<!--            android:text="@string/download_invoice"-->
-<!--            android:textColor="#fff"-->
-<!--            android:visibility="gone" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/download_pdf"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/aahan"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:layout_marginBottom="20dp"-->
+        <!--            android:background="@drawable/custom_btn3"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:text="@string/download_invoice"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:visibility="gone" />-->
 
         <Button
             android:id="@+id/show_pdf"
@@ -539,6 +581,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/custom_btn3"
+            android:fontFamily="@font/googlesansmedium"
             android:padding="10dp"
             android:text="@string/show_invoice"
             android:textColor="#fff" />

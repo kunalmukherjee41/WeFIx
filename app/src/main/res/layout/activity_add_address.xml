@@ -29,6 +29,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/googlesansmedium"
                     android:text="@string/manage_addresses"
                     android:textAlignment="center"
                     android:textColor="#000"
@@ -51,6 +52,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_btn2"
                             android:drawableStart="@drawable/add_asset"
+                            android:fontFamily="@font/googlesansregular"
                             android:paddingStart="20dp"
                             android:paddingEnd="5dp"
                             android:text="@string/add_a_new_address"
@@ -67,6 +69,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/add_a_new_address"
                                 android:textColor="#4e73df"
                                 android:textSize="18sp" />
@@ -75,6 +78,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/name"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
@@ -86,6 +90,7 @@
                                 android:layout_marginTop="10dp"
                                 android:autofillHints="@string/name"
                                 android:background="@drawable/custom_edittext"
+                                android:fontFamily="@font/googlesansregular"
                                 android:hint="@string/name"
                                 android:inputType="text"
                                 android:paddingStart="10dp"
@@ -95,6 +100,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/email"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
@@ -106,6 +112,7 @@
                                 android:layout_marginTop="10dp"
                                 android:autofillHints="@string/abc_gmail_com"
                                 android:background="@drawable/custom_edittext"
+                                android:fontFamily="@font/googlesansregular"
                                 android:hint="@string/abc_gmail_com"
                                 android:inputType="textEmailAddress"
                                 android:paddingStart="10dp"
@@ -115,6 +122,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/phone_number"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
@@ -126,6 +134,7 @@
                                 android:layout_marginTop="10dp"
                                 android:autofillHints="@string/_10_digit_phone_number"
                                 android:background="@drawable/custom_edittext"
+                                android:fontFamily="@font/googlesansregular"
                                 android:hint="@string/_10_digit_phone_number"
                                 android:inputType="phone"
                                 android:paddingStart="10dp"
@@ -135,6 +144,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/pin_code"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
@@ -146,6 +156,7 @@
                                 android:layout_marginTop="10dp"
                                 android:autofillHints="@string/_1234567"
                                 android:background="@drawable/custom_edittext"
+                                android:fontFamily="@font/googlesansregular"
                                 android:hint="@string/_1234567"
                                 android:inputType="number"
                                 android:paddingStart="10dp"
@@ -155,6 +166,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/address"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
@@ -166,6 +178,7 @@
                                 android:layout_marginTop="10dp"
                                 android:autofillHints="@string/address_area_and_street"
                                 android:background="@drawable/custom_edittext"
+                                android:fontFamily="@font/googlesansregular"
                                 android:hint="@string/address_area_and_street"
                                 android:inputType="textMultiLine"
                                 android:paddingStart="10dp"
@@ -176,6 +189,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:fontFamily="@font/googlesansregular"
                                 android:text="@string/city"
                                 android:textColor="#000"
                                 android:textSize="15sp" />
@@ -187,6 +201,7 @@
                                 android:layout_marginTop="10dp"
                                 android:autofillHints="@string/city"
                                 android:background="@drawable/custom_edittext"
+                                android:fontFamily="@font/googlesansregular"
                                 android:hint="@string/city"
                                 android:inputType="text"
                                 android:paddingStart="10dp"
@@ -204,6 +219,7 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_marginBottom="20dp"
                                     android:background="@drawable/custom_btn2"
+                                    android:fontFamily="@font/googlesansmedium"
                                     android:text="@string/save"
                                     android:textColor="#fff" />
 
@@ -214,6 +230,7 @@
                                     android:layout_marginStart="60dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_marginBottom="20dp"
+                                    android:fontFamily="@font/googlesansmedium"
                                     android:padding="10dp"
                                     android:text="@string/cancel"
                                     android:textColor="@color/mainColor"

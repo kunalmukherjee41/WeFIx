@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#0640e0</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlNormal">#000000</item>
     </style>
 
     <style name="name">
@@ -17,6 +17,14 @@
 
     <style name="toolbar">
         <item name="colorControlNormal">#fff</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="dashboardtoolbartexts">
+        <item name="android:fontFamily">@font/googlesansmedium</item>
+        <item name="android:textSize">0sp</item>
+        <item name="android:visible">false</item>
     </style>
 
 </resources>

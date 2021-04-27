@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,6 +39,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:fontFamily="@font/googlesansregular"
             android:gravity="center"
             android:text="@string/aahan_commercial_and_co"
             android:textAlignment="center"
@@ -48,14 +50,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
             android:gravity="center">
 
             <TextView
                 android:id="@+id/make"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:paddingTop="7dp"
+                android:fontFamily="@font/googlesansmedium"
+                android:gravity="center"
                 android:text="@string/made_in_india"
                 android:textColor="#000"
                 android:textSize="20sp"
