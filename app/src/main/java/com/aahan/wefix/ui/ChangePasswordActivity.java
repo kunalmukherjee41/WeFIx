@@ -1,5 +1,6 @@
 package com.aahan.wefix.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,11 +21,15 @@ import com.aahan.wefix.Api.RetrofitClient;
 import com.aahan.wefix.R;
 import com.aahan.wefix.model.My1Response;
 import com.aahan.wefix.storage.SharedPrefManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -87,7 +93,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     }
                 }
         );
-
     }
 
     private void changePassword(String txt_currentPass, String txt_newPassword) {
@@ -129,12 +134,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private void updateFirebasePassword(String username, String txt_password, String txt_new_password) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        AuthCredential credential = EmailAuthProvider.getCredential(username, txt_password);
-
-        user.reauthenticate(credential)
+        assert user != null;
+        user.updatePassword(LoginActivity.getMD5(txt_new_password))
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        user.updatePassword(txt_new_password).addOnCompleteListener(task1 -> Toast.makeText(ChangePasswordActivity.this, "Password Change", Toast.LENGTH_SHORT));
+                        Log.d("TAG", "User password updated." + LoginActivity.getMD5(txt_new_password));
+                    } else {
+                        Log.d("TAG", "User password not updated.");
                     }
                 });
     }

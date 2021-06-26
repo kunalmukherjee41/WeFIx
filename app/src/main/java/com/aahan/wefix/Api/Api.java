@@ -113,6 +113,9 @@ public interface Api {
     @PUT("getcalllog/{client_ref_id}")
     Call<LogResponse> getCallLog(@Path("client_ref_id") int client_ref_id);
 
+    @GET("getpassbyemail/{email}")
+    Call<Service1Response> getPassByEmail(@Path("email") String email);
+
     @FormUrlEncoded
     @PUT("updatuserfid")
     Call<ResponseBody> updateFirebaseID(
