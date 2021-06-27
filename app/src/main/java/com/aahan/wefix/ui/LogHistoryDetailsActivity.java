@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aahan.wefix.Api.RetrofitClient;
@@ -31,6 +32,7 @@ public class LogHistoryDetailsActivity extends AppCompatActivity {
     private TextView address, category, workType;
     private TextView company, amount, status, pinCode;
     private Logs logs;
+    private LinearLayout reviewLayout, problemDesLayout, workTypeLayout, companyLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,15 @@ public class LogHistoryDetailsActivity extends AppCompatActivity {
         company = findViewById(R.id.company);
         amount = findViewById(R.id.amount);
         status = findViewById(R.id.status);
+
+        companyLayout = findViewById(R.id.company_layout);
+        problemDesLayout = findViewById(R.id.problem_des_layout);
+        reviewLayout = findViewById(R.id.review_layout);
+        workTypeLayout = findViewById(R.id.work_type_layout);
+
+        if(SharedPrefManager.getInstance(this).getMasterID()!=10){
+
+        }
 
         getService(logs.getRefServiceId(), logs.getRefCatId());
 

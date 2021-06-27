@@ -25,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -122,19 +124,20 @@ public class LoginActivity extends AppCompatActivity {
                                  assert response.body() != null;
                                  if (!response.body().getError()) {
                                      assert response.body() != null;
-
-//                                     Intent intent = new Intent(LoginActivity.this, DisplayActivity.class);
-//                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                     startActivity(intent);
-                                     firebaseLogin(txt_username, txt_password, response.body());
+                                     try {
+                                         firebaseLogin(txt_username, txt_password, response.body());
+                                     } catch (NoSuchAlgorithmException e) {
+                                         progressBar.dismiss();
+                                         e.printStackTrace();
+                                     }
                                      email.setText("");
 
                                  } else {
+                                     progressBar.dismiss();
                                      Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
                                  }
                                  login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
                                  password.setText("");
-                                 progressBar.dismiss();
                              }
 
                              @Override
@@ -167,9 +170,10 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.dismiss();
     }
 
-    private void firebaseLogin(String txt_email, String txt_password, UserResponse body) {
+    private void firebaseLogin(String txt_email, String txt_password, UserResponse body) throws NoSuchAlgorithmException {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.createUserWithEmailAndPassword(txt_email, txt_password)
+
+        auth.createUserWithEmailAndPassword(txt_email, getMD5(txt_password))
                 .addOnCompleteListener(
                         task -> {
                             if (task.isSuccessful()) {
@@ -193,7 +197,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                                auth.signInWithEmailAndPassword(txt_email, txt_password)
+                                auth.signInWithEmailAndPassword(txt_email, getMD5(txt_password))
                                         .addOnCompleteListener(
                                                 task12 -> {
                                                     if (task12.isSuccessful()) {
@@ -211,6 +215,22 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                 );
+        progressBar.dismiss();
+
+    }
+
+    public static String getMD5(String pass) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(pass.getBytes());
+            byte[] byteData = md.digest();
+            for (byte byteDatum : byteData)
+                sb.append(Integer.toString((byteDatum & 0xff) + 0x100, 16).substring(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
 }
