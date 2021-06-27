@@ -289,6 +289,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/company_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -317,6 +318,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/work_type_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -344,6 +346,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/problem_des_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -360,6 +363,34 @@
 
                         <TextView
                             android:id="@+id/problem_des"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="2dp"
+                            android:fontFamily="@font/googlesansregular"
+                            android:gravity="center_vertical|end"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/review_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/googlesansregular"
+                            android:text="@string/problem_description"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/review"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
